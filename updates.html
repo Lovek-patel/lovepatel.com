@@ -6,12 +6,19 @@
   <title>Updates | Love Patel</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* General Page Styling */
     body {
       font-family: Arial, sans-serif;
       background-color: #111;
       color: #eee;
       margin: 0;
-      padding: 0;
+      padding-top: 70px; /* Makes room for fixed nav bar */
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
     }
 
     /* 🔝 Top Navigation Bar */
@@ -23,6 +30,7 @@
       color: white;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 1rem 2rem;
       z-index: 999;
       border-bottom: 1px solid #222;
@@ -36,6 +44,8 @@
     .menu-button {
       cursor: pointer;
       font-size: 1.5rem;
+      user-select: none;
+      color: white;
       transition: transform 0.2s;
     }
 
@@ -46,7 +56,7 @@
     .popup-menu {
       display: none;
       position: fixed;
-      top: 3.5rem;
+      top: 60px;
       right: 1rem;
       background-color: #222;
       border-radius: 10px;
@@ -68,12 +78,7 @@
       background-color: #333;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 6rem 2rem 2rem; /* Add top padding to avoid hiding under nav bar */
-    }
-
+    /* Login and Updates Section Styling */
     .login-section, .updates-section {
       display: none;
     }
@@ -222,14 +227,14 @@
         <p>We're officially launching the first version of the website! Stay tuned for more updates.</p>
       </div>
 
-      <!-- 📝 Update Preview -->
+      <!-- 📝 Update Preview (click to open modal) -->
       <div class="update-preview" onclick="openUpdateModal('update1')">
         <img src="https://via.placeholder.com/400x200" alt="Update 1 Image">
         <h3>📝 Update Title 1</h3>
         <p>This is a short summary of the update. Click to view full details.</p>
       </div>
 
-      <!-- 💬 Full Update Modal -->
+      <!-- 💬 Modal for full update -->
       <div id="update1" class="update-modal">
         <div class="modal-content">
           <span class="close" onclick="closeUpdateModal('update1')">&larr; Back</span>
@@ -241,7 +246,6 @@
     </div>
   </div>
 
-  <!-- 🧠 Scripts -->
   <script>
     const validPasswords = ["patel2025", "ascend", "primis"];
 
