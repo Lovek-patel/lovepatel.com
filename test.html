@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test Menu</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #111;
+      color: #fff;
+      padding-top: 70px;
+    }
+
+    .top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #222;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .menu-button {
+      font-size: 2rem;
+      background-color: #444;
+      padding: 0.3rem 0.8rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .popup-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 1rem;
+      background: #222;
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 1001;
+    }
+
+    .popup-menu a {
+      display: block;
+      padding: 1rem 2rem;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+    }
+
+    .popup-menu a:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="logo">Love Patel</div>
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <div class="popup-menu" id="popupMenu">
+    <a href="#">Home</a>
+    <a href="#">Projects</a>
+    <a href="#">Blog</a>
+    <a href="#">Updates</a>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("popupMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+  </script>
+</body>
+</html>
