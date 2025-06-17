@@ -3,28 +3,142 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact – Love Patel</title>
+  <title>Contact | Love Patel</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #eee;
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #0e0e0e;
-      color: #f5f5f5;
-      padding: 4rem 2rem;
+      padding-top: 70px;
     }
-    h1 {
-      text-align: center;
-      font-size: 2rem;
-      color: #c7a36e;
+
+    .top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      z-index: 999;
+      border-bottom: 1px solid #222;
     }
-    p {
-      text-align: center;
-      margin-top: 2rem;
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .menu-button {
+      font-size: 1.8rem;
+      background-color: #444;
+      padding: 0.3rem 0.9rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .menu-button:hover {
+      background-color: #666;
+    }
+
+    .popup-menu {
+      display: none;
+      position: fixed;
+      top: 70px;
+      right: 1rem;
+      background-color: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .popup-menu a {
+      display: block;
+      padding: 1rem 2rem;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+      transition: background 0.2s;
+    }
+
+    .popup-menu a:hover {
+      background-color: #333;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .contact-box {
+      background: #222;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .contact-box h2 {
+      margin-top: 0;
+      color: #fff;
+    }
+
+    .contact-box p {
+      line-height: 1.6;
+      color: #ccc;
+    }
+
+    .contact-links a {
+      color: #66b2ff;
+      text-decoration: none;
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .contact-links a:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
-  <h1>Contact</h1>
-  <p>Form, email links, and socials coming soon.</p>
+  <div class="top-bar">
+    <div class="logo">Love Patel</div>
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <div class="popup-menu" id="popupMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html">Blog</a>
+    <a href="updates.html">Updates</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="container">
+    <div class="contact-box">
+      <h2>📬 Get in Touch</h2>
+      <p>Whether it’s for collaboration, conversation, or just to say hello — I’d love to hear from you.</p>
+      <div class="contact-links">
+        <a href="mailto:lkp2133@columbia.edu">📧 lkp2133@columbia.edu</a>
+        <a href="https://www.linkedin.com/in/lovekpatel" target="_blank">🔗 LinkedIn</a>
+        <a href="https://github.com/lovekpatel" target="_blank">💻 GitHub</a>
+        <!-- Add more links or a contact form if needed -->
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById("popupMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    }
+  </script>
 </body>
 </html>
