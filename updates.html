@@ -13,23 +13,28 @@
       margin: 0;
       padding: 0;
     }
+
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 2rem;
     }
+
     .login-section, .updates-section {
       display: none;
     }
+
     .login-section.active, .updates-section.active {
       display: block;
     }
+
     .login-box {
       background-color: #222;
       padding: 2rem;
       border-radius: 8px;
       text-align: center;
     }
+
     input[type="password"], input[type="email"], textarea {
       width: 90%;
       padding: 0.5rem;
@@ -37,6 +42,7 @@
       border: none;
       border-radius: 4px;
     }
+
     button {
       padding: 0.6rem 1.2rem;
       background-color: #444;
@@ -45,33 +51,80 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
     button:hover {
       background-color: #666;
     }
-    .update-card {
-      background-color: #1e1e1e;
-      padding: 1.5rem;
-      margin-bottom: 1.5rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .update-card img {
-      width: 100%;
-      border-radius: 6px;
-      margin-top: 1rem;
-    }
+
     .announcement {
-      background-color: #292929;
-      border-left: 5px solid #f00;
+      background: #292929;
+      border-left: 5px solid orange;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
     }
-    .update-details {
+
+    .update-preview {
+      background: #1a1a1a;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .update-preview:hover {
+      transform: scale(1.02);
+    }
+
+    .update-preview img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .update-modal {
       display: none;
-      margin-top: 1rem;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      overflow-y: scroll;
+      padding: 3rem 1rem;
+    }
+
+    .modal-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .close {
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+
+    .close:hover {
+      color: #fff;
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- 🔐 Login Section -->
     <div class="login-section active" id="login-section">
       <div class="login-box">
         <h2>🔒 Updates Access</h2>
@@ -90,25 +143,32 @@
       </div>
     </div>
 
+    <!-- 📓 Updates Section -->
     <div class="updates-section" id="updates-section">
       <h1>📓 Updates Feed</h1>
 
-      <!-- 📢 Big Announcement -->
-      <div class="update-card announcement">
+      <!-- 📢 Announcement -->
+      <div class="announcement">
         <h2>📢 Big Announcement</h2>
         <p>We're officially launching the first version of the website! Stay tuned for more updates.</p>
       </div>
 
-      <!-- 📝 Regular Update -->
-      <div class="update-card" onclick="toggleDetails(this)">
-        <h2>📝 Update Title</h2>
-        <img src="https://via.placeholder.com/800x300" alt="Update Image" />
-        <p><strong>Summary:</strong> This is a brief preview of the update. Click to read more.</p>
-        <div class="update-details">
-          <p>This is the full content of the update, where you can include more detailed thoughts, experiences, or even a personal story.</p>
-        </div>
+      <!-- 📝 Update Preview (click to open modal) -->
+      <div class="update-preview" onclick="openUpdateModal('update1')">
+        <img src="https://via.placeholder.com/400x200" alt="Update 1 Image">
+        <h3>📝 Update Title 1</h3>
+        <p>This is a short summary of the update. Click to view full details.</p>
       </div>
 
+      <!-- 💬 Modal for full update -->
+      <div id="update1" class="update-modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeUpdateModal('update1')">&larr; Back</span>
+          <h2>📝 Update Title 1</h2>
+          <img src="https://via.placeholder.com/600x300" alt="Update Full Image">
+          <p>This is the full content of the update. Add any amount of text here. You can include longer thoughts, formatting, etc.</p>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -136,11 +196,12 @@
       form.style.display = form.style.display === "none" ? "block" : "none";
     }
 
-    function toggleDetails(card) {
-      const details = card.querySelector(".update-details");
-      if (details) {
-        details.style.display = details.style.display === "none" ? "block" : "none";
-      }
+    function openUpdateModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeUpdateModal(id) {
+      document.getElementById(id).style.display = 'none';
     }
   </script>
 </body>
