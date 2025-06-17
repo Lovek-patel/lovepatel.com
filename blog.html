@@ -3,28 +3,99 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog – Love Patel</title>
+  <title>Blog | Love Patel</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     body {
-      margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #0e0e0e;
-      color: #f5f5f5;
-      padding: 4rem 2rem;
+      margin: 0;
+      padding: 0;
+      background-color: #111;
+      color: #eee;
     }
-    h1 {
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .blog-container {
+      max-width: 1000px;
+      margin: auto;
+      padding: 2rem;
+    }
+    .blog-title {
       text-align: center;
       font-size: 2rem;
-      color: #c7a36e;
+      margin-bottom: 2rem;
     }
-    p {
-      text-align: center;
-      margin-top: 2rem;
+    .post-preview {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      transition: transform 0.2s;
+    }
+    .post-preview:hover {
+      transform: translateY(-5px);
+      background-color: #222;
+    }
+    .post-preview h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    .post-preview p {
+      margin: 0.5rem 0 0;
+      color: #aaa;
+    }
+    .post-preview a {
+      text-decoration: none;
+      color: inherit;
     }
   </style>
 </head>
 <body>
-  <h1>Blog</h1>
-  <p>Professional writing, opinions, and more to come soon.</p>
+  <div class="nav">
+    <a href="index.html">LOVE</a>
+    <a href="javascript:history.back()">← Back</a>
+  </div>
+
+  <div class="blog-container">
+    <div class="blog-title">My Blog</div>
+
+    <!-- Blog Post 1 -->
+    <div class="post-preview">
+      <a href="blog-post-1.html">
+        <h3>Blog Post 1</h3>
+        <p>Preview of what Blog Post 1 will be about.</p>
+      </a>
+    </div>
+
+    <!-- Blog Post 2 -->
+    <div class="post-preview">
+      <a href="blog-post-2.html">
+        <h3>Blog Post 2</h3>
+        <p>Preview of what Blog Post 2 will be about.</p>
+      </a>
+    </div>
+
+    <!-- Blog Post 3 -->
+    <div class="post-preview">
+      <a href="blog-post-3.html">
+        <h3>Blog Post 3</h3>
+        <p>Preview of what Blog Post 3 will be about.</p>
+      </a>
+    </div>
+  </div>
 </body>
 </html>
