@@ -3,59 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Menu Test | Love Patel</title>
+  <title>Updates | Love Patel</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      margin: 0;
+      font-family: Arial, sans-serif;
       background-color: #111;
       color: #eee;
-      font-family: Arial, sans-serif;
-      padding-top: 70px; /* Make room for fixed navbar */
+      margin: 0;
+      padding: 0;
     }
 
-    /* 🌟 Top Bar */
     .top-bar {
       position: fixed;
       top: 0;
-      left: 0;
       width: 100%;
-      background-color: #111;
-      border-bottom: 1px solid #222;
-      color: white;
+      background: #111;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
+      border-bottom: 1px solid #222;
       z-index: 1000;
     }
 
     .logo {
+      font-size: 1.2rem;
       font-weight: bold;
-      font-size: 1.3rem;
     }
 
     .menu-button {
       font-size: 1.8rem;
+      background-color: #333;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
       cursor: pointer;
-      user-select: none;
-      transition: transform 0.2s;
+      margin-right: 20px;
+      transition: all 0.3s ease;
     }
 
     .menu-button:hover {
-      transform: scale(1.1);
+      background-color: #555;
+      transform: scale(1.05);
     }
 
-    /* 🎮 Popup Menu */
     .popup-menu {
-      display: none;
       position: fixed;
       top: 70px;
-      right: 1rem;
-      background-color: #222;
-      border-radius: 10px;
+      right: 1.5rem;
+      background: rgba(40, 40, 40, 0.8);
+      backdrop-filter: blur(12px);
+      border-radius: 12px;
       overflow: hidden;
       z-index: 1001;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+      pointer-events: none;
+    }
+
+    .popup-menu.show {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     .popup-menu a {
@@ -67,43 +77,223 @@
     }
 
     .popup-menu a:hover {
-      background-color: #333;
+      background-color: #444;
     }
 
-    /* 🔽 Placeholder Content */
-    .content {
+    .container {
+      max-width: 900px;
+      margin: 5rem auto 0 auto;
       padding: 2rem;
+    }
+
+    .login-section, .updates-section {
+      display: none;
+    }
+
+    .login-section.active, .updates-section.active {
+      display: block;
+    }
+
+    .login-box {
+      background-color: #222;
+      padding: 2rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    input[type="password"], input[type="email"], textarea {
+      width: 90%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 0.6rem 1.2rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    .announcement {
+      background: #292929;
+      border-left: 5px solid orange;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    .update-preview {
+      background: #1a1a1a;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .update-preview:hover {
+      transform: scale(1.02);
+    }
+
+    .update-preview img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .update-modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      overflow-y: scroll;
+      padding: 3rem 1rem;
+    }
+
+    .modal-content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      color: #fff;
+    }
+
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .close {
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: #ccc;
+    }
+
+    .close:hover {
+      color: #fff;
     }
   </style>
 </head>
 <body>
-
-  <!-- 🔝 Nav Bar -->
   <div class="top-bar">
     <div class="logo">Love Patel</div>
     <div class="menu-button" onclick="toggleMenu()">☰</div>
   </div>
 
-  <!-- 🧭 Menu -->
   <div class="popup-menu" id="popupMenu">
-    <a href="index.html">Home</a>
-    <a href="projects.html">Projects</a>
-    <a href="blog.html">Blog</a>
-    <a href="updates.html">Updates</a>
+    <a href="index.html">🏠 Home</a>
+    <a href="projects.html">🛠️ Projects</a>
+    <a href="blog.html">📖 Blog</a>
+    <a href="updates.html">📓 Updates</a>
   </div>
 
-  <!-- 📄 Page Content -->
-  <div class="content">
-    <h1>Test Page</h1>
-    <p>This is a placeholder. Try clicking the ☰ icon in the top-right corner.</p>
+  <div class="container">
+    <!-- 🔐 Login Section -->
+    <div class="login-section active" id="login-section">
+      <div class="login-box">
+        <h2>🔒 Updates Access</h2>
+        <p>Enter your password to access updates:</p>
+        <input type="password" id="passwordInput" placeholder="Password" />
+        <br />
+        <button onclick="checkPassword()">Enter</button>
+        <br /><br />
+        <button onclick="toggleForm()">Don't have a password? Request one</button>
+        <div id="requestForm" style="display:none; margin-top: 1rem;">
+          <input type="email" id="emailInput" placeholder="Your email" />
+          <textarea id="reasonInput" placeholder="Why you'd like access"></textarea>
+          <button onclick="sendRequest()">Send Request</button>
+          <p style="font-size: 0.9rem; opacity: 0.8;">If the form doesn’t work, email me at lkp2133@columbia.edu</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 📓 Updates Section -->
+    <div class="updates-section" id="updates-section">
+      <h1>📓 Updates Feed</h1>
+
+      <!-- 📢 Announcement -->
+      <div class="announcement">
+        <h2>📢 Big Announcement</h2>
+        <p>We're officially launching the first version of the website! Stay tuned for more updates.</p>
+      </div>
+
+      <!-- 📝 Update Preview (click to open modal) -->
+      <div class="update-preview" onclick="openUpdateModal('update1')">
+        <img src="https://via.placeholder.com/400x200" alt="Update 1 Image">
+        <h3>📝 Update Title 1</h3>
+        <p>This is a short summary of the update. Click to view full details.</p>
+      </div>
+
+      <!-- 💬 Modal for full update -->
+      <div id="update1" class="update-modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeUpdateModal('update1')">&larr; Back</span>
+          <h2>📝 Update Title 1</h2>
+          <img src="https://via.placeholder.com/600x300" alt="Update Full Image">
+          <p>This is the full content of the update. Add any amount of text here. You can include longer thoughts, formatting, etc.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <script>
+    const validPasswords = ["patel2025", "ascend", "primis"];
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      if (validPasswords.includes(input.trim())) {
+        document.getElementById("login-section").classList.remove("active");
+        document.getElementById("updates-section").classList.add("active");
+      } else {
+        alert("Incorrect password.");
+      }
+    }
+
+    function sendRequest() {
+      const email = document.getElementById("emailInput").value;
+      const reason = document.getElementById("reasonInput").value;
+      window.location.href = `mailto:lkp2133@columbia.edu?subject=Access%20Request&body=Email:%20${email}%0AReason:%20${reason}`;
+    }
+
+    function toggleForm() {
+      const form = document.getElementById("requestForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+
+    function openUpdateModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeUpdateModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
     function toggleMenu() {
       const menu = document.getElementById("popupMenu");
-      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+      menu.classList.toggle("show");
     }
-  </script>
 
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById("popupMenu");
+      const button = document.querySelector(".menu-button");
+      if (!menu.contains(e.target) && !button.contains(e.target)) {
+        menu.classList.remove("show");
+      }
+    });
+  </script>
 </body>
 </html>
