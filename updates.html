@@ -3,47 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test Menu</title>
+  <title>Menu Test | Love Patel</title>
   <style>
     body {
       margin: 0;
-      background: #111;
-      color: white;
+      background-color: #111;
+      color: #eee;
       font-family: Arial, sans-serif;
-      padding-top: 70px;
+      padding-top: 70px; /* Make room for fixed navbar */
     }
 
-    /* Top Nav Bar */
+    /* 🌟 Top Bar */
     .top-bar {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      background: #111;
+      background-color: #111;
+      border-bottom: 1px solid #222;
       color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      border-bottom: 1px solid #222;
       z-index: 1000;
     }
 
     .logo {
       font-weight: bold;
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     .menu-button {
+      font-size: 1.8rem;
       cursor: pointer;
-      font-size: 1.5rem;
       user-select: none;
+      transition: transform 0.2s;
     }
 
-    /* Popup Menu */
+    .menu-button:hover {
+      transform: scale(1.1);
+    }
+
+    /* 🎮 Popup Menu */
     .popup-menu {
       display: none;
       position: fixed;
-      top: 60px;
+      top: 70px;
       right: 1rem;
       background-color: #222;
       border-radius: 10px;
@@ -64,7 +70,7 @@
       background-color: #333;
     }
 
-    /* Content Placeholder */
+    /* 🔽 Placeholder Content */
     .content {
       padding: 2rem;
     }
@@ -72,30 +78,30 @@
 </head>
 <body>
 
-  <!-- 🔝 Top Bar -->
+  <!-- 🔝 Nav Bar -->
   <div class="top-bar">
     <div class="logo">Love Patel</div>
     <div class="menu-button" onclick="toggleMenu()">☰</div>
   </div>
 
-  <!-- 🎮 Popup Menu -->
+  <!-- 🧭 Menu -->
   <div class="popup-menu" id="popupMenu">
-    <a href="#">Home</a>
-    <a href="#">Projects</a>
-    <a href="#">Blog</a>
-    <a href="#">Updates</a>
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html">Blog</a>
+    <a href="updates.html">Updates</a>
   </div>
 
+  <!-- 📄 Page Content -->
   <div class="content">
     <h1>Test Page</h1>
-    <p>Click the ☰ icon in the top right.</p>
+    <p>This is a placeholder. Try clicking the ☰ icon in the top-right corner.</p>
   </div>
 
   <script>
     function toggleMenu() {
       const menu = document.getElementById("popupMenu");
-      const isVisible = menu.style.display === "block";
-      menu.style.display = isVisible ? "none" : "block";
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
     }
   </script>
 
