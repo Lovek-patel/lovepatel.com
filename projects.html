@@ -1,212 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- ---------- HEAD ---------- -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects – Love Patel</title>
+  <title>Projects | Love Patel</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #eee;
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #0e0e0e;
-      color: #f5f5f5;
+      padding-top: 70px;
     }
 
-    /* ---------- HEADER ---------- */
-    header {
+    .top-bar {
       position: fixed;
       top: 0;
       width: 100%;
-      height: 60px;
-      background-color: #141414;
+      background: #111;
+      color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0 1.5rem;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+      padding: 1rem 2rem;
+      z-index: 999;
+      border-bottom: 1px solid #222;
     }
 
     .logo {
-      font-size: 1.5rem;
       font-weight: bold;
+      font-size: 1.2rem;
     }
 
-    .menu-toggle {
-      font-size: 1.5rem;
+    .menu-button {
+      font-size: 1.8rem;
+      background-color: #444;
+      padding: 0.3rem 0.9rem;
+      border-radius: 6px;
       cursor: pointer;
+      transition: background-color 0.3s;
+      margin-right: 2.5rem;
     }
 
-    .menu-popup {
-      position: fixed;
-      top: 60px;
-      right: 0;
-      background-color: #1a1a1a;
-      padding: 1rem;
+    .menu-button:hover {
+      background-color: #666;
+    }
+
+    .popup-menu {
       display: none;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 999;
-      box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .menu-popup a {
-      color: #f5f5f5;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-
-    .menu-popup a:hover {
-      color: #c7a36e;
-    }
-
-    /* ---------- PROJECTS GRID ---------- */
-    .container {
-      padding-top: 80px;
-      padding-bottom: 4rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      color: #c7a36e;
-      font-size: 2rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      padding: 0 1.5rem;
-    }
-
-    .card {
-      background-color: #1a1a1a;
-      aspect-ratio: 1 / 1.1;
-      border-radius: 16px;
-      perspective: 1000px;
-      overflow: hidden;
-    }
-
-    .inner {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.6s ease;
-    }
-
-    .card:hover .inner {
-      transform: rotateY(180deg);
-    }
-
-    .front, .back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-      text-align: center;
-    }
-
-    .front {
+      position: fixed;
+      top: 70px;
+      right: 1rem;
       background-color: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .popup-menu a {
+      display: block;
+      padding: 1rem 2rem;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+      transition: background 0.2s;
+    }
+
+    .popup-menu a:hover {
+      background-color: #333;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .projects-box {
+      background: #1b1b1b;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .projects-box h2 {
+      margin-top: 0;
       color: #fff;
     }
 
-    .back {
-      background-color: #333;
-      color: #c7a36e;
-      transform: rotateY(180deg);
+    .project {
+      margin-bottom: 2rem;
     }
 
-    .emoji {
-      font-size: 3rem;
-      margin-bottom: 1rem;
+    .project h3 {
+      margin: 0.2rem 0;
+      color: #ddd;
     }
 
-    .project-name {
-      font-size: 1.1rem;
-    }
-
-    .card a {
-      text-decoration: none;
-      color: inherit;
-      display: block;
-      width: 100%;
-      height: 100%;
+    .project p {
+      color: #bbb;
+      line-height: 1.6;
     }
   </style>
 </head>
-
-<!-- ---------- BODY ---------- -->
 <body>
-  <header>
-    <div class="logo">🌌</div>
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-    <div class="menu-popup" id="menuPopup">
-      <a href="index.html">Home</a>
-      <a href="projects.html">Projects</a>
-      <a href="blog.html">Blog</a>
-      <a href="updates.html">Updates</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </header>
+  <div class="top-bar">
+    <div class="logo">Love Patel</div>
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <div class="popup-menu" id="popupMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html">Blog</a>
+    <a href="updates.html">Updates</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
   <div class="container">
-    <h1>Projects</h1>
-    <div class="grid">
-      <div class="card">
-        <a href="#">
-          <div class="inner">
-            <div class="front">
-              <div class="emoji">🌿</div>
-              <div class="project-name">Project 1</div>
-            </div>
-            <div class="back">Project 1 description.</div>
-          </div>
-        </a>
+    <div class="projects-box">
+      <h2>🚀 Projects</h2>
+
+      <div class="project">
+        <h3>🦾 ASCEND</h3>
+        <p>An AI planning and autonomy system designed to manage tasks, adapt, and learn over time. Think of it as your smart co-pilot for life and work.</p>
       </div>
 
-      <div class="card">
-        <a href="#">
-          <div class="inner">
-            <div class="front">
-              <div class="emoji">🔮</div>
-              <div class="project-name">Project 2</div>
-            </div>
-            <div class="back">Project 2 description.</div>
-          </div>
-        </a>
+      <div class="project">
+        <h3>🔋 Luminar</h3>
+        <p>A modern take on Dyson Sphere energy systems. Focused on advanced energy collection and storage methods that could eventually scale interplanetary.</p>
       </div>
 
-      <div class="card">
-        <a href="#">
-          <div class="inner">
-            <div class="front">
-              <div class="emoji">🌞</div>
-              <div class="project-name">Project 3</div>
-            </div>
-            <div class="back">Project 3 description.</div>
-          </div>
-        </a>
+      <div class="project">
+        <h3>🕸️ Spider-Tech</h3>
+        <p>From web shooters to wall crawling — real-world prototypes inspired by Spider-Man tech, tested in small-scale rooms and built for feasibility.</p>
+      </div>
+
+      <div class="project">
+        <h3>⚡ BioNix</h3>
+        <p>Exploring how to harness biological energy from small organisms for powering devices. A deep dive into biophysics, physiology, and innovation.</p>
+      </div>
+
+      <div class="project">
+        <h3>🏫 Primis</h3>
+        <p>Building a blueprint for a global school system — academically rigorous, ethically grounded, and deeply empowering for the next generation.</p>
       </div>
     </div>
   </div>
 
   <script>
     function toggleMenu() {
-      const popup = document.getElementById('menuPopup');
-      popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
+      const menu = document.getElementById("popupMenu");
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
     }
   </script>
 </body>
