@@ -1,137 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Updates</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Updates | Love Patel</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
+      font-family: Arial, sans-serif;
       background-color: #111;
-      color: #f1f1f1;
+      color: #eee;
+      margin: 0;
+      padding: 0;
     }
-    .locked, .unlocked {
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    .login-section, .updates-section {
       display: none;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      flex-direction: column;
     }
-    .active {
-      display: flex;
+    .login-section.active, .updates-section.active {
+      display: block;
     }
-    input[type="password"], input[type="email"], textarea {
-      padding: 12px;
-      margin: 8px;
+    .login-box {
+      background-color: #222;
+      padding: 2rem;
       border-radius: 8px;
-      border: none;
-      width: 300px;
-      font-size: 1em;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 12px;
-      background: #333;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1em;
-    }
-    .form-request {
-      margin-top: 20px;
       text-align: center;
     }
-    .form-request p {
-      margin-bottom: 6px;
-      font-size: 0.9em;
+    input[type="password"], input[type="email"], textarea {
+      width: 90%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 4px;
     }
-    .update-container {
-      padding: 40px 20px;
-      max-width: 700px;
-      margin: 0 auto;
+    button {
+      padding: 0.6rem 1.2rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
-    .update {
-      background: #222;
-      border-left: 4px solid #555;
-      padding: 20px;
-      margin-bottom: 30px;
-      border-radius: 10px;
+    button:hover {
+      background-color: #666;
+    }
+    .update-card {
+      background-color: #1e1e1e;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .update-card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-top: 1rem;
     }
     .announcement {
-      background: #331111;
-      border-left: 6px solid #ff5e5e;
+      background-color: #292929;
+      border-left: 5px solid #f00;
     }
-    .update h2 {
-      margin: 0 0 10px;
-    }
-    .update img {
-      width: 100%;
-      border-radius: 10px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
-    .update p {
-      margin: 10px 0 0;
-      line-height: 1.6;
+    .update-details {
+      display: none;
+      margin-top: 1rem;
     }
   </style>
 </head>
 <body>
-  <div class="locked active" id="lockScreen">
-    <h2>🔒 This page is private.</h2>
-    <input type="password" id="password" placeholder="Enter password">
-    <button onclick="checkPassword()">Unlock</button>
-    <div class="form-request">
-      <p>Don't have a password?</p>
-      <p><strong>Request one below:</strong></p>
-      <input type="email" id="requestEmail" placeholder="Your email">
-      <textarea id="requestReason" placeholder="Why do you want access?" rows="3"></textarea>
-      <button onclick="sendRequest()">Send Request</button>
-      <p>If the form doesn't work, email <a href="mailto:lkp2133@columbia.edu" style="color:#6cf;">lkp2133@columbia.edu</a></p>
+  <div class="container">
+    <div class="login-section active" id="login-section">
+      <div class="login-box">
+        <h2>🔒 Updates Access</h2>
+        <p>Enter your password to access updates:</p>
+        <input type="password" id="passwordInput" placeholder="Password" />
+        <br />
+        <button onclick="checkPassword()">Enter</button>
+        <br /><br />
+        <button onclick="toggleForm()">Don't have a password? Request one</button>
+        <div id="requestForm" style="display:none; margin-top: 1rem;">
+          <input type="email" id="emailInput" placeholder="Your email" />
+          <textarea id="reasonInput" placeholder="Why you'd like access"></textarea>
+          <button onclick="sendRequest()">Send Request</button>
+          <p style="font-size: 0.9rem; opacity: 0.8;">If the form doesn’t work, email me at lkp2133@columbia.edu</p>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <div class="unlocked" id="unlockedContent">
-    <div class="update-container">
-      <!-- Template: Standard Update -->
-      <div class="update">
-        <h2>📝 Update Title Goes Here</h2>
-        <img src="https://via.placeholder.com/700x300.png?text=Update+Image" alt="Update image">
-        <p>This is a sample update description. You can include longer text here to talk about recent things, reflections, or media uploads.</p>
+    <div class="updates-section" id="updates-section">
+      <h1>📓 Updates Feed</h1>
+
+      <!-- 📢 Big Announcement -->
+      <div class="update-card announcement">
+        <h2>📢 Big Announcement</h2>
+        <p>We're officially launching the first version of the website! Stay tuned for more updates.</p>
       </div>
 
-      <!-- Template: Announcement (louder visual) -->
-      <div class="update announcement">
-        <h2>📢 Big Announcement Title</h2>
-        <img src="https://via.placeholder.com/700x300.png?text=Announcement+Image" alt="Announcement image">
-        <p>This is a louder-styled announcement box. Ideal for big news, new projects, upcoming events, or anything time-sensitive and important.</p>
+      <!-- 📝 Regular Update -->
+      <div class="update-card" onclick="toggleDetails(this)">
+        <h2>📝 Update Title</h2>
+        <img src="https://via.placeholder.com/800x300" alt="Update Image" />
+        <p><strong>Summary:</strong> This is a brief preview of the update. Click to read more.</p>
+        <div class="update-details">
+          <p>This is the full content of the update, where you can include more detailed thoughts, experiences, or even a personal story.</p>
+        </div>
       </div>
+
     </div>
   </div>
 
   <script>
-    const passwords = ["patel2025", "ascend", "primis"];
+    const validPasswords = ["patel2025", "ascend", "primis"];
 
     function checkPassword() {
-      const entered = document.getElementById("password").value;
-      if (passwords.includes(entered)) {
-        document.getElementById("lockScreen").classList.remove("active");
-        document.getElementById("unlockedContent").classList.add("active");
+      const input = document.getElementById("passwordInput").value;
+      if (validPasswords.includes(input.trim())) {
+        document.getElementById("login-section").classList.remove("active");
+        document.getElementById("updates-section").classList.add("active");
       } else {
         alert("Incorrect password.");
       }
     }
 
     function sendRequest() {
-      const email = document.getElementById("requestEmail").value;
-      const reason = document.getElementById("requestReason").value;
-      if (email && reason) {
-        window.location.href = `mailto:lkp2133@columbia.edu?subject=Access%20Request&body=Email:%20${email}%0AReason:%20${reason}`;
-      } else {
-        alert("Please enter both your email and a reason for access.");
+      const email = document.getElementById("emailInput").value;
+      const reason = document.getElementById("reasonInput").value;
+      window.location.href = `mailto:lkp2133@columbia.edu?subject=Access%20Request&body=Email:%20${email}%0AReason:%20${reason}`;
+    }
+
+    function toggleForm() {
+      const form = document.getElementById("requestForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+
+    function toggleDetails(card) {
+      const details = card.querySelector(".update-details");
+      if (details) {
+        details.style.display = details.style.display === "none" ? "block" : "none";
       }
     }
   </script>
