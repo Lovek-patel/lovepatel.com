@@ -1,128 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Love Patel</title>
-    <style>
-      body {
-        margin: 0;
-        font-family: 'Inter', sans-serif;
-        background-color: #0e0e0e;
-        color: #f5f5f5;
-        overflow-x: hidden;
-      }
 
-      header {
-        width: 100%;
-        padding: 1rem 2rem;
-        display: flex;
-        justify-content: flex-end;
-        gap: 2rem;
-        background-color: #141414;
-        position: fixed;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-      }
+<!-- ---------- HEAD ---------- -->
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Love Patel</title>
+  <style>
+    /* ---------- GLOBAL STYLES ---------- */
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0e0e0e;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
 
-      header a {
-        color: #f5f5f5;
-        text-decoration: none;
-        font-weight: 500;
-        transition: color 0.2s ease-in-out;
-      }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-      header a:hover {
-        color: #c7a36e;
-      }
+    /* ---------- HEADER ---------- */
+    header {
+      width: 100%;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #141414;
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
 
-      .hero {
-        margin-top: 100px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 3rem;
-        padding: 4rem;
-        flex-wrap: wrap;
-      }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
 
-      .hero img {
-        width: 300px;
-        height: 300px;
-        object-fit: cover;
-        border-radius: 50%;
-        border: 4px solid #333;
-      }
+    .menu {
+      display: flex;
+      gap: 1.5rem;
+    }
 
-      .intro {
-        max-width: 600px;
-      }
+    .menu a {
+      font-weight: 500;
+      transition: color 0.2s ease-in-out;
+    }
 
-      .tagline {
-        font-size: 1.6rem;
-        font-style: italic;
-        color: #c7a36e;
-        margin-bottom: 1rem;
-      }
+    .menu a:hover {
+      color: #c7a36e;
+    }
 
-      .bio {
-        font-size: 1.1rem;
-        line-height: 1.6;
-      }
+    /* ---------- MAIN SECTION ---------- */
+    .hero {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
 
-      .sections-preview {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 2rem;
-        padding: 4rem 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
+    .hero-icon {
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+    }
 
-      .section-card {
-        background: #1a1a1a;
-        padding: 1.5rem;
-        border-radius: 12px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        transition: transform 0.2s;
-        cursor: pointer;
-      }
+    .tagline {
+      font-size: 1.75rem;
+      font-style: italic;
+      color: #c7a36e;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
 
-      .section-card:hover {
-        transform: translateY(-5px);
+    .nav-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-buttons a {
+      padding: 0.8rem 1.5rem;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 10px;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .nav-buttons a:hover {
+      background-color: #292929;
+    }
+
+    /* ---------- MOBILE RESPONSIVE ---------- */
+    @media screen and (max-width: 600px) {
+      .menu {
+        flex-direction: column;
+        gap: 1rem;
       }
-    </style>
-  </head>
-  <body>
-    <header>
+    }
+  </style>
+</head>
+
+<!-- ---------- BODY ---------- -->
+<body>
+  <header>
+    <div class="logo">🌌</div>
+    <nav class="menu">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#blog">Blog</a>
       <a href="#updates">Updates</a>
-      <a href="#gallery">Gallery</a>
       <a href="#contact">Contact</a>
-    </header>
+    </nav>
+  </header>
 
-    <section class="hero">
-      <img src="your-photo.jpg" alt="Love Patel" />
-      <div class="intro">
-        <div class="tagline">I hope to make the impossible feel inevitable.</div>
-        <div class="bio">
-          Love Patel is a Biomedical Engineering major at Columbia University, minoring in Philosophy, Political Science, and Entrepreneurship & Innovation. His projects span synthetic biology, AI planning systems, futuristic energy infrastructure, and reimagined education models. Every project, post, or update on this site is a small part of something larger — a lifelong pursuit to learn relentlessly and build boldly.
-        </div>
-      </div>
-    </section>
+  <main class="hero">
+    <div class="hero-icon">🌠</div>
+    <div class="tagline">I hope to make the impossible feel inevitable.</div>
+    <div class="nav-buttons">
+      <a href="#about">Learn About Me</a>
+      <a href="#projects">View My Projects</a>
+      <a href="#blog">Read My Blog</a>
+      <a href="#updates">See My Updates</a>
+      <a href="#contact">Get In Touch</a>
+    </div>
+  </main>
+</body>
 
-    <section class="sections-preview">
-      <div class="section-card" id="about">About Me</div>
-      <div class="section-card" id="projects">Projects</div>
-      <div class="section-card" id="blog">Writings</div>
-      <div class="section-card" id="updates">Updates</div>
-      <div class="section-card" id="gallery">Gallery</div>
-      <div class="section-card" id="contact">Contact</div>
-    </section>
-  </body>
 </html>
