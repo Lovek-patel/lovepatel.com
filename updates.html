@@ -14,10 +14,64 @@
       padding: 0;
     }
 
+    /* 🔝 Top Navigation Bar */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #111;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      z-index: 999;
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .menu-button {
+      cursor: pointer;
+      font-size: 1.5rem;
+      transition: transform 0.2s;
+    }
+
+    .menu-button:hover {
+      transform: scale(1.1);
+    }
+
+    .popup-menu {
+      display: none;
+      position: fixed;
+      top: 3.5rem;
+      right: 1rem;
+      background-color: #222;
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    .popup-menu a {
+      display: block;
+      padding: 1rem 2rem;
+      color: white;
+      text-decoration: none;
+      border-bottom: 1px solid #333;
+      transition: background 0.2s;
+    }
+
+    .popup-menu a:hover {
+      background-color: #333;
+    }
+
     .container {
       max-width: 900px;
       margin: 0 auto;
-      padding: 2rem;
+      padding: 6rem 2rem 2rem; /* Add top padding to avoid hiding under nav bar */
     }
 
     .login-section, .updates-section {
@@ -123,6 +177,21 @@
   </style>
 </head>
 <body>
+
+  <!-- 🔝 Top Navigation Bar -->
+  <div class="top-bar">
+    <div class="logo">Love Patel</div>
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <!-- 🎮 Popup Menu -->
+  <div class="popup-menu" id="popupMenu">
+    <a href="index.html">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html">Blog</a>
+    <a href="updates.html">Updates</a>
+  </div>
+
   <div class="container">
     <!-- 🔐 Login Section -->
     <div class="login-section active" id="login-section">
@@ -153,14 +222,14 @@
         <p>We're officially launching the first version of the website! Stay tuned for more updates.</p>
       </div>
 
-      <!-- 📝 Update Preview (click to open modal) -->
+      <!-- 📝 Update Preview -->
       <div class="update-preview" onclick="openUpdateModal('update1')">
         <img src="https://via.placeholder.com/400x200" alt="Update 1 Image">
         <h3>📝 Update Title 1</h3>
         <p>This is a short summary of the update. Click to view full details.</p>
       </div>
 
-      <!-- 💬 Modal for full update -->
+      <!-- 💬 Full Update Modal -->
       <div id="update1" class="update-modal">
         <div class="modal-content">
           <span class="close" onclick="closeUpdateModal('update1')">&larr; Back</span>
@@ -172,6 +241,7 @@
     </div>
   </div>
 
+  <!-- 🧠 Scripts -->
   <script>
     const validPasswords = ["patel2025", "ascend", "primis"];
 
@@ -202,6 +272,11 @@
 
     function closeUpdateModal(id) {
       document.getElementById(id).style.display = 'none';
+    }
+
+    function toggleMenu() {
+      const menu = document.getElementById("popupMenu");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
   </script>
 </body>
