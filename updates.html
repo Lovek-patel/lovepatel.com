@@ -6,27 +6,27 @@
   <title>Updates | Love Patel</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* === GLOBAL STYLES === */
     body {
       font-family: Arial, sans-serif;
       background-color: #111;
       color: #eee;
       margin: 0;
-      padding: 0;
+      padding-top: 70px;
     }
 
-    /* === MENU BAR === */
+    /* 🔝 Top Navigation Bar */
     .top-bar {
       position: fixed;
       top: 0;
       width: 100%;
       background: #111;
+      color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 1.5rem;
+      padding: 1rem 2rem;
+      z-index: 999;
       border-bottom: 1px solid #222;
-      z-index: 1000;
     }
 
     .logo {
@@ -35,43 +35,32 @@
     }
 
     .logo img {
-      height: 28px;
-      width: auto;
+      height: 30px;
     }
 
     .menu-button {
       font-size: 1.8rem;
-      background-color: #333;
-      padding: 0.4rem 0.9rem;
-      border-radius: 8px;
+      background-color: #444;
+      padding: 0.3rem 0.9rem;
+      border-radius: 6px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: background-color 0.3s;
     }
 
     .menu-button:hover {
-      background-color: #555;
-      transform: scale(1.05);
+      background-color: #666;
     }
 
     .popup-menu {
+      display: none;
       position: fixed;
       top: 70px;
-      right: 1.5rem;
-      background: rgba(40, 40, 40, 0.8);
-      backdrop-filter: blur(12px);
-      border-radius: 12px;
+      right: 1rem;
+      background-color: #222;
+      border-radius: 10px;
       overflow: hidden;
-      z-index: 1001;
-      opacity: 0;
-      transform: translateY(-10px);
-      transition: all 0.3s ease;
-      pointer-events: none;
-    }
-
-    .popup-menu.show {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     .popup-menu a {
@@ -80,13 +69,13 @@
       color: white;
       text-decoration: none;
       border-bottom: 1px solid #333;
+      transition: background 0.2s;
     }
 
     .popup-menu a:hover {
-      background-color: #444;
+      background-color: #333;
     }
 
-    /* === MAIN CONTENT === */
     .container {
       max-width: 900px;
       margin: 5rem auto 0 auto;
@@ -196,6 +185,7 @@
   </style>
 </head>
 <body>
+  <!-- 🔝 Navigation -->
   <div class="top-bar">
     <div class="logo">
       <img src="Logo.png" alt="Love Patel Logo" />
@@ -301,14 +291,14 @@
 
     function toggleMenu() {
       const menu = document.getElementById("popupMenu");
-      menu.classList.toggle("show");
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
 
     document.addEventListener('click', (e) => {
       const menu = document.getElementById("popupMenu");
       const button = document.querySelector(".menu-button");
       if (!menu.contains(e.target) && !button.contains(e.target)) {
-        menu.classList.remove("show");
+        menu.style.display = "none";
       }
     });
   </script>
