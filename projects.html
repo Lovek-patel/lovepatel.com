@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projects | Love Patel</title>
+  <title>Updates | Love Patel</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     body {
@@ -14,7 +14,6 @@
       padding-top: 70px;
     }
 
-    /* 🔝 Top Navigation Bar */
     .top-bar {
       position: fixed;
       top: 0;
@@ -24,7 +23,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
       z-index: 999;
       border-bottom: 1px solid #222;
     }
@@ -55,7 +54,7 @@
       display: none;
       position: fixed;
       top: 70px;
-      right: 1rem;
+      right: 1.5rem;
       background-color: #222;
       border-radius: 10px;
       overflow: hidden;
@@ -77,80 +76,92 @@
     }
 
     .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: 5rem auto 0 auto;
+      padding: 2rem;
     }
 
-    h2.section-title {
-      font-size: 2.5rem;
-      color: #f0c674;
-      margin-bottom: 3rem;
-      text-align: center;
-      letter-spacing: 1px;
+    .login-section, .updates-section {
+      display: none;
     }
 
-    .card-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      justify-content: center;
+    .login-section.active, .updates-section.active {
+      display: block;
     }
 
-    .project-card {
-      background: #1e1e1e;
-      border-radius: 10px;
-      width: 280px;
-      padding: 1.5rem;
-      text-align: center;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-
-    .project-card img {
-      width: 100%;
-      height: auto;
+    .login-box {
+      background-color: #222;
+      padding: 2rem;
       border-radius: 8px;
-      margin-bottom: 1rem;
+      text-align: center;
     }
 
-    .project-card:hover {
-      transform: scale(1.05);
+    input[type="password"], input[type="email"], textarea {
+      width: 90%;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 4px;
     }
 
-    .project-card h3 {
-      margin-top: 0.5rem;
-      color: #ddd;
-      font-size: 1.3rem;
+    button {
+      padding: 0.6rem 1.2rem;
+      background-color: #444;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
     }
 
-    .project-card p {
-      color: #aaa;
-      font-size: 0.95rem;
+    button:hover {
+      background-color: #666;
     }
 
-    .modal {
+    .announcement {
+      background: #292929;
+      border-left: 5px solid orange;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      border-radius: 8px;
+    }
+
+    .update-preview {
+      background: #1a1a1a;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .update-preview:hover {
+      transform: scale(1.02);
+    }
+
+    .update-preview img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 0.5rem;
+    }
+
+    .update-modal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
       background: rgba(0, 0, 0, 0.95);
-      z-index: 1001;
+      z-index: 1000;
       overflow-y: scroll;
       padding: 3rem 1rem;
     }
 
     .modal-content {
       max-width: 800px;
-      background: #121212;
-      margin: auto;
-      border-radius: 12px;
+      margin: 0 auto;
+      background: #111;
       padding: 2rem;
+      border-radius: 10px;
       color: #fff;
-      line-height: 1.6;
     }
 
     .modal-content img {
@@ -159,31 +170,12 @@
       margin-bottom: 1rem;
     }
 
-    .timeline, .updates {
-      background: #1b1b1b;
-      border-radius: 10px;
-      padding: 1rem;
-      margin-top: 1.5rem;
-    }
-
-    .timeline h4, .updates h4 {
-      color: #f0c674;
-      margin-bottom: 0.5rem;
-    }
-
-    .timeline ul, .updates ul {
-      padding-left: 1.2rem;
-    }
-
-    .timeline li::marker {
-      color: #f0c674;
-    }
-
     .close {
-      color: #bbb;
       cursor: pointer;
-      margin-bottom: 1rem;
+      font-size: 1.2rem;
       display: inline-block;
+      margin-bottom: 1rem;
+      color: #ccc;
     }
 
     .close:hover {
@@ -194,11 +186,11 @@
 <body>
   <div class="top-bar">
     <div class="logo">
-      <img src="Logo.png" alt="Logo" />
+      <img src="Logo.png" alt="Love Patel Logo" />
     </div>
     <div class="menu-button" onclick="toggleMenu()">☰</div>
   </div>
-  
+
   <div class="popup-menu" id="popupMenu">
     <a href="index.html">🏠 Home</a>
     <a href="projects.html">🛠️ Projects</a>
@@ -208,67 +200,99 @@
     <a href="contact.html">📬 Contact</a>
   </div>
 
-
   <div class="container">
-    <h2 class="section-title">🚀 Projects</h2>
-    <div class="card-grid">
-      <!-- Repeat this card with unique IDs and labels -->
-      <!-- Project 1–12 cards -->
-      <script>
-        const projectGrid = document.querySelector('.card-grid');
-        const projectNames = Array.from({ length: 12 }, (_, i) => `Project ${i + 1}`);
+    <div class="login-section active" id="login-section">
+      <div class="login-box">
+        <h2>🔒 Updates Access</h2>
+        <p>Enter your password to access updates:</p>
+        <form onsubmit="checkPassword(); return false;">
+          <input type="password" id="passwordInput" placeholder="Password" />
+          <br />
+          <button type="submit">Enter</button>
+        </form>
+        <br />
+        <button onclick="toggleForm()">Don't have a password? Request one</button>
+        <div id="requestForm" style="display:none; margin-top: 1rem;">
+          <input type="email" id="emailInput" placeholder="Your email" />
+          <textarea id="reasonInput" placeholder="Why you'd like access"></textarea>
+          <button onclick="sendRequest()">Send Request</button>
+          <p style="font-size: 0.9rem; opacity: 0.8;">If the form doesn’t work, email me at lkp2133@columbia.edu</p>
+        </div>
+      </div>
+    </div>
 
-        projectNames.forEach((name, i) => {
-          const id = `project${i+1}`;
-          projectGrid.innerHTML += `
-            <div class="project-card" onclick="openModal('${id}Modal')">
-              <img src='https://via.placeholder.com/300x150' alt='${name}' />
-              <h3>${name}</h3>
-              <p>Short description for ${name}.</p>
-            </div>
-            <div id='${id}Modal' class='modal'>
-              <div class='modal-content'>
-                <span class='close' onclick="closeModal('${id}Modal')">&larr; Back</span>
-                <img src='https://via.placeholder.com/600x300' alt='${name} Full' />
-                <h2>${name}</h2>
-                <p><strong>Short Description:</strong> Summary of what ${name} does.</p>
-                <p><strong>Full Description:</strong> Detailed explanation of ${name} goals, components, and progress.</p>
-                <div class='timeline'>
-                  <h4>📅 Timeline</h4>
-                  <ul>
-                    <li>Phase 1 – Planning</li>
-                    <li>Phase 2 – Prototype</li>
-                    <li>Phase 3 – Expansion</li>
-                  </ul>
-                </div>
-                <div class='updates'>
-                  <h4>📌 Recent Updates</h4>
-                  <ul>
-                    <li>Initial draft completed</li>
-                    <li>Testing module integrated</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          `;
-        });
-      </script>
+    <div class="updates-section" id="updates-section">
+      <h1>📓 Updates Feed</h1>
+      <div class="announcement">
+        <h2>📢 Big Announcement</h2>
+        <p>We're officially launching the first version of the website! Stay tuned for more updates.</p>
+      </div>
+
+      <div class="update-preview" onclick="openUpdateModal('update1')">
+        <img src="https://via.placeholder.com/400x200" alt="Update 1 Image">
+        <h3>📝 Update Title 1</h3>
+        <p>This is a short summary of the update. Click to view full details.</p>
+      </div>
+
+      <div id="update1" class="update-modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeUpdateModal('update1')">&larr; Back</span>
+          <h2>📝 Update Title 1</h2>
+          <img src="https://via.placeholder.com/600x300" alt="Update Full Image">
+          <p>This is the full content of the update. Add any amount of text here. You can include longer thoughts, formatting, etc.</p>
+        </div>
+      </div>
     </div>
   </div>
 
   <script>
+    const validPasswords = ["patel2025", "ascend", "primis"];
+
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      if (validPasswords.includes(input.trim())) {
+        document.getElementById("login-section").classList.remove("active");
+        document.getElementById("updates-section").classList.add("active");
+      } else {
+        alert("Incorrect password.");
+      }
+    }
+
+    function sendRequest() {
+      const email = document.getElementById("emailInput").value;
+      const reason = document.getElementById("reasonInput").value;
+      if (email && reason) {
+        window.location.href = `mailto:lkp2133@columbia.edu?subject=Access%20Request&body=Email:%20${email}%0AReason:%20${reason}`;
+      } else {
+        alert("Please enter both email and reason.");
+      }
+    }
+
+    function toggleForm() {
+      const form = document.getElementById("requestForm");
+      form.style.display = form.style.display === "none" ? "block" : "none";
+    }
+
+    function openUpdateModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+
+    function closeUpdateModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
     function toggleMenu() {
       const menu = document.getElementById("popupMenu");
       menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
 
-    function openModal(id) {
-      document.getElementById(id).style.display = 'block';
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
+    document.addEventListener('click', (e) => {
+      const menu = document.getElementById("popupMenu");
+      const button = document.querySelector(".menu-button");
+      if (!menu.contains(e.target) && !button.contains(e.target)) {
+        menu.style.display = "none";
+      }
+    });
   </script>
 </body>
 </html>
