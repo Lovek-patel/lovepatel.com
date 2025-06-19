@@ -1,273 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- ---------- HEAD ---------- -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Love Patel</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
-
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: #0b0b0b;
-      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #eee;
       margin: 0;
-      padding-top: 80px;
+      padding-top: 70px;
     }
 
-    /* ---------- NAVIGATION BAR ---------- */
+    /* 🔝 Top Navigation Bar */
     .top-bar {
       position: fixed;
       top: 0;
       width: 100%;
-      background: #0b0b0b;
+      background: #111;
       color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       z-index: 999;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid #222;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
     }
 
     .logo img {
-      height: 40px;
+      height: 30px;
     }
 
     .menu-button {
-      font-size: 1.4rem;
-      padding: 0.5rem 1rem;
-      background-color: #1c1c1c;
-      border: 1px solid #333;
-      border-radius: 8px;
+      font-size: 1.8rem;
+      background-color: #444;
+      padding: 0.3rem 0.9rem;
+      border-radius: 6px;
       cursor: pointer;
-      color: #f5f5f5;
+      transition: background-color 0.3s;
     }
 
     .menu-button:hover {
-      background-color: #333;
+      background-color: #666;
     }
 
     .popup-menu {
-      position: fixed;
-      top: 60px;
-      right: 1.5rem;
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1rem 2rem;
       display: none;
-      flex-direction: column;
-      gap: 1rem;
+      position: fixed;
+      top: 70px;
+      right: 1rem;
+      background-color: #222;
+      border-radius: 10px;
+      overflow: hidden;
       z-index: 1000;
-      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     .popup-menu a {
-      color: #f5f5f5;
-      font-size: 1.1rem;
+      display: block;
+      padding: 1rem 2rem;
+      color: white;
       text-decoration: none;
+      border-bottom: 1px solid #333;
+      transition: background 0.2s;
     }
 
     .popup-menu a:hover {
-      color: #c79c3b;
+      background-color: #333;
     }
 
-    /* ---------- PROJECT CARDS ---------- */
+    /* 📦 Projects Container */
     .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 2rem;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
+      padding: 3rem 2rem;
     }
 
-    .card {
-      perspective: 1000px;
-      cursor: pointer;
-    }
-
-    .card-inner {
-      position: relative;
-      width: 100%;
-      height: 250px;
+    h2.section-title {
+      font-size: 2.5rem;
+      color: #f0c674;
+      margin-bottom: 3rem;
       text-align: center;
-      transition: transform 0.8s;
-      transform-style: preserve-3d;
+      letter-spacing: 1px;
     }
 
-    .card:hover .card-inner {
-      transform: rotateY(180deg);
-    }
-
-    .card-front,
-    .card-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    .card-grid {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 2.5rem;
       justify-content: center;
-      align-items: center;
-      padding: 1rem;
     }
 
-    .card-front {
-      background: linear-gradient(135deg, #222, #333);
-      color: #fff;
+    .project-card {
+      background: #1e1e1e;
+      border-radius: 10px;
+      width: 280px;
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
     }
 
-    .card-back {
-      background: #1a1a1a;
-      transform: rotateY(180deg);
-      color: #f5f5f5;
+    .project-card img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      margin-bottom: 1rem;
     }
 
-    .card-back p {
+    .project-card:hover {
+      transform: scale(1.05);
+    }
+
+    .project-card h3 {
+      margin-top: 0.5rem;
+      color: #ddd;
+      font-size: 1.3rem;
+    }
+
+    .project-card p {
+      color: #aaa;
       font-size: 0.95rem;
-      line-height: 1.6;
     }
 
-    /* ---------- EXPANDED MODAL ---------- */
     .modal {
       display: none;
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.9);
-      justify-content: center;
-      align-items: center;
-      z-index: 2000;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1001;
+      overflow-y: scroll;
+      padding: 3rem 1rem;
     }
 
     .modal-content {
-      background: #1a1a1a;
-      padding: 2rem;
+      max-width: 800px;
+      background: #121212;
+      margin: auto;
       border-radius: 12px;
-      max-width: 600px;
-      color: #f5f5f5;
+      padding: 2rem;
+      color: #fff;
     }
 
-    .modal-content h3 {
-      margin-top: 0;
-      color: #c79c3b;
+    .modal-content img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 1rem;
     }
 
-    .modal-close {
-      margin-top: 1.5rem;
-      color: #ccc;
+    .close {
+      color: #bbb;
       cursor: pointer;
-      text-align: right;
+      margin-bottom: 1rem;
+      display: inline-block;
     }
 
-    .modal-close:hover {
-      color: white;
+    .close:hover {
+      color: #fff;
     }
   </style>
 </head>
-
-<!-- ---------- BODY ---------- -->
 <body>
-  <!-- 🔹 NAVIGATION -->
+  <!-- 🔝 Navigation -->
   <div class="top-bar">
-    <div class="logo"><img src="Logo.png" alt="Logo"></div>
+    <div class="logo">
+      <img src="Logo.png" alt="Logo" />
+    </div>
     <div class="menu-button" onclick="toggleMenu()">☰</div>
   </div>
 
   <div class="popup-menu" id="popupMenu">
     <a href="index.html">Home</a>
-    <a href="about.html">About</a>
     <a href="projects.html">Projects</a>
     <a href="blog.html">Blog</a>
     <a href="updates.html">Updates</a>
+    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- 🔸 UPDATE 1: PROJECT CARDS -->
-  <!-- INSTRUCTIONS: To add more, duplicate a .card div and update innerHTML content accordingly -->
+  <!-- 🧱 Project Section -->
   <div class="container">
-    <div class="card" onclick="expandCard('ascend')">
-      <div class="card-inner">
-        <div class="card-front">
-          <h3>🦾 ASCEND</h3>
-          <p>AI task autonomy</p>
-        </div>
-        <div class="card-back">
-          <p>An AI system designed to plan, learn, and adapt — your cognitive co-pilot for life and research.</p>
-        </div>
-      </div>
-    </div>
+    <h2 class="section-title">🚀 Projects</h2>
+    <div class="card-grid">
 
-    <div class="card" onclick="expandCard('luminar')">
-      <div class="card-inner">
-        <div class="card-front">
-          <h3>🔋 Luminar</h3>
-          <p>Energy revolution</p>
-        </div>
-        <div class="card-back">
-          <p>Reimagining Dyson Spheres with realistic engineering — storage, launch, and optimization.</p>
-        </div>
+      <!-- 🧠 ASCEND Card -->
+      <div class="project-card" onclick="openModal('ascendModal')">
+        <img src="https://via.placeholder.com/300x150" alt="ASCEND">
+        <h3>🦾 ASCEND</h3>
+        <p>AI planning + autonomy system. Smart co-pilot for life + work.</p>
       </div>
-    </div>
 
-    <div class="card" onclick="expandCard('spidertech')">
-      <div class="card-inner">
-        <div class="card-front">
-          <h3>🕸️ Spider-Tech</h3>
-          <p>Wall-crawling IRL</p>
-        </div>
-        <div class="card-back">
-          <p>From silk shooters to mechanical adhesion, exploring physics-inspired wearable tech.</p>
-        </div>
-      </div>
     </div>
   </div>
 
-  <!-- 🔸 MODAL EXPANSIONS -->
-  <div class="modal" id="ascend">
+  <!-- 📂 Modal: ASCEND -->
+  <div id="ascendModal" class="modal">
     <div class="modal-content">
-      <h3>🦾 ASCEND</h3>
-      <p>ASCEND is an AI planning and decision-making module that evolves over time. With context memory, event flexibility, and dependency logic, it aims to be an autonomous productivity system for researchers, creators, and dreamers alike.</p>
-      <div class="modal-close" onclick="closeModal()">Close ✖</div>
-    </div>
-  </div>
-
-  <div class="modal" id="luminar">
-    <div class="modal-content">
-      <h3>🔋 Luminar</h3>
-      <p>Inspired by Dyson Sphere theories, Luminar focuses on the practical construction, storage, and efficiency of future-facing energy networks. It includes a submodule (AETHER) for storage research.</p>
-      <div class="modal-close" onclick="closeModal()">Close ✖</div>
-    </div>
-  </div>
-
-  <div class="modal" id="spidertech">
-    <div class="modal-content">
-      <h3>🕸️ Spider-Tech</h3>
-      <p>Engineering wearable gear that mimics Spider-Man: including web shooters, magnet-based wall grips, and eventually AI-powered mechanical spider limbs.</p>
-      <div class="modal-close" onclick="closeModal()">Close ✖</div>
+      <span class="close" onclick="closeModal('ascendModal')">&larr; Back</span>
+      <img src="https://via.placeholder.com/600x300" alt="ASCEND Full" />
+      <h2>🦾 ASCEND</h2>
+      <p><strong>Short Description:</strong> AI planning + autonomy system. Smart co-pilot for life + work.</p>
+      <p><strong>Full Description:</strong> ASCEND is a modular, intelligent system designed to handle scheduling, prioritization, memory storage, event flexibility, and adaptation over time. It incorporates NLP, logic, and self-refining learning features.</p>
+      <p><strong>Timeline:</strong> Began development in May 2025, with major milestones in memory integration and self-directed planning expected by August.</p>
+      <p><strong>Recent Updates:</strong> Memory module in progress. Working on task dependency logic next.</p>
     </div>
   </div>
 
   <script>
     function toggleMenu() {
       const menu = document.getElementById("popupMenu");
-      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
 
-    function expandCard(id) {
-      document.getElementById(id).style.display = 'flex';
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
     }
 
-    function closeModal() {
-      const modals = document.querySelectorAll('.modal');
-      modals.forEach(modal => modal.style.display = 'none');
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
     }
   </script>
 </body>
