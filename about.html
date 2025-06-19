@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- ---------- HEAD ---------- -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About | Love Patel</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #eee;
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0b0b;
+      color: #f5f5f5;
       margin: 0;
       padding-top: 70px;
     }
 
+    /* ---------- NAVIGATION BAR ---------- */
     .top-bar {
       position: fixed;
       top: 0;
       width: 100%;
-      background: #111;
+      background: #0b0b0b;
       color: white;
       display: flex;
       justify-content: space-between;
@@ -28,9 +31,8 @@
       border-bottom: 1px solid #222;
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 1.2rem;
+    .logo img {
+      height: 40px;
     }
 
     .menu-button {
@@ -40,6 +42,7 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s;
+      margin-right: 2.5rem;
     }
 
     .menu-button:hover {
@@ -71,64 +74,102 @@
       background-color: #333;
     }
 
+    /* ---------- PAGE CONTAINER ---------- */
     .container {
-      max-width: 800px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 2rem;
     }
 
     .about-box {
-      background: #222;
+      background: #1a1a1a;
       padding: 2rem;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      margin-bottom: 2rem;
     }
 
     .about-box h2 {
+      font-family: 'Playfair Display', serif;
       margin-top: 0;
-      color: #fff;
+      color: #c79c3b;
     }
 
     .about-box p {
       line-height: 1.6;
       color: #ccc;
     }
+
+    .profile-img {
+      float: right;
+      width: 200px;
+      height: 200px;
+      border-radius: 10px;
+      margin-left: 2rem;
+      object-fit: cover;
+    }
   </style>
 </head>
+
+<!-- ---------- BODY ---------- -->
 <body>
+  <!-- 🔹 NAVIGATION BAR -->
   <div class="top-bar">
-    <div class="logo">Love Patel</div>
+    <div class="logo">
+      <img src="Logo.png" alt="Love Patel Logo">
+    </div>
     <div class="menu-button" onclick="toggleMenu()">☰</div>
   </div>
 
+  <!-- 🔹 POPUP MENU -->
   <div class="popup-menu" id="popupMenu">
-    <a href="index.html">Home</a>
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
     <a href="projects.html">Projects</a>
     <a href="blog.html">Blog</a>
     <a href="updates.html">Updates</a>
-    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
 
+  <!-- 🔸 SECTION: PERSONAL BIO -->
+  <!-- You can replace the image src with a real image of yourself -->
   <div class="container">
     <div class="about-box">
-      <h2>🌌 About Me</h2>
+      <h2>🌌 Who I Am</h2>
+      <img class="profile-img" src="https://via.placeholder.com/200" alt="Your Photo" />
       <p>
         Hi, I’m Love Patel — an adventurer of thought and science, currently studying Biomedical Engineering at Columbia University. I believe in blending disciplines, questioning the norm, and building a future where passion, intellect, and purpose converge.
       </p>
       <p>
-        My work spans from organometallic chemistry and engineering to writing philosophical reflections and designing superhero tech. I’m driven by curiosity, guided by compassion, and endlessly hungry to learn. Whether it's through lab research, AI systems, or a late-night journal entry, I'm always chasing deeper understanding and higher impact.
+        My work spans from organometallic chemistry and engineering to writing philosophical reflections and designing superhero tech. I’m driven by curiosity, guided by compassion, and endlessly hungry to learn.
+      </p>
+    </div>
+
+    <!-- 🔸 SECTION: VISION -->
+    <div class="about-box">
+      <h2>💭 My Mission</h2>
+      <p>
+        I want to craft systems that solve real problems — not just academically, but humanely. Whether it's unlocking energy from biology, building smarter AI, or imagining the school of the future, everything I build is guided by a singular goal: to leave the world richer, kinder, and more curious than I found it.
+      </p>
+    </div>
+
+    <!-- 🔸 SECTION: HISTORY / CREDENTIALS -->
+    <div class="about-box">
+      <h2>🧬 Experience & Education</h2>
+      <p>
+        I’m currently a student at Columbia University, majoring in Biomedical Engineering with minors in Philosophy, Political Science, and Entrepreneurship. I conduct inorganic chemistry research in the Norton Lab and am preparing for the MCAT and LSAT.
       </p>
       <p>
-        This site is my archive — part portfolio, part diary, part playground.
+        I’ve written for legal journals, led student policy initiatives, and I’m building personal tech projects ranging from energy storage to AI autonomy.
       </p>
     </div>
   </div>
 
+  <!-- 🔹 SCRIPT: Menu Toggle -->
   <script>
     function toggleMenu() {
       const menu = document.getElementById("popupMenu");
-      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+      menu.style.display = menu.style.display === "block" ? "none" : "block";
     }
   </script>
 </body>
