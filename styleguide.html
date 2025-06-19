@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Style Test – Love Patel</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
+    /* === GLOBAL RESET === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(145deg, #0a0a0a, #131313);
+      color: #f5f5f5;
+      padding: 2rem;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    .logo {
+      position: fixed;
+      top: 1rem;
+      right: 1.5rem;
+      z-index: 1000;
+    }
+    .logo img {
+      height: 45px;
+      opacity: 0.9;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: #c79c3b;
+      margin-bottom: 1rem;
+    }
+
+    .color-boxes, .font-examples, .component-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .box {
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      flex: 1 1 200px;
+      text-align: center;
+    }
+
+    /* === COLOR STYLES === */
+    .dark-primary { background-color: #0b0b0b; color: #fff; }
+    .rich-gold     { background-color: #c79c3b; color: #0b0b0b; }
+    .slate-gray    { background-color: #1a1a1a; color: #fff; }
+    .deep-purple   { background-color: #3a1f58; color: #fff; }
+    .neon-accent   { background-color: #00ffc3; color: #000; }
+
+    /* === FONT SAMPLES === */
+    .inter-regular   { font-family: 'Inter', sans-serif; font-weight: 400; }
+    .inter-semibold { font-family: 'Inter', sans-serif; font-weight: 600; }
+    .playfair        { font-family: 'Playfair Display', serif; font-weight: 600; }
+
+    /* === COMPONENT STYLES === */
+    .button-dark {
+      background-color: #1c1c1c;
+      color: #fff;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .button-dark:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+
+    .card-preview {
+      background: linear-gradient(145deg, #1b1b1b, #111);
+      padding: 2rem;
+      border-radius: 12px;
+      text-align: center;
+      color: #f5f5f5;
+    }
+
+    .stars-bg {
+      background: url('https://www.transparenttextures.com/patterns/stardust.png');
+      background-size: contain;
+      border-radius: 12px;
+      padding: 2rem;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🔹 LOGO PREVIEW -->
+  <div class="logo">
+    <img src="Logo.png" alt="Love Patel Logo">
+  </div>
+
+  <!-- 🎨 COLOR TESTING -->
+  <div class="section">
+    <h2>Color Palette</h2>
+    <div class="color-boxes">
+      <div class="box dark-primary">Dark Primary (#0b0b0b)</div>
+      <div class="box rich-gold">Rich Gold (#c79c3b)</div>
+      <div class="box slate-gray">Slate Gray (#1a1a1a)</div>
+      <div class="box deep-purple">Deep Purple (#3a1f58)</div>
+      <div class="box neon-accent">Neon Accent (#00ffc3)</div>
+    </div>
+  </div>
+
+  <!-- 🖋️ FONT TESTING -->
+  <div class="section">
+    <h2>Font Styles</h2>
+    <div class="font-examples">
+      <div class="box inter-regular">Inter Regular</div>
+      <div class="box inter-semibold">Inter Semibold</div>
+      <div class="box playfair">Playfair Display Semibold</div>
+    </div>
+  </div>
+
+  <!-- 🧱 COMPONENT TESTING -->
+  <div class="section">
+    <h2>Buttons & Cards</h2>
+    <div class="component-boxes">
+      <div class="box">
+        <button class="button-dark">Dark Button</button>
+      </div>
+      <div class="box card-preview">
+        <h3>Card Preview</h3>
+        <p>This card uses dark gradients and soft shadows.</p>
+      </div>
+      <div class="box stars-bg">
+        Subtle star background with texture overlay.
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
