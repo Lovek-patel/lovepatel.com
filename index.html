@@ -6,41 +6,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Love Patel</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #0e0e0e;
+      background-color: #0b0b0b;
       color: #f5f5f5;
       overflow-x: hidden;
     }
 
-    /* ---------- HEADER ---------- */
+    /* ---------- NAVIGATION BAR ---------- */
+    /* Contains logo (non-clickable) and centered menu button */
     header {
       width: 100%;
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #141414;
+      background-color: #0b0b0b;
       position: fixed;
       top: 0;
       z-index: 1000;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     }
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
+    .logo img {
+      height: 40px;
     }
 
     .menu-button {
       font-size: 1.4rem;
       padding: 0.5rem 1rem;
-      background-color: #222;
+      background-color: #1c1c1c;
       border: 1px solid #333;
       border-radius: 8px;
       cursor: pointer;
       color: #f5f5f5;
+      margin-right: 2rem;
     }
 
     .menu-popup {
@@ -68,7 +71,7 @@
     }
 
     .menu-popup a:hover {
-      color: #c7a36e;
+      color: #c79c3b;
     }
 
     @keyframes fadeIn {
@@ -98,15 +101,17 @@
     .tagline {
       font-size: 1.75rem;
       font-style: italic;
-      color: #c7a36e;
+      color: #c79c3b;
       max-width: 600px;
       margin-bottom: 2rem;
     }
 
     .section-heading {
-      color: #c7a36e;
-      font-size: 1.75rem;
+      font-family: 'Playfair Display', serif;
+      color: #c79c3b;
+      font-size: 1.8rem;
       margin-bottom: 1.5rem;
+      text-decoration: none;
     }
 
     .preview-grid {
@@ -139,6 +144,8 @@
     .title {
       font-size: 1.1rem;
       font-weight: 500;
+      color: #f5f5f5;
+      text-decoration: none;
     }
 
     .fake-box {
@@ -160,11 +167,15 @@
 
 <!-- ---------- BODY ---------- -->
 <body>
+  <!-- 🔹 NAVIGATION BAR -->
+  <!-- Contains logo (not clickable) and the menu button -->
   <header>
-    <div class="logo">🌌</div>
+    <div class="logo">
+      <img src="Logo.png" alt="Love Patel Logo">
+    </div>
     <div class="menu-button" onclick="toggleMenu()">≡</div>
     <div class="menu-popup" id="menuPopup">
-      <a href="index.html">Home</a>
+      <a href="home.html">Home</a>
       <a href="about.html">About</a>
       <a href="projects.html">Projects</a>
       <a href="blog.html">Blog</a>
@@ -173,16 +184,29 @@
     </div>
   </header>
 
+  <!-- 🔸 HERO SECTION -->
+  <!-- Center tagline and star icon -->
   <section class="hero">
     <div class="hero-icon">🌠</div>
     <div class="tagline">I hope to make the impossible feel inevitable.</div>
   </section>
 
+  <!-- 🔸 SECTION: PHILOSOPHY -->
+  <!-- Linked to about.html -->
   <section>
     <a href="about.html" class="section-heading">What I Stand For</a>
     <p style="max-width: 800px; margin: 0 auto;">A place for your mission, purpose, and why this site exists. Later you’ll describe your values and what you’re building toward.</p>
   </section>
 
+  <!-- 🔸 SECTION: EXPERIENCE OVERVIEW -->
+  <!-- Linked to a more practical experience section -->
+  <section>
+    <a href="about.html" class="section-heading">What I'm Doing</a>
+    <p style="max-width: 800px; margin: 0 auto;">Current roles, education, and professional direction. This can outline your position, research, or active projects.</p>
+  </section>
+
+  <!-- 🔸 SECTION: PROJECTS PREVIEW -->
+  <!-- Shows project cards that link to details -->
   <section>
     <a href="projects.html" class="section-heading">Projects</a>
     <div class="preview-grid">
@@ -192,6 +216,8 @@
     </div>
   </section>
 
+  <!-- 🔸 SECTION: BLOG PREVIEW -->
+  <!-- Shows short list of recent blog cards -->
   <section>
     <a href="blog.html" class="section-heading">Blog</a>
     <div class="preview-grid">
@@ -200,15 +226,18 @@
     </div>
   </section>
 
+  <!-- 🔸 SECTION: UPDATES LOCK PREVIEW -->
   <section>
     <a href="updates.html" class="section-heading">Updates</a>
     <div class="fake-box">Sign up or log in to see private updates. (Feature coming soon)</div>
   </section>
 
+  <!-- 🔹 FOOTER -->
   <footer>
     &copy; 2025 Love Patel. All rights reserved.
   </footer>
 
+  <!-- 🔹 SCRIPT: Menu Toggle -->
   <script>
     function toggleMenu() {
       const popup = document.getElementById('menuPopup');
