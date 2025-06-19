@@ -76,7 +76,6 @@
       background-color: #333;
     }
 
-    /* 📦 Projects Container */
     .container {
       max-width: 1100px;
       margin: 0 auto;
@@ -151,12 +150,33 @@
       border-radius: 12px;
       padding: 2rem;
       color: #fff;
+      line-height: 1.6;
     }
 
     .modal-content img {
       width: 100%;
       border-radius: 10px;
       margin-bottom: 1rem;
+    }
+
+    .timeline, .updates {
+      background: #1b1b1b;
+      border-radius: 10px;
+      padding: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .timeline h4, .updates h4 {
+      color: #f0c674;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline ul, .updates ul {
+      padding-left: 1.2rem;
+    }
+
+    .timeline li::marker {
+      color: #f0c674;
     }
 
     .close {
@@ -172,7 +192,6 @@
   </style>
 </head>
 <body>
-  <!-- 🔝 Navigation -->
   <div class="top-bar">
     <div class="logo">
       <img src="Logo.png" alt="Logo" />
@@ -189,31 +208,50 @@
     <a href="contact.html">Contact</a>
   </div>
 
-  <!-- 🧱 Project Section -->
   <div class="container">
     <h2 class="section-title">🚀 Projects</h2>
     <div class="card-grid">
+      <!-- Repeat this card with unique IDs and labels -->
+      <!-- Project 1–12 cards -->
+      <script>
+        const projectGrid = document.querySelector('.card-grid');
+        const projectNames = Array.from({ length: 12 }, (_, i) => `Project ${i + 1}`);
 
-      <!-- 🧠 ASCEND Card -->
-      <div class="project-card" onclick="openModal('ascendModal')">
-        <img src="https://via.placeholder.com/300x150" alt="ASCEND">
-        <h3>🦾 ASCEND</h3>
-        <p>AI planning + autonomy system. Smart co-pilot for life + work.</p>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- 📂 Modal: ASCEND -->
-  <div id="ascendModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('ascendModal')">&larr; Back</span>
-      <img src="https://via.placeholder.com/600x300" alt="ASCEND Full" />
-      <h2>🦾 ASCEND</h2>
-      <p><strong>Short Description:</strong> AI planning + autonomy system. Smart co-pilot for life + work.</p>
-      <p><strong>Full Description:</strong> ASCEND is a modular, intelligent system designed to handle scheduling, prioritization, memory storage, event flexibility, and adaptation over time. It incorporates NLP, logic, and self-refining learning features.</p>
-      <p><strong>Timeline:</strong> Began development in May 2025, with major milestones in memory integration and self-directed planning expected by August.</p>
-      <p><strong>Recent Updates:</strong> Memory module in progress. Working on task dependency logic next.</p>
+        projectNames.forEach((name, i) => {
+          const id = `project${i+1}`;
+          projectGrid.innerHTML += `
+            <div class="project-card" onclick="openModal('${id}Modal')">
+              <img src='https://via.placeholder.com/300x150' alt='${name}' />
+              <h3>${name}</h3>
+              <p>Short description for ${name}.</p>
+            </div>
+            <div id='${id}Modal' class='modal'>
+              <div class='modal-content'>
+                <span class='close' onclick="closeModal('${id}Modal')">&larr; Back</span>
+                <img src='https://via.placeholder.com/600x300' alt='${name} Full' />
+                <h2>${name}</h2>
+                <p><strong>Short Description:</strong> Summary of what ${name} does.</p>
+                <p><strong>Full Description:</strong> Detailed explanation of ${name} goals, components, and progress.</p>
+                <div class='timeline'>
+                  <h4>📅 Timeline</h4>
+                  <ul>
+                    <li>Phase 1 – Planning</li>
+                    <li>Phase 2 – Prototype</li>
+                    <li>Phase 3 – Expansion</li>
+                  </ul>
+                </div>
+                <div class='updates'>
+                  <h4>📌 Recent Updates</h4>
+                  <ul>
+                    <li>Initial draft completed</li>
+                    <li>Testing module integrated</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+      </script>
     </div>
   </div>
 
