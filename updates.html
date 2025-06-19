@@ -6,27 +6,27 @@
   <title>Updates | Love Patel</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* === GLOBAL STYLES === */
     body {
       font-family: Arial, sans-serif;
       background-color: #111;
       color: #eee;
       margin: 0;
-      padding-top: 70px;
+      padding: 0;
     }
 
-    /* 🔝 Top Navigation Bar */
+    /* === TOP BAR === */
     .top-bar {
       position: fixed;
       top: 0;
       width: 100%;
       background: #111;
-      color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      z-index: 999;
       border-bottom: 1px solid #222;
+      z-index: 1000;
     }
 
     .logo {
@@ -55,11 +55,11 @@
       display: none;
       position: fixed;
       top: 70px;
-      right: 1rem;
+      right: 2rem;
       background-color: #222;
       border-radius: 10px;
       overflow: hidden;
-      z-index: 1000;
+      z-index: 1001;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
@@ -76,6 +76,7 @@
       background-color: #333;
     }
 
+    /* === MAIN CONTENT === */
     .container {
       max-width: 900px;
       margin: 5rem auto 0 auto;
