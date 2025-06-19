@@ -6,6 +6,7 @@
   <title>Updates | Love Patel</title>
   <link rel="stylesheet" href="style.css" />
   <style>
+    /* === GLOBAL STYLES === */
     body {
       font-family: Arial, sans-serif;
       background-color: #111;
@@ -14,6 +15,7 @@
       padding: 0;
     }
 
+    /* === MENU BAR === */
     .top-bar {
       position: fixed;
       top: 0;
@@ -22,14 +24,19 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 0.8rem 1.5rem;
       border-bottom: 1px solid #222;
       z-index: 1000;
     }
 
     .logo {
-      font-size: 1.2rem;
-      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 28px;
+      width: auto;
     }
 
     .menu-button {
@@ -38,7 +45,6 @@
       padding: 0.4rem 0.9rem;
       border-radius: 8px;
       cursor: pointer;
-      margin-right: 20px;
       transition: all 0.3s ease;
     }
 
@@ -80,6 +86,7 @@
       background-color: #444;
     }
 
+    /* === MAIN CONTENT === */
     .container {
       max-width: 900px;
       margin: 5rem auto 0 auto;
@@ -190,7 +197,9 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="logo">Love Patel</div>
+    <div class="logo">
+      <img src="Logo.png" alt="Love Patel Logo" />
+    </div>
     <div class="menu-button" onclick="toggleMenu()">☰</div>
   </div>
 
@@ -199,6 +208,8 @@
     <a href="projects.html">🛠️ Projects</a>
     <a href="blog.html">📖 Blog</a>
     <a href="updates.html">📓 Updates</a>
+    <a href="about.html">👤 About</a>
+    <a href="contact.html">📬 Contact</a>
   </div>
 
   <div class="container">
@@ -207,10 +218,12 @@
       <div class="login-box">
         <h2>🔒 Updates Access</h2>
         <p>Enter your password to access updates:</p>
-        <input type="password" id="passwordInput" placeholder="Password" />
+        <form onsubmit="checkPassword(); return false;">
+          <input type="password" id="passwordInput" placeholder="Password" />
+          <br />
+          <button type="submit">Enter</button>
+        </form>
         <br />
-        <button onclick="checkPassword()">Enter</button>
-        <br /><br />
         <button onclick="toggleForm()">Don't have a password? Request one</button>
         <div id="requestForm" style="display:none; margin-top: 1rem;">
           <input type="email" id="emailInput" placeholder="Your email" />
@@ -231,14 +244,14 @@
         <p>We're officially launching the first version of the website! Stay tuned for more updates.</p>
       </div>
 
-      <!-- 📝 Update Preview (click to open modal) -->
+      <!-- 📝 Update Preview -->
       <div class="update-preview" onclick="openUpdateModal('update1')">
         <img src="https://via.placeholder.com/400x200" alt="Update 1 Image">
         <h3>📝 Update Title 1</h3>
         <p>This is a short summary of the update. Click to view full details.</p>
       </div>
 
-      <!-- 💬 Modal for full update -->
+      <!-- 💬 Update Modal -->
       <div id="update1" class="update-modal">
         <div class="modal-content">
           <span class="close" onclick="closeUpdateModal('update1')">&larr; Back</span>
@@ -266,7 +279,11 @@
     function sendRequest() {
       const email = document.getElementById("emailInput").value;
       const reason = document.getElementById("reasonInput").value;
-      window.location.href = `mailto:lkp2133@columbia.edu?subject=Access%20Request&body=Email:%20${email}%0AReason:%20${reason}`;
+      if (email && reason) {
+        window.location.href = `mailto:lkp2133@columbia.edu?subject=Access%20Request&body=Email:%20${email}%0AReason:%20${reason}`;
+      } else {
+        alert("Please enter both email and reason.");
+      }
     }
 
     function toggleForm() {
