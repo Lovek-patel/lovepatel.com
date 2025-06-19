@@ -17,7 +17,6 @@
     }
 
     /* ---------- NAVIGATION BAR ---------- */
-    /* Contains logo (non-clickable) and centered menu button */
     header {
       width: 100%;
       padding: 1rem 2rem;
@@ -43,7 +42,7 @@
       border-radius: 8px;
       cursor: pointer;
       color: #f5f5f5;
-      margin-right: 2rem;
+      margin-right: 1.5rem;
     }
 
     .menu-popup {
@@ -109,41 +108,43 @@
     .section-heading {
       font-family: 'Playfair Display', serif;
       color: #c79c3b;
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-bottom: 1.5rem;
       text-decoration: none;
     }
 
     .preview-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2.5rem;
       max-width: 1100px;
       margin: 0 auto;
     }
 
     .card {
-      background-color: #1a1a1a;
-      border-radius: 12px;
+      background: linear-gradient(145deg, #1c1c1c, #131313);
+      border-radius: 16px;
       padding: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
     }
 
     .card:hover {
-      transform: scale(1.03);
+      transform: scale(1.04);
+      box-shadow: 0 6px 30px rgba(199, 156, 59, 0.3);
     }
 
     .emoji {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin-bottom: 1rem;
     }
 
     .title {
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-size: 1.2rem;
+      font-weight: 600;
       color: #f5f5f5;
       text-decoration: none;
     }
@@ -151,9 +152,10 @@
     .fake-box {
       border: 1px dashed #444;
       padding: 2rem;
-      border-radius: 10px;
-      color: #888;
+      border-radius: 12px;
+      color: #999;
       font-style: italic;
+      background-color: #141414;
     }
 
     footer {
@@ -168,7 +170,6 @@
 <!-- ---------- BODY ---------- -->
 <body>
   <!-- 🔹 NAVIGATION BAR -->
-  <!-- Contains logo (not clickable) and the menu button -->
   <header>
     <div class="logo">
       <img src="Logo.png" alt="Love Patel Logo">
@@ -185,28 +186,24 @@
   </header>
 
   <!-- 🔸 HERO SECTION -->
-  <!-- Center tagline and star icon -->
   <section class="hero">
     <div class="hero-icon">🌠</div>
     <div class="tagline">I hope to make the impossible feel inevitable.</div>
   </section>
 
   <!-- 🔸 SECTION: PHILOSOPHY -->
-  <!-- Linked to about.html -->
   <section>
     <a href="about.html" class="section-heading">What I Stand For</a>
     <p style="max-width: 800px; margin: 0 auto;">A place for your mission, purpose, and why this site exists. Later you’ll describe your values and what you’re building toward.</p>
   </section>
 
   <!-- 🔸 SECTION: EXPERIENCE OVERVIEW -->
-  <!-- Linked to a more practical experience section -->
   <section>
     <a href="about.html" class="section-heading">What I'm Doing</a>
     <p style="max-width: 800px; margin: 0 auto;">Current roles, education, and professional direction. This can outline your position, research, or active projects.</p>
   </section>
 
   <!-- 🔸 SECTION: PROJECTS PREVIEW -->
-  <!-- Shows project cards that link to details -->
   <section>
     <a href="projects.html" class="section-heading">Projects</a>
     <div class="preview-grid">
@@ -217,7 +214,6 @@
   </section>
 
   <!-- 🔸 SECTION: BLOG PREVIEW -->
-  <!-- Shows short list of recent blog cards -->
   <section>
     <a href="blog.html" class="section-heading">Blog</a>
     <div class="preview-grid">
