@@ -1,160 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- ---------- HEAD ---------- -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Love Patel</title>
-  <link rel="stylesheet" href="style.css" />
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #111;
-      color: #eee;
+      font-family: 'Inter', sans-serif;
+      background-color: #0b0b0b;
+      color: #f5f5f5;
       margin: 0;
-      padding-top: 70px;
+      padding-top: 80px;
     }
 
+    /* ---------- NAVIGATION BAR ---------- */
     .top-bar {
       position: fixed;
       top: 0;
       width: 100%;
-      background: #111;
+      background: #0b0b0b;
       color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
       z-index: 999;
-      border-bottom: 1px solid #222;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
     }
 
-    .logo {
-      font-weight: bold;
-      font-size: 1.2rem;
+    .logo img {
+      height: 40px;
     }
 
     .menu-button {
-      font-size: 1.8rem;
-      background-color: #444;
-      padding: 0.3rem 0.9rem;
-      border-radius: 6px;
+      font-size: 1.4rem;
+      padding: 0.5rem 1rem;
+      background-color: #1c1c1c;
+      border: 1px solid #333;
+      border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s;
-      margin-right: 2.5rem;
+      color: #f5f5f5;
     }
 
     .menu-button:hover {
-      background-color: #666;
-    }
-
-    .popup-menu {
-      display: none;
-      position: fixed;
-      top: 70px;
-      right: 1rem;
-      background-color: #222;
-      border-radius: 10px;
-      overflow: hidden;
-      z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    }
-
-    .popup-menu a {
-      display: block;
-      padding: 1rem 2rem;
-      color: white;
-      text-decoration: none;
-      border-bottom: 1px solid #333;
-      transition: background 0.2s;
-    }
-
-    .popup-menu a:hover {
       background-color: #333;
     }
 
+    .popup-menu {
+      position: fixed;
+      top: 60px;
+      right: 1.5rem;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 2rem;
+      display: none;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .popup-menu a {
+      color: #f5f5f5;
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
+
+    .popup-menu a:hover {
+      color: #c79c3b;
+    }
+
+    /* ---------- PROJECT CARDS ---------- */
     .container {
-      max-width: 900px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem;
     }
 
-    .projects-box {
-      background: #1b1b1b;
-      padding: 2rem;
+    .card {
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front,
+    .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
     }
 
-    .projects-box h2 {
-      margin-top: 0;
+    .card-front {
+      background: linear-gradient(135deg, #222, #333);
       color: #fff;
     }
 
-    .project {
-      margin-bottom: 2rem;
+    .card-back {
+      background: #1a1a1a;
+      transform: rotateY(180deg);
+      color: #f5f5f5;
     }
 
-    .project h3 {
-      margin: 0.2rem 0;
-      color: #ddd;
-    }
-
-    .project p {
-      color: #bbb;
+    .card-back p {
+      font-size: 0.95rem;
       line-height: 1.6;
+    }
+
+    /* ---------- EXPANDED MODAL ---------- */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      color: #f5f5f5;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      color: #c79c3b;
+    }
+
+    .modal-close {
+      margin-top: 1.5rem;
+      color: #ccc;
+      cursor: pointer;
+      text-align: right;
+    }
+
+    .modal-close:hover {
+      color: white;
     }
   </style>
 </head>
+
+<!-- ---------- BODY ---------- -->
 <body>
+  <!-- 🔹 NAVIGATION -->
   <div class="top-bar">
-    <div class="logo">Love Patel</div>
+    <div class="logo"><img src="Logo.png" alt="Logo"></div>
     <div class="menu-button" onclick="toggleMenu()">☰</div>
   </div>
 
   <div class="popup-menu" id="popupMenu">
     <a href="index.html">Home</a>
+    <a href="about.html">About</a>
     <a href="projects.html">Projects</a>
     <a href="blog.html">Blog</a>
     <a href="updates.html">Updates</a>
-    <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </div>
 
+  <!-- 🔸 UPDATE 1: PROJECT CARDS -->
+  <!-- INSTRUCTIONS: To add more, duplicate a .card div and update innerHTML content accordingly -->
   <div class="container">
-    <div class="projects-box">
-      <h2>🚀 Projects</h2>
-
-      <div class="project">
-        <h3>🦾 ASCEND</h3>
-        <p>An AI planning and autonomy system designed to manage tasks, adapt, and learn over time. Think of it as your smart co-pilot for life and work.</p>
+    <div class="card" onclick="expandCard('ascend')">
+      <div class="card-inner">
+        <div class="card-front">
+          <h3>🦾 ASCEND</h3>
+          <p>AI task autonomy</p>
+        </div>
+        <div class="card-back">
+          <p>An AI system designed to plan, learn, and adapt — your cognitive co-pilot for life and research.</p>
+        </div>
       </div>
+    </div>
 
-      <div class="project">
-        <h3>🔋 Luminar</h3>
-        <p>A modern take on Dyson Sphere energy systems. Focused on advanced energy collection and storage methods that could eventually scale interplanetary.</p>
+    <div class="card" onclick="expandCard('luminar')">
+      <div class="card-inner">
+        <div class="card-front">
+          <h3>🔋 Luminar</h3>
+          <p>Energy revolution</p>
+        </div>
+        <div class="card-back">
+          <p>Reimagining Dyson Spheres with realistic engineering — storage, launch, and optimization.</p>
+        </div>
       </div>
+    </div>
 
-      <div class="project">
-        <h3>🕸️ Spider-Tech</h3>
-        <p>From web shooters to wall crawling — real-world prototypes inspired by Spider-Man tech, tested in small-scale rooms and built for feasibility.</p>
+    <div class="card" onclick="expandCard('spidertech')">
+      <div class="card-inner">
+        <div class="card-front">
+          <h3>🕸️ Spider-Tech</h3>
+          <p>Wall-crawling IRL</p>
+        </div>
+        <div class="card-back">
+          <p>From silk shooters to mechanical adhesion, exploring physics-inspired wearable tech.</p>
+        </div>
       </div>
+    </div>
+  </div>
 
-      <div class="project">
-        <h3>⚡ BioNix</h3>
-        <p>Exploring how to harness biological energy from small organisms for powering devices. A deep dive into biophysics, physiology, and innovation.</p>
-      </div>
+  <!-- 🔸 MODAL EXPANSIONS -->
+  <div class="modal" id="ascend">
+    <div class="modal-content">
+      <h3>🦾 ASCEND</h3>
+      <p>ASCEND is an AI planning and decision-making module that evolves over time. With context memory, event flexibility, and dependency logic, it aims to be an autonomous productivity system for researchers, creators, and dreamers alike.</p>
+      <div class="modal-close" onclick="closeModal()">Close ✖</div>
+    </div>
+  </div>
 
-      <div class="project">
-        <h3>🏫 Primis</h3>
-        <p>Building a blueprint for a global school system — academically rigorous, ethically grounded, and deeply empowering for the next generation.</p>
-      </div>
+  <div class="modal" id="luminar">
+    <div class="modal-content">
+      <h3>🔋 Luminar</h3>
+      <p>Inspired by Dyson Sphere theories, Luminar focuses on the practical construction, storage, and efficiency of future-facing energy networks. It includes a submodule (AETHER) for storage research.</p>
+      <div class="modal-close" onclick="closeModal()">Close ✖</div>
+    </div>
+  </div>
+
+  <div class="modal" id="spidertech">
+    <div class="modal-content">
+      <h3>🕸️ Spider-Tech</h3>
+      <p>Engineering wearable gear that mimics Spider-Man: including web shooters, magnet-based wall grips, and eventually AI-powered mechanical spider limbs.</p>
+      <div class="modal-close" onclick="closeModal()">Close ✖</div>
     </div>
   </div>
 
   <script>
     function toggleMenu() {
       const menu = document.getElementById("popupMenu");
-      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+
+    function expandCard(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal() {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => modal.style.display = 'none');
     }
   </script>
 </body>
