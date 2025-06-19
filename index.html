@@ -14,19 +14,21 @@
       background-color: #0b0b0b;
       color: #f5f5f5;
       overflow-x: hidden;
+      padding-top: 70px;
     }
 
     /* ---------- NAVIGATION BAR ---------- */
-    header {
+    .top-bar {
+      position: fixed;
+      top: 0;
       width: 100%;
-      padding: 1rem 2rem;
+      background: #0b0b0b;
+      color: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #0b0b0b;
-      position: fixed;
-      top: 0;
-      z-index: 1000;
+      padding: 1rem 2rem;
+      z-index: 999;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     }
 
@@ -42,13 +44,17 @@
       border-radius: 8px;
       cursor: pointer;
       color: #f5f5f5;
-      margin-right: 1.5rem;
+      margin-right: 2.5rem; /* Same as 'about.html' */
+    }
+
+    .menu-button:hover {
+      background-color: #333;
     }
 
     .menu-popup {
       position: fixed;
       top: 60px;
-      right: 20px;
+      right: 1.5rem;
       background-color: #1a1a1a;
       border: 1px solid #333;
       border-radius: 12px;
@@ -56,7 +62,7 @@
       display: none;
       flex-direction: column;
       gap: 1rem;
-      z-index: 999;
+      z-index: 1000;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
       text-align: center;
       animation: fadeIn 0.3s ease-in-out;
@@ -170,20 +176,22 @@
 <!-- ---------- BODY ---------- -->
 <body>
   <!-- 🔹 NAVIGATION BAR -->
-  <header>
+  <div class="top-bar">
     <div class="logo">
       <img src="Logo.png" alt="Love Patel Logo">
     </div>
     <div class="menu-button" onclick="toggleMenu()">≡</div>
-    <div class="menu-popup" id="menuPopup">
-      <a href="home.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="projects.html">Projects</a>
-      <a href="blog.html">Blog</a>
-      <a href="updates.html">Updates</a>
-      <a href="contact.html">Contact</a>
-    </div>
-  </header>
+  </div>
+
+  <!-- 🔹 POPUP MENU -->
+  <div class="menu-popup" id="menuPopup">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html">Blog</a>
+    <a href="updates.html">Updates</a>
+    <a href="contact.html">Contact</a>
+  </div>
 
   <!-- 🔸 HERO SECTION -->
   <section class="hero">
