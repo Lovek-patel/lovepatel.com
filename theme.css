@@ -1,0 +1,119 @@
+/* ---------------------------------------
+   THEME.CSS — Love Patel Website Styles
+   ---------------------------------------
+   Includes:
+   - Font system
+   - Color palette
+   - Global styles
+   - Typography
+   - Logo positioning
+   - Starfield background
+---------------------------------------- */
+
+/* ==== IMPORT FONTS ==== */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+
+/* ==== GLOBAL RESET ==== */
+body {
+  margin: 0;
+  font-family: 'EB Garamond', serif;
+  background-color: #0b0b0b;
+  color: #f5f5f5;
+  padding: 3rem;
+  overflow-x: hidden;
+
+  /* --- Starfield Background --- */
+  background-color: #0b0b0b;
+  background-image: 
+    radial-gradient(#ffffff33 0.7px, transparent 0.7px),
+    radial-gradient(#ffffff22 1px, transparent 1px),
+    radial-gradient(#ffffff11 1.5px, transparent 1.5px);
+  background-size: 
+    180px 180px,
+    120px 120px,
+    300px 300px;
+  background-position: 
+    10px 20px,
+    80px 50px,
+    150px 200px;
+}
+
+/* ==== LOGO ==== */
+.logo {
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  z-index: 1000;
+}
+.logo img {
+  height: 50px;
+}
+
+/* ==== TYPOGRAPHY ==== */
+.heading {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #c79c3b;
+}
+.subheading {
+  font-size: 2rem;
+  color: #999;
+}
+.section-title {
+  font-size: 1.6rem;
+  color: #3d5afe;
+}
+.body-text {
+  font-size: 1.2rem;
+  color: #f5f5f5;
+}
+.small-text {
+  font-size: 0.95rem;
+  color: #aaa;
+}
+
+/* ==== COLOR SWATCH CLASSES ==== */
+.color-black { background-color: #0b0b0b; }
+.color-grey { background-color: #222; }
+.color-white { background-color: #eee; color: #111; }
+.color-gold { background-color: #c79c3b; color: #111; }
+.color-silver { background-color: #888; }
+.color-silver-light { background-color: #aaa; color: #111; }
+.color-silver-mid { background-color: #999; }
+.color-blue1 { background-color: #2979ff; }
+.color-blue2 { background-color: #3d5afe; }
+.color-sky { background-color: #7ec8e3; color: #111; }
+.color-aqua { background-color: #00bcd4; }
+.color-ice { background-color: #d6e4f0; color: #111; }
+
+/* ==== BUTTONS ==== */
+.button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.button:hover {
+  transform: scale(1.05);
+}
+
+.btn-blue { background-color: #2979ff; color: white; box-shadow: 0 4px 12px rgba(41, 121, 255, 0.3); }
+.btn-silver { background-color: #aaa; color: #111; box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); }
+.btn-gold { background-color: #c79c3b; color: #111; box-shadow: 0 4px 12px rgba(199, 156, 59, 0.4); }
+
+/* ==== CARDS ==== */
+.card {
+  background: linear-gradient(145deg, #1c1c24, #12121a);
+  padding: 2rem;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(199, 156, 59, 0.15);
+  margin-bottom: 2rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
+}
