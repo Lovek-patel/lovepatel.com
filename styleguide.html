@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Style Theme Preview</title>
+  <title>Style Reference | Love Patel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
@@ -13,129 +13,107 @@
       font-family: 'EB Garamond', serif;
       background-color: #0b0b0b;
       color: #f5f5f5;
-      padding: 4rem 2rem;
-      background-image: radial-gradient(#ffffff22 1px, transparent 1px);
+      padding: 3rem;
+      background-image: radial-gradient(#ffffff20 1px, transparent 1px);
       background-size: 40px 40px;
-      background-repeat: repeat;
     }
 
-    h1, h2, h3, p, small {
-      margin: 0.5rem 0;
+    h1, h2, h3, h4, h5, h6, p {
+      margin: 0 0 1rem;
     }
 
-    .display-header {
-      font-size: 3rem;
+    .logo {
+      position: fixed;
+      top: 1rem;
+      right: 1.5rem;
+      z-index: 1000;
+    }
+    .logo img {
+      height: 50px;
+    }
+
+    .heading {
+      font-size: 2.6rem;
       font-weight: 700;
       color: #c79c3b;
     }
-
-    .section-title {
-      font-size: 2rem;
-      font-weight: 600;
-      color: #7ec8e3;
-    }
-
     .subheading {
+      font-size: 2rem;
+      color: #999;
+    }
+    .section-title {
       font-size: 1.6rem;
-      font-weight: 500;
+      color: #3d5afe;
+    }
+    .body-text {
+      font-size: 1.2rem;
+      color: #f5f5f5;
+    }
+    .small-text {
+      font-size: 0.95rem;
       color: #aaa;
     }
 
-    .body-text {
-      font-size: 1.2rem;
-      font-weight: 400;
-      color: #f5f5f5;
+    .demo-box {
+      margin-bottom: 2.5rem;
     }
 
-    .small-note {
-      font-size: 1rem;
-      color: #999;
-    }
-
-    .button-set {
-      display: flex;
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
       gap: 1rem;
-      margin: 2rem 0;
-      flex-wrap: wrap;
+      margin-bottom: 2rem;
     }
-
-    .btn {
-      padding: 0.9rem 1.8rem;
-      font-size: 1.1rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-    }
-
-    .btn-primary { background-color: #2979ff; color: white; box-shadow: 0 4px 12px rgba(41, 121, 255, 0.3); }
-    .btn-accent { background-color: #c79c3b; color: #111; box-shadow: 0 4px 12px rgba(199, 156, 59, 0.4); }
-    .btn-muted  { background-color: #aaa; color: #111; box-shadow: 0 4px 12px rgba(255,255,255,0.2); }
-
-    .card-row {
-      display: flex;
-      gap: 2rem;
-      margin-top: 3rem;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background: linear-gradient(145deg, #1c1c24, #12121a);
+    .swatch {
       padding: 2rem;
-      border-radius: 14px;
-      width: 260px;
-      box-shadow: 0 6px 20px rgba(199, 156, 59, 0.15);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      border-radius: 10px;
+      color: white;
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: bold;
     }
 
-    .card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
-    }
-
-    .card-title {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #7ec8e3;
-    }
-
-    .card-body {
-      font-size: 1rem;
-      color: #ccc;
-    }
+    .color-black { background-color: #0b0b0b; }
+    .color-grey { background-color: #222; }
+    .color-white { background-color: #eee; color: #111; }
+    .color-gold { background-color: #c79c3b; color: #111; }
+    .color-silver { background-color: #888; }
+    .color-silver-light { background-color: #aaa; color: #111; }
+    .color-silver-mid { background-color: #999; }
+    .color-blue1 { background-color: #2979ff; }
+    .color-blue2 { background-color: #3d5afe; }
+    .color-sky { background-color: #7ec8e3; color: #111; }
+    .color-aqua { background-color: #00bcd4; }
+    .color-ice { background-color: #d6e4f0; color: #111; }
   </style>
 </head>
 <body>
-  <h1 class="display-header">Display Header Example</h1>
-  <h2 class="section-title">Section Title Example</h2>
-  <h3 class="subheading">Subheading Example</h3>
-  <p class="body-text">This is a body text example using EB Garamond. It's styled to be clear, elegant, and readable across pages. This is your go-to text style for most content.</p>
-  <p class="small-note">This is a smaller note for footers, annotations, or tooltips.</p>
-
-  <div class="button-set">
-    <button class="btn btn-primary">Primary Button</button>
-    <button class="btn btn-accent">Accent Button</button>
-    <button class="btn btn-muted">Muted Button</button>
+  <div class="logo">
+    <img src="Logo.png" alt="Love Patel Logo">
   </div>
 
-  <div class="card-row">
-    <div class="card">
-      <div class="card-title">Card Title</div>
-      <div class="card-body">This is a sample card with some body text to show how the layout looks using current styles.</div>
-    </div>
-    <div class="card">
-      <div class="card-title">Innovation</div>
-      <div class="card-body">Another example that uses the same style to demonstrate reuse of design patterns across cards.</div>
-    </div>
-    <div class="card">
-      <div class="card-title">Next Steps</div>
-      <div class="card-body">You can reuse this card component in projects, blogs, and updates. Modify content, not code!</div>
-    </div>
+  <div class="demo-box">
+    <div class="heading">Heading – EB Garamond Bold 2.6rem – Gold</div>
+    <div class="subheading">Subheading – EB Garamond 2rem – Silver Mid</div>
+    <div class="section-title">Section Title – EB Garamond 1.6rem – Blue 2</div>
+    <div class="body-text">Body Text – EB Garamond 1.2rem – Default</div>
+    <div class="small-text">Small Text – EB Garamond 0.95rem – Light Silver</div>
+  </div>
+
+  <h2>Color Palette</h2>
+  <div class="swatch-grid">
+    <div class="swatch color-black">Black</div>
+    <div class="swatch color-grey">Grey</div>
+    <div class="swatch color-white">White</div>
+    <div class="swatch color-gold">Gold</div>
+    <div class="swatch color-silver">Silver</div>
+    <div class="swatch color-silver-light">Silver Light</div>
+    <div class="swatch color-silver-mid">Silver Mid</div>
+    <div class="swatch color-blue1">Blue 1</div>
+    <div class="swatch color-blue2">Blue 2</div>
+    <div class="swatch color-sky">Sky</div>
+    <div class="swatch color-aqua">Aqua</div>
+    <div class="swatch color-ice">Ice</div>
   </div>
 </body>
 </html>
