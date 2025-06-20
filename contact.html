@@ -16,6 +16,7 @@
       padding: 2rem;
     }
 
+    /* 🔹 NAVBAR STYLES */
     .top-bar {
       position: fixed;
       top: 0;
@@ -68,6 +69,7 @@
       color: #c79c3b;
     }
 
+    /* 🔹 CARD STYLES */
     .heading {
       font-size: 2.2rem;
       color: #c79c3b;
@@ -159,6 +161,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- 🔹 NAVIGATION BAR -->
   <div class="top-bar">
@@ -180,7 +183,6 @@
     <div class="intro">Whether it’s for collaboration, conversation, or just to say hello — I’d love to hear from you.</div>
 
     <div class="card-grid">
-
       <!-- 🔸 CARD 1: Email -->
       <div class="flip-card">
         <div class="flip-inner">
@@ -220,7 +222,6 @@
           <div class="flip-back"><a href="https://www.snapchat.com/add/lovek.patel" target="_blank">@lovek.patel</a></div>
         </div>
       </div>
-
     </div>
 
     <!-- 🔸 QUOTE -->
@@ -232,8 +233,7 @@
 
   <script>
     function toggleMenu() {
-      const menu = document.getElementById('popupMenu');
-      menu.classList.toggle('show');
+      document.getElementById('popupMenu').classList.toggle('show');
     }
   </script>
 </body>
