@@ -3,147 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>System Preview | Love Patel</title>
+  <title>Style Theme Preview</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --black: #0b0b0b;
-      --grey: #222;
-      --white: #eee;
-      --gold: #c79c3b;
-      --silver: #888;
-      --silver-light: #aaa;
-      --silver-mid: #999;
-      --blue1: #2979ff;
-      --blue2: #3d5afe;
-      --sky: #7ec8e3;
-      --aqua: #00bcd4;
-      --ice: #d6e4f0;
-    }
-
     body {
       margin: 0;
-      padding: 3rem;
-      background-color: var(--black);
-      color: var(--white);
       font-family: 'EB Garamond', serif;
-      background-image: radial-gradient(#ffffff1a 0.5px, transparent 0.5px);
-      background-size: 60px 60px;
+      background-color: #0b0b0b;
+      color: #f5f5f5;
+      padding: 4rem 2rem;
+      background-image: radial-gradient(#ffffff22 1px, transparent 1px);
+      background-size: 40px 40px;
+      background-repeat: repeat;
     }
 
-    .section {
-      margin-bottom: 3rem;
+    h1, h2, h3, p, small {
+      margin: 0.5rem 0;
     }
 
     .display-header {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 0.5rem;
-    }
-    .section-title {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--sky);
-      margin-bottom: 0.5rem;
-    }
-    .subheading {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--silver-light);
-      margin-bottom: 0.5rem;
-    }
-    .body-text {
-      font-size: 1rem;
-      font-weight: 400;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-    }
-    .small-note {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: var(--silver-mid);
-      font-style: italic;
+      color: #c79c3b;
     }
 
-    .button {
-      padding: 0.7rem 1.5rem;
-      border-radius: 8px;
+    .section-title {
+      font-size: 2rem;
       font-weight: 600;
+      color: #7ec8e3;
+    }
+
+    .subheading {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #aaa;
+    }
+
+    .body-text {
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: #f5f5f5;
+    }
+
+    .small-note {
+      font-size: 1rem;
+      color: #999;
+    }
+
+    .button-set {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.9rem 1.8rem;
+      font-size: 1.1rem;
+      font-weight: bold;
       border: none;
+      border-radius: 8px;
       cursor: pointer;
-      margin-right: 1rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .button:hover {
+
+    .btn:hover {
       transform: scale(1.05);
     }
-    .btn-primary { background-color: var(--blue1); color: white; box-shadow: 0 4px 12px rgba(41, 121, 255, 0.3); }
-    .btn-accent { background-color: var(--gold); color: #111; box-shadow: 0 4px 12px rgba(199, 156, 59, 0.4); }
-    .btn-muted { background-color: var(--silver); color: #111; box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); }
+
+    .btn-primary { background-color: #2979ff; color: white; box-shadow: 0 4px 12px rgba(41, 121, 255, 0.3); }
+    .btn-accent { background-color: #c79c3b; color: #111; box-shadow: 0 4px 12px rgba(199, 156, 59, 0.4); }
+    .btn-muted  { background-color: #aaa; color: #111; box-shadow: 0 4px 12px rgba(255,255,255,0.2); }
 
     .card-row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      display: flex;
       gap: 2rem;
-      margin-top: 1.5rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
     }
 
     .card {
-      padding: 1.5rem;
-      border-radius: 12px;
       background: linear-gradient(145deg, #1c1c24, #12121a);
-      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 14px;
+      width: 260px;
+      box-shadow: 0 6px 20px rgba(199, 156, 59, 0.15);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
+
     .card:hover {
       transform: scale(1.03);
       box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
     }
-    .card h3 {
-      margin-top: 0;
-      font-size: 1.3rem;
-      color: var(--silver-light);
+
+    .card-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: #7ec8e3;
     }
-    .card p {
-      font-size: 0.95rem;
-      color: var(--white);
+
+    .card-body {
+      font-size: 1rem;
+      color: #ccc;
     }
   </style>
 </head>
 <body>
-  <div class="section">
-    <div class="display-header">Display Header – Big & Bold</div>
-    <div class="section-title">Section Title – e.g., Blog or Projects</div>
-    <div class="subheading">Subheading – For small section headings</div>
-    <div class="body-text">Body Text – This is what regular paragraphs look like across the site, styled for readability and elegance.</div>
-    <div class="small-note">Small Note – Used for captions, timestamps, or subtle hints.</div>
+  <h1 class="display-header">Display Header Example</h1>
+  <h2 class="section-title">Section Title Example</h2>
+  <h3 class="subheading">Subheading Example</h3>
+  <p class="body-text">This is a body text example using EB Garamond. It's styled to be clear, elegant, and readable across pages. This is your go-to text style for most content.</p>
+  <p class="small-note">This is a smaller note for footers, annotations, or tooltips.</p>
+
+  <div class="button-set">
+    <button class="btn btn-primary">Primary Button</button>
+    <button class="btn btn-accent">Accent Button</button>
+    <button class="btn btn-muted">Muted Button</button>
   </div>
 
-  <div class="section">
-    <div class="section-title">Buttons in Use</div>
-    <button class="button btn-primary">Primary Action</button>
-    <button class="button btn-accent">Accent Action</button>
-    <button class="button btn-muted">Muted Button</button>
-  </div>
-
-  <div class="section">
-    <div class="section-title">Card Styles</div>
-    <div class="card-row">
-      <div class="card">
-        <h3>Card One</h3>
-        <p>This is a clean, dark card using silver text on a midnight background with a subtle hover glow.</p>
-      </div>
-      <div class="card">
-        <h3>Card Two</h3>
-        <p>Use this for projects, blog posts, or updates. Text and layout are spaced for readability and polish.</p>
-      </div>
-      <div class="card">
-        <h3>Card Three</h3>
-        <p>Shadow and color accentuation increase slightly on hover. Ideal for interactive elements or previews.</p>
-      </div>
+  <div class="card-row">
+    <div class="card">
+      <div class="card-title">Card Title</div>
+      <div class="card-body">This is a sample card with some body text to show how the layout looks using current styles.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Innovation</div>
+      <div class="card-body">Another example that uses the same style to demonstrate reuse of design patterns across cards.</div>
+    </div>
+    <div class="card">
+      <div class="card-title">Next Steps</div>
+      <div class="card-body">You can reuse this card component in projects, blogs, and updates. Modify content, not code!</div>
     </div>
   </div>
 </body>
