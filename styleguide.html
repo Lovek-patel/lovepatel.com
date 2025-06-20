@@ -1,27 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Style Test – Love Patel</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Style Test | Love Patel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&family=DM+Serif+Display&family=Work+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
-
-    /* === GLOBAL RESET === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
+      margin: 0;
       font-family: 'Inter', sans-serif;
-      background: linear-gradient(145deg, #0a0a0a, #131313);
+      background: linear-gradient(145deg, #0b0b0b, #111118);
       color: #f5f5f5;
-      padding: 2rem;
-      min-height: 100vh;
       overflow-x: hidden;
-      position: relative;
+      padding: 3rem;
+      background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff22' fill-opacity='0.3'%3E%3Ccircle cx='3' cy='3' r='1.5'/%3E%3Ccircle cx='40' cy='20' r='1'/%3E%3Ccircle cx='25' cy='45' r='0.8'/%3E%3Ccircle cx='58' cy='58' r='1.2'/%3E%3C/g%3E%3C/svg%3E");
     }
 
     .logo {
@@ -31,124 +25,117 @@
       z-index: 1000;
     }
     .logo img {
-      height: 45px;
-      opacity: 0.9;
+      height: 50px;
     }
 
-    .section {
-      margin-bottom: 4rem;
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.4rem;
+      margin-bottom: 0.5rem;
     }
-
     h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      color: #c79c3b;
+      margin-top: 3rem;
       margin-bottom: 1rem;
+      color: #cccccc;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .color-boxes, .font-examples, .component-boxes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1.5rem;
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
 
-    .box {
-      padding: 1.5rem;
+    .swatch {
+      padding: 2rem;
       border-radius: 10px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-      flex: 1 1 200px;
+      color: white;
       text-align: center;
+      font-size: 0.9rem;
+      font-weight: bold;
     }
 
-    /* === COLOR STYLES === */
-    .dark-primary { background-color: #0b0b0b; color: #fff; }
-    .rich-gold     { background-color: #c79c3b; color: #0b0b0b; }
-    .slate-gray    { background-color: #1a1a1a; color: #fff; }
-    .deep-purple   { background-color: #3a1f58; color: #fff; }
-    .neon-accent   { background-color: #00ffc3; color: #000; }
+    .font-block {
+      margin-bottom: 2rem;
+    }
 
-    /* === FONT SAMPLES === */
-    .inter-regular   { font-family: 'Inter', sans-serif; font-weight: 400; }
-    .inter-semibold { font-family: 'Inter', sans-serif; font-weight: 600; }
-    .playfair        { font-family: 'Playfair Display', serif; font-weight: 600; }
+    .font1 { font-family: 'Inter', sans-serif; }
+    .font2 { font-family: 'Playfair Display', serif; }
+    .font3 { font-family: 'DM Serif Display', serif; }
+    .font4 { font-family: 'Work Sans', sans-serif; }
 
-    /* === COMPONENT STYLES === */
-    .button-dark {
-      background-color: #1c1c1c;
-      color: #fff;
+    .test-button {
       padding: 0.75rem 1.5rem;
+      background-color: #2979ff;
+      color: white;
       border: none;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 1rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(41, 121, 255, 0.3);
+      transition: transform 0.2s ease;
     }
-    .button-dark:hover {
-      background-color: #333;
+    .test-button:hover {
       transform: scale(1.05);
     }
 
-    .card-preview {
-      background: linear-gradient(145deg, #1b1b1b, #111);
+    .card-demo {
+      background: linear-gradient(145deg, #1c1c24, #12121a);
       padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      color: #f5f5f5;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      margin-bottom: 2rem;
     }
 
-    .stars-bg {
-      background: url('https://www.transparenttextures.com/patterns/stardust.png');
-      background-size: contain;
-      border-radius: 12px;
-      padding: 2rem;
-      font-style: italic;
-    }
+    .color-black { background-color: #0b0b0b; }
+    .color-grey { background-color: #222; }
+    .color-white { background-color: #eee; color: #111; }
+    .color-gold { background-color: #c79c3b; color: #111; }
+    .color-silver { background-color: #888; }
+    .color-blue1 { background-color: #2979ff; }
+    .color-blue2 { background-color: #3d5afe; }
+    .color-navy { background-color: #0d1b2a; }
+    .color-sky { background-color: #7ec8e3; color: #111; }
+    .color-aqua { background-color: #00bcd4; }
   </style>
 </head>
 <body>
-  <!-- 🔹 LOGO PREVIEW -->
   <div class="logo">
     <img src="Logo.png" alt="Love Patel Logo">
   </div>
 
-  <!-- 🎨 COLOR TESTING -->
-  <div class="section">
-    <h2>Color Palette</h2>
-    <div class="color-boxes">
-      <div class="box dark-primary">Dark Primary (#0b0b0b)</div>
-      <div class="box rich-gold">Rich Gold (#c79c3b)</div>
-      <div class="box slate-gray">Slate Gray (#1a1a1a)</div>
-      <div class="box deep-purple">Deep Purple (#3a1f58)</div>
-      <div class="box neon-accent">Neon Accent (#00ffc3)</div>
-    </div>
+  <h1>🎨 Style System Sandbox</h1>
+
+  <h2>Color Palette</h2>
+  <div class="swatch-grid">
+    <div class="swatch color-black">Black</div>
+    <div class="swatch color-grey">Grey</div>
+    <div class="swatch color-white">White</div>
+    <div class="swatch color-gold">Gold</div>
+    <div class="swatch color-silver">Silver</div>
+    <div class="swatch color-blue1">Blue 1</div>
+    <div class="swatch color-blue2">Blue 2</div>
+    <div class="swatch color-navy">Navy</div>
+    <div class="swatch color-sky">Sky</div>
+    <div class="swatch color-aqua">Aqua</div>
   </div>
 
-  <!-- 🖋️ FONT TESTING -->
-  <div class="section">
-    <h2>Font Styles</h2>
-    <div class="font-examples">
-      <div class="box inter-regular">Inter Regular</div>
-      <div class="box inter-semibold">Inter Semibold</div>
-      <div class="box playfair">Playfair Display Semibold</div>
-    </div>
-  </div>
+  <h2>Font Styles</h2>
+  <div class="font-block font1">Font: Inter – Used for Body</div>
+  <div class="font-block font2">Font: Playfair Display – Serif Option</div>
+  <div class="font-block font3">Font: DM Serif Display – Fancy Serif</div>
+  <div class="font-block font4">Font: Work Sans – Clean Alt Sans</div>
 
-  <!-- 🧱 COMPONENT TESTING -->
-  <div class="section">
-    <h2>Buttons & Cards</h2>
-    <div class="component-boxes">
-      <div class="box">
-        <button class="button-dark">Dark Button</button>
-      </div>
-      <div class="box card-preview">
-        <h3>Card Preview</h3>
-        <p>This card uses dark gradients and soft shadows.</p>
-      </div>
-      <div class="box stars-bg">
-        Subtle star background with texture overlay.
-      </div>
-    </div>
-  </div>
+  <h2>Component: Button</h2>
+  <button class="test-button">Primary Action</button>
 
+  <h2>Component: Card</h2>
+  <div class="card-demo">
+    <p>This is a demo card. It uses the darker gradient background, rounded corners, and drop shadow. Consider this as the base for project/blog/update boxes.</p>
+  </div>
 </body>
 </html>
