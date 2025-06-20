@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- ---------- HEAD ---------- -->
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,103 +14,163 @@
     }
 
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
       padding: 2rem;
     }
 
-    .contact-card {
-      background: linear-gradient(145deg, #1c1c24, #12121a);
-      padding: 2.5rem;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(199, 156, 59, 0.15);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
-    .contact-card h2 {
+    .flip-card {
+      perspective: 1000px;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front, .flip-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      backface-visibility: hidden;
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .flip-front {
+      background-color: #1c1c1c;
+      color: #f5f5f5;
+    }
+
+    .flip-back {
+      background-color: #3d5afe;
+      color: #fff;
+      transform: rotateY(180deg);
+    }
+
+    .flip-back a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.05rem;
+    }
+
+    .flip-back a:hover {
+      text-decoration: underline;
+    }
+
+    .heading {
       font-size: 2.2rem;
       color: #c79c3b;
-      margin-top: 0;
-      margin-bottom: 1rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
     }
 
-    .contact-card p {
+    .intro {
       font-size: 1.15rem;
       color: #ccc;
+      text-align: center;
+      margin-bottom: 2rem;
       line-height: 1.6;
     }
 
-    .contact-links {
-      margin-top: 2rem;
-    }
-
-    .contact-links a {
-      display: block;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: #7ec8e3;
-      text-decoration: none;
-      margin-bottom: 0.75rem;
-      transition: transform 0.2s, color 0.2s;
-    }
-
-    .contact-links a:hover {
-      color: #c79c3b;
-      transform: translateX(6px);
-    }
-
     .quote {
-      margin-top: 2rem;
-      font-size: 1rem;
+      margin-top: 3rem;
+      font-size: 1.05rem;
       color: #aaa;
       font-style: italic;
       text-align: center;
+      border-top: 1px solid #333;
+      padding-top: 1rem;
+    }
+
+    .quote span {
+      display: block;
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+      color: #666;
     }
   </style>
 </head>
-
-<!-- ---------- BODY ---------- -->
 <body>
   <!-- 🔹 NAVIGATION BAR -->
-  <div class="top-bar">
-    <div class="logo">
-      <img src="Logo.png" alt="Love Patel Logo">
-    </div>
-    <div class="menu-button" onclick="toggleMenu()">☰</div>
-  </div>
-
-  <!-- 🔹 POPUP MENU -->
-  <div class="popup-menu" id="popupMenu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="projects.html">Projects</a>
-    <a href="blog.html">Blog</a>
-    <a href="updates.html">Updates</a>
-    <a href="contact.html">Contact</a>
-  </div>
+  <div id="navbar-container"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(html => document.getElementById('navbar-container').innerHTML = html);
+  </script>
 
   <!-- 🔸 CONTACT CONTENT -->
   <div class="container">
-    <div class="contact-card">
-      <h2>📬 Get in Touch</h2>
-      <p>Whether it’s for collaboration, conversation, or just to say hello — I’d love to hear from you.</p>
-      <div class="contact-links">
-        <a href="mailto:lkp2133@columbia.edu">📧 lkp2133@columbia.edu</a>
-        <a href="https://lovekpatel.com" target="_blank">🌐 My Website</a>
-        <a href="https://www.linkedin.com/in/lovekpatel" target="_blank">🔗 LinkedIn</a>
-        <a href="https://www.instagram.com/lovekpatel" target="_blank">📸 Instagram</a>
-        <a href="https://www.snapchat.com/add/lovekpatel" target="_blank">👻 Snapchat</a>
+    <div class="heading">📬 Get in Touch</div>
+    <div class="intro">Whether it’s for collaboration, conversation, or just to say hello — I’d love to hear from you.</div>
+
+    <div class="card-grid">
+      <!-- Email -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">📧 Email</div>
+          <div class="flip-back"><a href="mailto:lkp2133@columbia.edu">lkp2133@columbia.edu</a></div>
+        </div>
       </div>
-      <div class="quote">“Don’t hesitate to reach out — conversations are the spark of innovation.”</div>
+
+      <!-- Website -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">🌐 Website</div>
+          <div class="flip-back"><a href="https://lovekpatel.com" target="_blank">lovekpatel.com</a></div>
+        </div>
+      </div>
+
+      <!-- LinkedIn -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">🔗 LinkedIn</div>
+          <div class="flip-back"><a href="https://www.linkedin.com/in/lovekpatel" target="_blank">@lovekpatel</a></div>
+        </div>
+      </div>
+
+      <!-- Instagram -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">📸 Instagram</div>
+          <div class="flip-back"><a href="https://www.instagram.com/lovek.patel" target="_blank">@lovek.patel</a></div>
+        </div>
+      </div>
+
+      <!-- Snapchat -->
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">👻 Snapchat</div>
+          <div class="flip-back"><a href="https://www.snapchat.com/add/lovek.patel" target="_blank">@lovek.patel</a></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote">
+      “The best way to predict the future is to invent it.”
+      <span>– Alan Kay</span>
     </div>
   </div>
-
-  <!-- 🔹 SCRIPT: Menu Toggle -->
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("popupMenu");
-      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-    }
-  </script>
 </body>
 </html>
