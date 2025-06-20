@@ -31,21 +31,21 @@
       border-bottom: 1px solid #222;
     }
 
-    .logo img {
-      height: 40px;
-    }
-
     .menu-button {
       font-size: 1.6rem;
       cursor: pointer;
       color: #f5f5f5;
     }
 
+    .logo img {
+      height: 40px;
+    }
+
     .menu-popup {
       display: none;
       position: fixed;
       top: 70px;
-      right: 2rem;
+      left: 2rem;
       background-color: #1a1a1a;
       border: 1px solid #333;
       border-radius: 12px;
@@ -69,7 +69,7 @@
       color: #c79c3b;
     }
 
-    /* 🔹 CARD STYLES */
+    /* 🔹 CONTACT STYLES */
     .heading {
       font-size: 2.2rem;
       color: #c79c3b;
@@ -84,10 +84,15 @@
       margin-bottom: 2rem;
     }
 
-    .card-grid {
+    .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .contact-grid.row-2 {
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .flip-card {
@@ -144,13 +149,14 @@
     }
 
     .quote {
-      margin-top: 3rem;
-      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 3rem auto 0 auto;
+      font-size: 1.2rem;
       color: #aaa;
       font-style: italic;
       text-align: center;
       border-top: 1px solid #333;
-      padding-top: 1rem;
+      padding-top: 1.5rem;
     }
 
     .quote span {
@@ -165,8 +171,8 @@
 <body>
   <!-- 🔹 NAVIGATION BAR -->
   <div class="top-bar">
-    <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
     <div class="menu-button" onclick="toggleMenu()">☰</div>
+    <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
   </div>
   <div class="menu-popup" id="popupMenu">
     <a href="index.html">🏠 Home</a>
@@ -182,40 +188,34 @@
     <div class="heading">📬 Get in Touch</div>
     <div class="intro">Whether it’s for collaboration, conversation, or just to say hello — I’d love to hear from you.</div>
 
-    <div class="card-grid">
-      <!-- 🔸 CARD 1: Email -->
+    <div class="contact-grid row-1">
       <div class="flip-card">
         <div class="flip-inner">
           <div class="flip-front">📧 Email</div>
           <div class="flip-back"><a href="mailto:lkp2133@columbia.edu">lkp2133@columbia.edu</a></div>
         </div>
       </div>
-
-      <!-- 🔸 CARD 2: Website -->
       <div class="flip-card">
         <div class="flip-inner">
           <div class="flip-front">🌐 Website</div>
           <div class="flip-back"><a href="https://lovepatel.com" target="_blank">lovepatel.com</a></div>
         </div>
       </div>
-
-      <!-- 🔸 CARD 3: LinkedIn -->
       <div class="flip-card">
         <div class="flip-inner">
           <div class="flip-front">🔗 LinkedIn</div>
           <div class="flip-back"><a href="https://www.linkedin.com/in/lovekpatel" target="_blank">@lovekpatel</a></div>
         </div>
       </div>
+    </div>
 
-      <!-- 🔸 CARD 4: Instagram -->
+    <div class="contact-grid row-2">
       <div class="flip-card">
         <div class="flip-inner">
           <div class="flip-front">📸 Instagram</div>
           <div class="flip-back"><a href="https://www.instagram.com/lovek.patel" target="_blank">@lovek.patel</a></div>
         </div>
       </div>
-
-      <!-- 🔸 CARD 5: Snapchat -->
       <div class="flip-card">
         <div class="flip-inner">
           <div class="flip-front">👻 Snapchat</div>
@@ -224,7 +224,6 @@
       </div>
     </div>
 
-    <!-- 🔸 QUOTE -->
     <div class="quote">
       “The richest conversations start with a simple hello.”
       <span>– Unknown</span>
