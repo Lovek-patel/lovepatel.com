@@ -3,188 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Style Test | Love Patel</title>
+  <title>System Preview | Love Patel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=DM+Serif+Display&family=Work+Sans:wght@400;600&family=EB+Garamond:wght@400;700&family=Rubik:wght@400;600&family=Manrope:wght@400;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --black: #0b0b0b;
+      --grey: #222;
+      --white: #eee;
+      --gold: #c79c3b;
+      --silver: #888;
+      --silver-light: #aaa;
+      --silver-mid: #999;
+      --blue1: #2979ff;
+      --blue2: #3d5afe;
+      --sky: #7ec8e3;
+      --aqua: #00bcd4;
+      --ice: #d6e4f0;
+    }
+
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #0b0b0b;
-      color: #f5f5f5;
-      overflow-x: hidden;
       padding: 3rem;
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'EB Garamond', serif;
       background-image: radial-gradient(#ffffff1a 0.5px, transparent 0.5px);
       background-size: 60px 60px;
-      background-repeat: repeat;
     }
 
-    .logo {
-      position: fixed;
-      top: 1rem;
-      right: 1.5rem;
-      z-index: 1000;
-    }
-    .logo img {
-      height: 50px;
+    .section {
+      margin-bottom: 3rem;
     }
 
-    h1 {
-      font-family: 'EB Garamond', serif;
-      font-size: 2.4rem;
+    .display-header {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--gold);
       margin-bottom: 0.5rem;
     }
-    h2 {
-      margin-top: 3rem;
-      margin-bottom: 1rem;
-      color: #cccccc;
-      font-size: 1.4rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--sky);
+      margin-bottom: 0.5rem;
     }
-
-    .swatch-grid {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .swatch {
-      padding: 2rem;
-      border-radius: 10px;
-      color: white;
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: bold;
-    }
-
-    .font-block {
-      margin-bottom: 1.5rem;
-    }
-
-    .font1 { font-family: 'Inter', sans-serif; }
-    .font2 { font-family: 'DM Serif Display', serif; }
-    .font3 { font-family: 'EB Garamond', serif; }
-    .font4 { font-family: 'Work Sans', sans-serif; }
-    .font5 { font-family: 'Rubik', sans-serif; }
-    .font6 { font-family: 'Manrope', sans-serif; }
-    .font7 { font-family: 'Playfair Display', serif; }
-
-    .button-set {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    .test-button {
-      padding: 0.75rem 1.5rem;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+    .subheading {
+      font-size: 1.2rem;
       font-weight: 600;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      color: var(--silver-light);
+      margin-bottom: 0.5rem;
     }
-    .btn-blue { background-color: #2979ff; color: white; box-shadow: 0 4px 12px rgba(41, 121, 255, 0.3); }
-    .btn-silver { background-color: #aaa; color: #111; box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); }
-    .btn-gold { background-color: #c79c3b; color: #111; box-shadow: 0 4px 12px rgba(199, 156, 59, 0.4); }
-    .test-button:hover { transform: scale(1.05); }
+    .body-text {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .small-note {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--silver-mid);
+      font-style: italic;
+    }
 
-    .card-demo {
-      background: linear-gradient(145deg, #1c1c24, #12121a);
-      padding: 2rem;
-      border-radius: 14px;
-      box-shadow: 0 6px 20px rgba(199, 156, 59, 0.15);
-      margin-bottom: 2rem;
+    .button {
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      margin-right: 1rem;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .card-demo:hover {
+    .button:hover {
+      transform: scale(1.05);
+    }
+    .btn-primary { background-color: var(--blue1); color: white; box-shadow: 0 4px 12px rgba(41, 121, 255, 0.3); }
+    .btn-accent { background-color: var(--gold); color: #111; box-shadow: 0 4px 12px rgba(199, 156, 59, 0.4); }
+    .btn-muted { background-color: var(--silver); color: #111; box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2); }
+
+    .card-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .card {
+      padding: 1.5rem;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #1c1c24, #12121a);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card:hover {
       transform: scale(1.03);
       box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
     }
-
-    .card-option {
-      padding: 2rem;
-      border-radius: 12px;
-      margin-bottom: 2rem;
-      transition: 0.3s ease;
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+      color: var(--silver-light);
     }
-    .card1 { background: #1a1a1a; box-shadow: 0 6px 14px rgba(0,0,0,0.3); }
-    .card2 { background: #111; border: 1px solid #333; }
-    .card3 { background: #2d2d2d; box-shadow: inset 0 0 0 1px #555; }
-    .card4 { background: linear-gradient(to right, #1f1f1f, #151515); border: 1px solid #444; }
-
-    .color-black { background-color: #0b0b0b; }
-    .color-grey { background-color: #222; }
-    .color-white { background-color: #eee; color: #111; }
-    .color-gold { background-color: #c79c3b; color: #111; }
-    .color-silver { background-color: #888; }
-    .color-silver-light { background-color: #aaa; color: #111; }
-    .color-silver-mid { background-color: #999; }
-    .color-blue1 { background-color: #2979ff; }
-    .color-blue2 { background-color: #3d5afe; }
-    .color-sky { background-color: #7ec8e3; color: #111; }
-    .color-aqua { background-color: #00bcd4; }
-    .color-ice { background-color: #d6e4f0; color: #111; }
+    .card p {
+      font-size: 0.95rem;
+      color: var(--white);
+    }
   </style>
 </head>
 <body>
-  <div class="logo">
-    <img src="Logo.png" alt="Love Patel Logo">
+  <div class="section">
+    <div class="display-header">Display Header – Big & Bold</div>
+    <div class="section-title">Section Title – e.g., Blog or Projects</div>
+    <div class="subheading">Subheading – For small section headings</div>
+    <div class="body-text">Body Text – This is what regular paragraphs look like across the site, styled for readability and elegance.</div>
+    <div class="small-note">Small Note – Used for captions, timestamps, or subtle hints.</div>
   </div>
 
-  <h1>🎨 Style System Sandbox</h1>
-
-  <h2>Color Palette</h2>
-  <div class="swatch-grid">
-    <div class="swatch color-black">Black</div>
-    <div class="swatch color-grey">Grey</div>
-    <div class="swatch color-white">White</div>
-    <div class="swatch color-gold">Gold</div>
-    <div class="swatch color-silver">Silver</div>
-    <div class="swatch color-silver-light">Silver Light</div>
-    <div class="swatch color-silver-mid">Silver Mid</div>
-    <div class="swatch color-blue1">Blue 1</div>
-    <div class="swatch color-blue2">Blue 2</div>
-    <div class="swatch color-sky">Sky</div>
-    <div class="swatch color-aqua">Aqua</div>
-    <div class="swatch color-ice">Ice</div>
+  <div class="section">
+    <div class="section-title">Buttons in Use</div>
+    <button class="button btn-primary">Primary Action</button>
+    <button class="button btn-accent">Accent Action</button>
+    <button class="button btn-muted">Muted Button</button>
   </div>
 
-  <h2>Font Styles</h2>
-  <div class="font-block font1">Font 1: Inter</div>
-  <div class="font-block font2">Font 2: DM Serif Display</div>
-  <div class="font-block font3">Font 3: EB Garamond</div>
-  <div class="font-block font4">Font 4: Work Sans</div>
-  <div class="font-block font5">Font 5: Rubik</div>
-  <div class="font-block font6">Font 6: Manrope</div>
-  <div class="font-block font7">Font 7: Playfair Display</div>
-
-  <h2>Component: Buttons</h2>
-  <div class="button-set">
-    <button class="test-button btn-blue">Blue</button>
-    <button class="test-button btn-silver">Silver</button>
-    <button class="test-button btn-gold">Gold</button>
-  </div>
-
-  <h2>Component: Cards</h2>
-  <div class="card-demo">
-    <p>This is a demo card. It uses the darker gradient background, rounded corners, and drop shadow. Consider this as the base for project/blog/update boxes.</p>
-  </div>
-  <div class="card-option card1">
-    <p>Card 1 — Flat dark background with soft shadow</p>
-  </div>
-  <div class="card-option card2">
-    <p>Card 2 — Dark background with solid border</p>
-  </div>
-  <div class="card-option card3">
-    <p>Card 3 — High contrast inner border (inset effect)</p>
-  </div>
-  <div class="card-option card4">
-    <p>Card 4 — Horizontal gradient with clean border</p>
+  <div class="section">
+    <div class="section-title">Card Styles</div>
+    <div class="card-row">
+      <div class="card">
+        <h3>Card One</h3>
+        <p>This is a clean, dark card using silver text on a midnight background with a subtle hover glow.</p>
+      </div>
+      <div class="card">
+        <h3>Card Two</h3>
+        <p>Use this for projects, blog posts, or updates. Text and layout are spaced for readability and polish.</p>
+      </div>
+      <div class="card">
+        <h3>Card Three</h3>
+        <p>Shadow and color accentuation increase slightly on hover. Ideal for interactive elements or previews.</p>
+      </div>
+    </div>
   </div>
 </body>
 </html>
