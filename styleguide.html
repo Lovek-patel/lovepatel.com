@@ -15,8 +15,8 @@
       color: #f5f5f5;
       overflow-x: hidden;
       padding: 3rem;
-      background-image: radial-gradient(#ffffff12 1px, transparent 1px);
-      background-size: 80px 80px;
+      background-image: radial-gradient(#ffffff1a 0.5px, transparent 0.5px);
+      background-size: 60px 60px;
       background-repeat: repeat;
     }
 
@@ -106,6 +106,17 @@
       box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
     }
 
+    .card-option {
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      transition: 0.3s ease;
+    }
+    .card1 { background: #1a1a1a; box-shadow: 0 6px 14px rgba(0,0,0,0.3); }
+    .card2 { background: #111; border: 1px solid #333; }
+    .card3 { background: #2d2d2d; box-shadow: inset 0 0 0 1px #555; }
+    .card4 { background: linear-gradient(to right, #1f1f1f, #151515); border: 1px solid #444; }
+
     .color-black { background-color: #0b0b0b; }
     .color-grey { background-color: #222; }
     .color-white { background-color: #eee; color: #111; }
@@ -159,10 +170,21 @@
     <button class="test-button btn-gold">Gold</button>
   </div>
 
-  <h2>Component: Card</h2>
+  <h2>Component: Cards</h2>
   <div class="card-demo">
     <p>This is a demo card. It uses the darker gradient background, rounded corners, and drop shadow. Consider this as the base for project/blog/update boxes.</p>
   </div>
+  <div class="card-option card1">
+    <p>Card 1 — Flat dark background with soft shadow</p>
+  </div>
+  <div class="card-option card2">
+    <p>Card 2 — Dark background with solid border</p>
+  </div>
+  <div class="card-option card3">
+    <p>Card 3 — High contrast inner border (inset effect)</p>
+  </div>
+  <div class="card-option card4">
+    <p>Card 4 — Horizontal gradient with clean border</p>
+  </div>
 </body>
 </html>
-
