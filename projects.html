@@ -7,16 +7,15 @@
   <link rel="stylesheet" href="theme.css" />
   <style>
     body {
+      margin: 0;
       padding-top: 80px;
+      font-family: 'Playfair Display', serif;
+      background: black;
+      color: white;
+      overflow-x: hidden;
     }
 
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    /* 🔹 NAVBAR STYLES */
+    /* 🔹 NAVIGATION BAR */
     .top-bar {
       position: fixed;
       top: 0;
@@ -69,45 +68,102 @@
       color: #c79c3b;
     }
 
-    /* 🔹 PROJECTS STYLES */
-    .heading {
-      font-size: 2.8rem;
-      color: #d4af37;
+    /* 🔸 PROJECTS TITLE */
+    .hero-title {
       text-align: center;
-      margin-bottom: 0.5rem;
+      font-size: 4rem;
       font-weight: 600;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.7rem;
+      color: #d4af37;
+      padding: 6rem 2rem 2rem;
     }
 
-    .intro {
-      font-size: 1.15rem;
+    .projects-description {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 1rem;
+      font-size: 1.25rem;
       color: #ccc;
+    }
+
+    .projects-quote {
       text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .spotlight-section {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .spotlight-section h2 {
-      font-size: 2.2rem;
-      color: #f5f5f5;
-      margin-bottom: 1rem;
-    }
-
-    .spotlight-section p {
+      font-style: italic;
       font-size: 1.1rem;
-      color: #aaa;
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
+      color: #888;
+      margin-bottom: 4rem;
     }
+
+    /* 🔦 SPOTLIGHT SECTION */
+    .spotlight-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .curtains {
+      position: absolute;
+      width: 50%;
+      height: 100%;
+      top: 0;
+      background: linear-gradient(to right, #111, #000);
+      z-index: 2;
+      transition: transform 1s ease;
+    }
+
+    .left-curtain {
+      left: 0;
+      transform: translateX(0);
+    }
+
+    .right-curtain {
+      right: 0;
+      transform: translateX(0);
+      background: linear-gradient(to left, #111, #000);
+    }
+
+    .spotlight-container {
+      max-width: 800px;
+      text-align: center;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 1s ease 0.5s;
+    }
+
+    .spotlight-container h2 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #f4e07d;
+    }
+
+    .spotlight-container h3 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .spotlight-container p {
+      font-size: 1.2rem;
+      color: #ddd;
+    }
+
+    .show-spotlight .left-curtain {
+      transform: translateX(-100%);
+    }
+
+    .show-spotlight .right-curtain {
+      transform: translateX(100%);
+    }
+
+    .show-spotlight .spotlight-container {
+      opacity: 1;
+    }
+
+    /* ---- ADDITIONAL SECTIONS GO HERE ---- */
   </style>
 </head>
-
 <body>
   <!-- 🔹 NAVIGATION BAR -->
   <div class="top-bar">
@@ -123,21 +179,41 @@
     <a href="contact.html">📬 Contact</a>
   </div>
 
-  <!-- 🔸 PROJECTS CONTENT -->
-  <div class="container">
-    <div class="heading">Projects</div>
-    <div class="intro">A glimpse into the ideas, systems, and innovations I’ve created or am actively building — from AI and chemistry to philosophy, education, and beyond.</div>
+  <!-- 🔸 TITLE + DESCRIPTION -->
+  <div class="hero-title">Projects</div>
+  <div class="projects-description">
+    Every project I pursue aims to rewrite what’s possible — blending science, story, and system design to build a future that inspires.
+  </div>
+  <div class="projects-quote">
+    “The best way to predict the future is to build it.” – Alan Kay
+  </div>
 
-    <div class="spotlight-section">
-      <h2>🔦 Spotlight: ASCEND</h2>
+  <!-- 🔦 SPOTLIGHT SECTION -->
+  <section class="spotlight-section" id="spotlight">
+    <div class="curtains left-curtain"></div>
+    <div class="curtains right-curtain"></div>
+    <div class="spotlight-container">
+      <h2>🔦 Spotlight</h2>
+      <h3>ASCEND</h3>
       <p>A modular AI architecture integrating planning, memory, and flexible logic. This project is the core of a broader superhero technology suite and personal computing revolution.</p>
     </div>
-  </div>
+  </section>
+
+  <!-- ----- THIS IS WHERE YOU ADD NEW PROJECT SECTIONS ----- -->
 
   <script>
     function toggleMenu() {
       document.getElementById('popupMenu').classList.toggle('show');
     }
+
+    // Curtain animation on scroll
+    window.addEventListener('scroll', () => {
+      const spotlight = document.getElementById('spotlight');
+      const rect = spotlight.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.75) {
+        spotlight.classList.add('show-spotlight');
+      }
+    });
   </script>
 </body>
 </html>
