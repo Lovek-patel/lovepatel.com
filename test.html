@@ -3,169 +3,191 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Carousel Test</title>
+  <title>Test Carousel</title>
   <style>
     body {
-      background-color: #111;
-      color: #fff;
-      font-family: sans-serif;
       margin: 0;
-      padding: 2rem;
+      background-color: #0d0d0d;
+      font-family: 'Georgia', serif;
+      color: #f0d375;
+      overflow-x: hidden;
     }
 
     h1 {
       text-align: center;
-      color: gold;
+      margin-top: 1.5rem;
+      font-size: 2.5rem;
     }
 
-    .carousel-container {
+    .carousel-wrapper {
       position: relative;
-      max-width: 1000px;
-      margin: 3rem auto;
+      width: 90vw;
+      max-width: 1200px;
+      margin: 2rem auto;
       overflow: hidden;
     }
 
     .carousel-track {
       display: flex;
-      transition: transform 0.5s ease-in-out;
-      gap: 2rem;
+      transition: transform 0.6s ease-in-out;
+      will-change: transform;
     }
 
     .carousel-card {
-      flex: 0 0 60%;
+      flex: 0 0 80%;
+      margin: 0 10%;
       background-color: #1a1a1a;
       border-radius: 20px;
-      padding: 2rem;
       text-align: center;
-      transform: scale(0.9);
-      opacity: 0.5;
-      transition: transform 0.4s ease, opacity 0.4s ease;
+      padding: 2rem;
       height: 500px;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-    }
-
-    .carousel-card.active {
-      transform: scale(1.05);
-      opacity: 1;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .carousel-card img {
+      width: 100px;
       height: 100px;
       margin-bottom: 1rem;
     }
 
     .carousel-card h3 {
-      color: gold;
       font-size: 2rem;
       margin: 0.5rem 0;
     }
 
-    .carousel-card p {
-      font-size: 1.1rem;
-      color: #ccc;
+    .timeline {
+      font-style: italic;
+      color: #aaa;
+      margin-bottom: 1rem;
     }
 
-    .arrow-button {
+    .description {
+      color: #ddd;
+      font-size: 1.1rem;
+      max-width: 80%;
+      margin: 0 auto;
+    }
+
+    .nav-button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       background: rgba(255, 215, 0, 0.1);
-      color: gold;
+      color: #f0d375;
       border: none;
       font-size: 2rem;
-      padding: 0.5rem 1rem;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
       z-index: 10;
+      transition: background 0.3s;
     }
 
-    .arrow-left {
-      left: 0;
+    .nav-button:hover {
+      background: rgba(255, 215, 0, 0.3);
     }
 
-    .arrow-right {
-      right: 0;
+    .nav-left {
+      left: 10px;
+    }
+
+    .nav-right {
+      right: 10px;
     }
   </style>
 </head>
 <body>
-
   <h1>Test Carousel</h1>
-
-  <div class="carousel-container">
-    <button class="arrow-button arrow-left" onclick="prevSlide()">‹</button>
+  <div class="carousel-wrapper">
     <div class="carousel-track" id="carouselTrack">
-      <div class="carousel-card active">
-        <img src="https://via.placeholder.com/150" />
-        <h3>Project 1</h3>
-        <p>Timeline: 2024 – Present</p>
-        <p>Placeholder description for Project 1.</p>
-      </div>
+      <!-- Cloned Last Card -->
       <div class="carousel-card">
-        <img src="https://via.placeholder.com/150" />
-        <h3>Project 2</h3>
-        <p>Timeline: 2025 – Present</p>
-        <p>Placeholder description for Project 2.</p>
-      </div>
-      <div class="carousel-card">
-        <img src="https://via.placeholder.com/150" />
-        <h3>Project 3</h3>
-        <p>Timeline: 2023 – Present</p>
-        <p>Placeholder description for Project 3.</p>
-      </div>
-      <div class="carousel-card">
-        <img src="https://via.placeholder.com/150" />
+        <img src="https://via.placeholder.com/100" alt="4" />
         <h3>Project 4</h3>
-        <p>Timeline: 2022 – Present</p>
-        <p>Placeholder description for Project 4.</p>
+        <p class="timeline">2023 – Present</p>
+        <p class="description">Description for Project 4.</p>
+      </div>
+
+      <!-- Real Cards -->
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/100" alt="1" />
+        <h3>Project 1</h3>
+        <p class="timeline">2024 – Present</p>
+        <p class="description">Placeholder description for Project 1.</p>
+      </div>
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/100" alt="2" />
+        <h3>Project 2</h3>
+        <p class="timeline">2024 – Present</p>
+        <p class="description">Placeholder description for Project 2.</p>
+      </div>
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/100" alt="3" />
+        <h3>Project 3</h3>
+        <p class="timeline">2025 – Present</p>
+        <p class="description">Placeholder description for Project 3.</p>
+      </div>
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/100" alt="4" />
+        <h3>Project 4</h3>
+        <p class="timeline">2023 – Present</p>
+        <p class="description">Placeholder description for Project 4.</p>
+      </div>
+
+      <!-- Cloned First Card -->
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/100" alt="1" />
+        <h3>Project 1</h3>
+        <p class="timeline">2024 – Present</p>
+        <p class="description">Placeholder description for Project 1.</p>
       </div>
     </div>
-    <button class="arrow-button arrow-right" onclick="nextSlide()">›</button>
+
+    <button class="nav-button nav-left" onclick="moveSlide(-1)">❮</button>
+    <button class="nav-button nav-right" onclick="moveSlide(1)">❯</button>
   </div>
 
   <script>
     const track = document.getElementById('carouselTrack');
-    const cards = Array.from(track.querySelectorAll('.carousel-card'));
-    let slideIndex = 0;
+    const cards = track.querySelectorAll('.carousel-card');
+    const cardWidth = cards[0].offsetWidth + (cards[0].offsetLeft * 2);
+    let index = 1;
 
-    function updateCarousel() {
-      cards.forEach((card, index) => {
-        card.classList.remove('active');
-        card.style.transform = 'scale(0.9)';
-        card.style.opacity = '0.5';
-      });
-
-      const activeCard = cards[slideIndex];
-      activeCard.classList.add('active');
-      activeCard.style.transform = 'scale(1.05)';
-      activeCard.style.opacity = '1';
-
-      const containerWidth = document.querySelector('.carousel-container').offsetWidth;
-      const cardWidth = activeCard.offsetWidth + 32;
-      const offset = (cardWidth * slideIndex) - ((containerWidth - cardWidth) / 2);
+    function moveToIndex(i, animate = true) {
+      if (!animate) track.style.transition = "none";
+      else track.style.transition = "transform 0.6s ease-in-out";
+      const offset = cardWidth * i;
       track.style.transform = `translateX(-${offset}px)`;
     }
 
-    function nextSlide() {
-      slideIndex = (slideIndex + 1) % cards.length;
-      updateCarousel();
+    function moveSlide(step) {
+      index += step;
+      moveToIndex(index);
+
+      track.addEventListener("transitionend", () => {
+        if (index === 0) {
+          index = cards.length - 2;
+          moveToIndex(index, false);
+        }
+        if (index === cards.length - 1) {
+          index = 1;
+          moveToIndex(index, false);
+        }
+      }, { once: true });
     }
 
-    function prevSlide() {
-      slideIndex = (slideIndex - 1 + cards.length) % cards.length;
-      updateCarousel();
-    }
-
-    cards.forEach((card, index) => {
-      card.addEventListener('click', () => {
-        slideIndex = index;
-        updateCarousel();
-      });
+    window.addEventListener("load", () => {
+      moveToIndex(index, false);
     });
 
-    window.addEventListener('DOMContentLoaded', updateCarousel);
-    window.addEventListener('resize', updateCarousel);
+    window.addEventListener("resize", () => {
+      moveToIndex(index, false);
+    });
   </script>
-
 </body>
 </html>
