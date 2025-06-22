@@ -14,6 +14,7 @@
       overflow-x: hidden;
     }
 
+    /* ----- Navigation & Menu ----- */
     .top-bar {
       position: fixed;
       top: 0;
@@ -66,6 +67,7 @@
       color: #c79c3b;
     }
 
+    /* ----- Hero Section ----- */
     .hero-section {
       height: 100vh;
       display: flex;
@@ -95,6 +97,7 @@
       color: #888;
     }
 
+    /* ----- Spotlight Section (Curtains + Scroll Reveal) ----- */
     .spotlight-section {
       min-height: 175vh;
       display: flex;
@@ -134,7 +137,7 @@
       position: sticky;
       top: 25vh;
       text-align: center;
-      z-index: 900; /* behind curtain */
+      z-index: 900;
       transition: top 0.2s ease-out;
     }
 
@@ -158,10 +161,42 @@
       font-size: 1.1rem;
       color: #ddd;
     }
+
+    /* ----- Template for Future Sections ----- */
+    section.project-group {
+      padding: 6rem 2rem;
+      background-color: #0a0a0a;
+      border-top: 1px solid #222;
+    }
+
+    section.project-group h2 {
+      font-size: 2.8rem;
+      color: #d4af37;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .project-item {
+      max-width: 900px;
+      margin: 0 auto 3rem;
+      padding: 1rem 2rem;
+      border-left: 4px solid #c79c3b;
+    }
+
+    .project-item h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-item p {
+      font-size: 1rem;
+      color: #ccc;
+    }
   </style>
 </head>
 
 <body>
+  <!-- ===== Top Navigation Bar ===== -->
   <div class="top-bar">
     <div class="menu-button" onclick="toggleMenu()">☰</div>
     <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
@@ -175,6 +210,7 @@
     <a href="contact.html">📬 Contact</a>
   </div>
 
+  <!-- ===== Hero Section ===== -->
   <section class="hero-section">
     <div class="hero-title">Projects</div>
     <div class="hero-description">
@@ -185,6 +221,7 @@
     </div>
   </section>
 
+  <!-- ===== Spotlight Section with Curtains ===== -->
   <section class="spotlight-section" id="spotlight">
     <div class="left-curtain" id="leftCurtain"></div>
     <div class="right-curtain" id="rightCurtain"></div>
@@ -197,6 +234,61 @@
     </div>
   </section>
 
+  <!-- ===== ENGINEERING SECTION ===== -->
+  <section class="project-group" id="engineering">
+    <h2>⚙️ Engineering</h2>
+    <div class="project-item">
+      <h3>Stratum</h3>
+      <p>Optimizing micro-energy harvesting and long-distance rapid rail transit through urban and national redesign.</p>
+    </div>
+  </section>
+
+  <!-- ===== CHEMISTRY SECTION ===== -->
+  <section class="project-group" id="chemistry">
+    <h2>🧪 Chemistry</h2>
+    <div class="project-item">
+      <h3>Hydride Transfer Study</h3>
+      <p>Mechanistic investigations on metal-catalyzed reduction of N-heterocycles using kinetic isotope effects and redox ligand tuning.</p>
+    </div>
+  </section>
+
+  <!-- ===== PHILOSOPHY SECTION ===== -->
+  <section class="project-group" id="philosophy">
+    <h2>🧠 Philosophy</h2>
+    <div class="project-item">
+      <h3>The Nature of Sin</h3>
+      <p>A multi-religious inquiry into morality, punishment, and the fluid boundaries of human nature across civilizations.</p>
+    </div>
+  </section>
+
+  <!-- ===== WRITING SECTION ===== -->
+  <section class="project-group" id="writing">
+    <h2>✍️ Writing</h2>
+    <div class="project-item">
+      <h3>Book of Love</h3>
+      <p>A modern philosophical treatise on romantic and human love, inspired by Plato, Dostoevsky, and the scriptures.</p>
+    </div>
+  </section>
+
+  <!-- ===== PERSONAL PROJECTS SECTION ===== -->
+  <section class="project-group" id="personal-projects">
+    <h2>🌱 Personal Projects</h2>
+    <div class="project-item">
+      <h3>GenSim</h3>
+      <p>Simulating life from a single gene to human-like development, exploring how far DNA alone can govern complexity.</p>
+    </div>
+  </section>
+
+  <!-- ===== LEGACY / FUTURE SECTION ===== -->
+  <section class="project-group" id="legacy">
+    <h2>🪐 Legacy & Vision</h2>
+    <div class="project-item">
+      <h3>Primis</h3>
+      <p>Designing the world’s most intellectually and ethically advanced global school system, rooted in tiered opportunity and holistic education.</p>
+    </div>
+  </section>
+
+  <!-- ===== JavaScript for Menu & Curtain Scroll ===== -->
   <script>
     function toggleMenu() {
       document.getElementById('popupMenu').classList.toggle('show');
@@ -220,8 +312,7 @@
       }
 
       // Move text down as scroll progresses
-      const maxShift = 25; // max top% movement
-      const newTop = Math.min(25 + distance / 40, 55); // Cap at 55vh
+      const newTop = Math.min(25 + distance / 40, 52); // capped at 52vh now
       inner.style.top = `${newTop}vh`;
     });
   </script>
