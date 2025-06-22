@@ -4,28 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Projects | Love Patel</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="theme.css" />
   <style>
     body {
-      margin: 0;
-      font-family: 'Playfair Display', serif;
-      background: black;
-      color: white;
-      overflow-x: hidden;
-      scroll-snap-type: y mandatory;
+      padding-top: 80px;
     }
 
-    section {
-      scroll-snap-align: start;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 4rem 2rem;
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
     }
 
+    /* 🔹 NAVBAR STYLES */
     .top-bar {
       position: fixed;
       top: 0;
@@ -40,21 +31,21 @@
       border-bottom: 1px solid #222;
     }
 
-    .logo img {
-      height: 40px;
-    }
-
     .menu-button {
       font-size: 1.6rem;
       cursor: pointer;
       color: #f5f5f5;
     }
 
+    .logo img {
+      height: 40px;
+    }
+
     .menu-popup {
       display: none;
       position: fixed;
       top: 70px;
-      right: 2rem;
+      left: 2rem;
       background-color: #1a1a1a;
       border: 1px solid #333;
       border-radius: 12px;
@@ -78,34 +69,51 @@
       color: #c79c3b;
     }
 
-    .section-title {
-      font-size: 4rem;
+    /* 🔹 PROJECTS STYLES */
+    .heading {
+      font-size: 2.8rem;
+      color: #d4af37;
       text-align: center;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 0.7rem;
+    }
+
+    .intro {
+      font-size: 1.15rem;
+      color: #ccc;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .spotlight-section {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .spotlight-section h2 {
+      font-size: 2.2rem;
+      color: #f5f5f5;
       margin-bottom: 1rem;
     }
 
-    .spotlight-container {
-      max-width: 900px;
-      text-align: center;
-    }
-
-    .spotlight-container h3 {
-      font-size: 2rem;
-      margin: 1rem 0;
-    }
-
-    .spotlight-container p {
-      font-size: 1.2rem;
+    .spotlight-section p {
+      font-size: 1.1rem;
+      color: #aaa;
+      max-width: 700px;
+      margin: 0 auto;
       line-height: 1.6;
     }
   </style>
 </head>
-<body>
-  <div class="top-bar">
-    <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
-    <div class="menu-button" onclick="toggleMenu()">☰</div>
-  </div>
 
+<body>
+  <!-- 🔹 NAVIGATION BAR -->
+  <div class="top-bar">
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
+    <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
+  </div>
   <div class="menu-popup" id="popupMenu">
     <a href="index.html">🏠 Home</a>
     <a href="about.html">👤 About</a>
@@ -115,19 +123,16 @@
     <a href="contact.html">📬 Contact</a>
   </div>
 
-  <!-- Hero Title -->
-  <section>
-    <h1 class="section-title">Projects</h1>
-  </section>
+  <!-- 🔸 PROJECTS CONTENT -->
+  <div class="container">
+    <div class="heading">Projects</div>
+    <div class="intro">A glimpse into the ideas, systems, and innovations I’ve created or am actively building — from AI and chemistry to philosophy, education, and beyond.</div>
 
-  <!-- Spotlight Section -->
-  <section>
-    <h2 class="section-title">🔦 Spotlight</h2>
-    <div class="spotlight-container">
-      <h3>ASCEND</h3>
+    <div class="spotlight-section">
+      <h2>🔦 Spotlight: ASCEND</h2>
       <p>A modular AI architecture integrating planning, memory, and flexible logic. This project is the core of a broader superhero technology suite and personal computing revolution.</p>
     </div>
-  </section>
+  </div>
 
   <script>
     function toggleMenu() {
