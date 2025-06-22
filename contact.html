@@ -16,7 +16,7 @@
       padding: 2rem;
     }
 
-    /* 🔹 NAVBAR STYLES */
+    /* 🔹 NAVBAR STYLES (unchanged) */
     .top-bar {
       position: fixed;
       top: 0;
@@ -71,10 +71,11 @@
 
     /* 🔹 CONTACT STYLES */
     .heading {
-      font-size: 2.2rem;
-      color: #c79c3b;
+      font-size: 2.4rem;
+      color: #d4af37; /* richer gold */
       text-align: center;
       margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
     .intro {
@@ -86,13 +87,17 @@
 
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-bottom: 2rem;
     }
 
+    .contact-grid.row-1 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
     .contact-grid.row-2 {
       grid-template-columns: repeat(2, 1fr);
+      justify-content: center;
     }
 
     .flip-card {
@@ -122,20 +127,23 @@
       align-items: center;
       justify-content: center;
       backface-visibility: hidden;
-      font-weight: 600;
-      font-size: 1.2rem;
       box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
     }
 
     .flip-front {
       background-color: #1c1c1c;
-      color: #f5f5f5;
+    }
+
+    .flip-front img {
+      max-height: 60px;
+      width: auto;
     }
 
     .flip-back {
       background-color: #3d5afe;
       color: #fff;
       transform: rotateY(180deg);
+      padding: 0 10px;
     }
 
     .flip-back a {
@@ -185,25 +193,25 @@
 
   <!-- 🔸 CONTACT CONTENT -->
   <div class="container">
-    <div class="heading">📬 Get in Touch</div>
+    <div class="heading">Get in Touch</div>
     <div class="intro">Whether it’s for collaboration, conversation, or just to say hello — I’d love to hear from you.</div>
 
     <div class="contact-grid row-1">
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front">📧 Email</div>
+          <div class="flip-front"><img src="email.png" alt="Email Logo" /></div>
           <div class="flip-back"><a href="mailto:lkp2133@columbia.edu">lkp2133@columbia.edu</a></div>
         </div>
       </div>
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front">🌐 Website</div>
+          <div class="flip-front"><img src="website.png" alt="Website Logo" /></div>
           <div class="flip-back"><a href="https://lovepatel.com" target="_blank">lovepatel.com</a></div>
         </div>
       </div>
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front">🔗 LinkedIn</div>
+          <div class="flip-front"><img src="linkedin.png" alt="LinkedIn Logo" /></div>
           <div class="flip-back"><a href="https://www.linkedin.com/in/lovekpatel" target="_blank">@lovekpatel</a></div>
         </div>
       </div>
@@ -212,21 +220,21 @@
     <div class="contact-grid row-2">
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front">📸 Instagram</div>
+          <div class="flip-front"><img src="instagram.png" alt="Instagram Logo" /></div>
           <div class="flip-back"><a href="https://www.instagram.com/lovek.patel" target="_blank">@lovek.patel</a></div>
         </div>
       </div>
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front">👻 Snapchat</div>
+          <div class="flip-front"><img src="snapchat.png" alt="Snapchat Logo" /></div>
           <div class="flip-back"><a href="https://www.snapchat.com/add/lovek.patel" target="_blank">@lovek.patel</a></div>
         </div>
       </div>
     </div>
 
     <div class="quote">
-      “The richest conversations start with a simple hello.”
-      <span>– Unknown</span>
+      “Reaching out takes nothing more than a smile.”
+      <span>– Ron Kaufman</span>
     </div>
   </div>
 
