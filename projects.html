@@ -15,7 +15,7 @@
       overflow-x: hidden;
     }
 
-    /* ----- TOP BAR (lines 12–32) ----- */
+    /* ----- TOP BAR ----- */
     .top-bar {
       position: fixed;
       top: 0;
@@ -68,7 +68,7 @@
       color: #c79c3b;
     }
 
-    /* ----- HERO TITLE (lines 66–82) ----- */
+    /* ----- HERO TITLE ----- */
     .hero-section {
       height: 100vh;
       display: flex;
@@ -98,7 +98,7 @@
       color: #888;
     }
 
-    /* ----- SPOTLIGHT SECTION + CURTAINS (lines 85–114) ----- */
+    /* ----- SPOTLIGHT SECTION + CURTAINS ----- */
     .spotlight-section {
       min-height: 100vh;
       display: flex;
@@ -109,6 +109,7 @@
       text-align: center;
       background-color: #0f0f0f;
       position: relative;
+      z-index: 10;
     }
 
     .left-curtain, .right-curtain {
@@ -120,7 +121,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      z-index: 1000;
+      z-index: 10000;
       transition: transform 0.6s ease-out;
       pointer-events: none;
     }
@@ -138,13 +139,13 @@
     .spotlight-section h2 {
       font-size: 3rem;
       color: #f0d375;
-      z-index: 1010;
+      z-index: 9;
     }
 
     .spotlight-container {
       max-width: 900px;
       margin-top: 1rem;
-      z-index: 1010;
+      z-index: 9;
     }
 
     .spotlight-container h3 {
@@ -160,7 +161,7 @@
 </head>
 
 <body>
-  <!-- ----- NAV BAR (lines 120–132) ----- -->
+  <!-- ----- NAV BAR ----- -->
   <div class="top-bar">
     <div class="menu-button" onclick="toggleMenu()">☰</div>
     <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
@@ -174,7 +175,7 @@
     <a href="contact.html">📬 Contact</a>
   </div>
 
-  <!-- ----- HERO SECTION (lines 135–144) ----- -->
+  <!-- ----- HERO SECTION ----- -->
   <section class="hero-section">
     <div class="hero-title">Projects</div>
     <div class="hero-description">
@@ -185,7 +186,7 @@
     </div>
   </section>
 
-  <!-- ----- SPOTLIGHT SECTION (lines 147–158) ----- -->
+  <!-- ----- SPOTLIGHT SECTION ----- -->
   <section class="spotlight-section" id="spotlight">
     <div class="left-curtain" id="leftCurtain"></div>
     <div class="right-curtain" id="rightCurtain"></div>
