@@ -234,133 +234,135 @@
     </div>
   </section>
 
-<!-- ===== ENGINEERING SECTION ===== -->
+<!-- ===== ENGINEERING SECTION (Apple-style Carousel) ===== -->
 <section class="project-group" id="engineering">
   <h2>⚙️ Engineering</h2>
+  <div class="carousel-container">
+    <button class="carousel-btn left" onclick="scrollCarousel(-1)">←</button>
 
-  <div class="carousel-wrapper">
-    <button class="carousel-btn left" onclick="prevProject()">←</button>
-
-    <div class="project-carousel" id="engineeringCarousel">
-      <!-- Project 1: ASCEND -->
-      <div class="project-card">
-        <div class="project-header" onclick="toggleDetails(this)">
-          <h3>ASCEND</h3>
-        </div>
-        <div class="project-details">
-          <p>A modular AI architecture integrating planning, memory, and flexible logic. This system powers a broader superhero tech suite and autonomous personal computing network.</p>
-        </div>
+    <div class="carousel-track" id="carouselTrack">
+      <!-- ASCEND -->
+      <div class="carousel-card">
+        <img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" />
+        <h3>ASCEND</h3>
+        <p class="timeline">2024 – Present</p>
+        <p class="description">
+          A modular AI architecture integrating planning, memory, and logic. ASCEND is the centerpiece of a broader superhero technology suite and the foundation for intelligent autonomy in everyday systems.
+        </p>
       </div>
 
-      <!-- Project 2: Zenith -->
-      <div class="project-card">
-        <div class="project-header" onclick="toggleDetails(this)">
-          <h3>Zenith</h3>
-        </div>
-        <div class="project-details">
-          <p>Zenith explores real-life Spider-Man tech: custom-built web shooters, silk propulsion, and wall-crawling systems that blend bio-inspired design and advanced microengineering.</p>
-        </div>
+      <!-- Zenith -->
+      <div class="carousel-card">
+        <img src="placeholder_logo.png" alt="Zenith Logo" class="carousel-logo" />
+        <h3>Zenith</h3>
+        <p class="timeline">2025 – Present</p>
+        <p class="description">
+          A bold experiment to replicate Spider-Man tech in real life — complete with mechanical silk shooters, magnetic wall-crawling pads, and reactive movement technology inspired by arachnids and robotics.
+        </p>
       </div>
 
-      <!-- Project 3: Stratum -->
-      <div class="project-card">
-        <div class="project-header" onclick="toggleDetails(this)">
-          <h3>Stratum</h3>
-        </div>
-        <div class="project-details">
-          <p>Focused on harvesting micropockets of energy in urban infrastructure and proposing a high-speed national train system that connects coasts in under 4 hours.</p>
-        </div>
+      <!-- Stratum -->
+      <div class="carousel-card">
+        <img src="placeholder_logo.png" alt="Stratum Logo" class="carousel-logo" />
+        <h3>Stratum</h3>
+        <p class="timeline">2024 – Present</p>
+        <p class="description">
+          Exploring micropocket energy harvesting in public infrastructure and designing a high-speed train system capable of cross-country travel in under four hours. Stratum combines urban design, sustainability, and radical transit reimagination.
+        </p>
       </div>
     </div>
 
-    <button class="carousel-btn right" onclick="nextProject()">→</button>
+    <button class="carousel-btn right" onclick="scrollCarousel(1)">→</button>
   </div>
 </section>
 
 <!-- ===== ENGINEERING CAROUSEL STYLES ===== -->
 <style>
-  .carousel-wrapper {
+  .carousel-container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
     overflow: hidden;
     position: relative;
+    margin: 0 auto;
+    max-width: 1100px;
   }
 
-  .project-carousel {
+  .carousel-track {
     display: flex;
-    transition: transform 0.5s ease;
-    width: 300px; /* Only one card visible */
-    overflow: hidden;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
   }
 
-  .project-card {
-    min-width: 300px;
-    background-color: #111;
-    padding: 1rem 1.5rem;
+  .carousel-card {
+    flex: 0 0 100%;
+    scroll-snap-align: center;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    text-align: center;
     margin: 0 1rem;
-    border-left: 4px solid #c79c3b;
-    border-radius: 8px;
-    box-shadow: 0 0 10px #000;
-    cursor: pointer;
   }
 
-  .project-header h3 {
-    margin: 0;
-    font-size: 1.4rem;
+  .carousel-logo {
+    height: 120px;
+    margin-bottom: 1rem;
+  }
+
+  .carousel-card h3 {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
     color: #f0d375;
   }
 
-  .project-details {
-    margin-top: 0.5rem;
-    display: none;
-    font-size: 0.95rem;
-    color: #ccc;
+  .carousel-card .timeline {
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 1rem;
+  }
+
+  .carousel-card .description {
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
   }
 
   .carousel-btn {
-    background-color: transparent;
-    color: #f0d375;
     font-size: 2rem;
+    color: #d4af37;
+    background: none;
     border: none;
     cursor: pointer;
+    z-index: 2;
   }
 
   .carousel-btn:hover {
-    color: #fff;
+    color: #f0d375;
   }
 </style>
 
 <!-- ===== ENGINEERING CAROUSEL SCRIPT ===== -->
 <script>
   let currentSlide = 0;
-  const carousel = document.getElementById("engineeringCarousel");
-  const cards = carousel.querySelectorAll(".project-card");
 
-  function showSlide(index) {
-    const totalSlides = cards.length;
-    if (index < 0) index = totalSlides - 1;
-    if (index >= totalSlides) index = 0;
-    currentSlide = index;
-    const offset = -index * 300; // card width
-    carousel.style.transform = `translateX(${offset}px)`;
+  function scrollCarousel(direction) {
+    const track = document.getElementById("carouselTrack");
+    const totalSlides = track.children.length;
+    currentSlide += direction;
+
+    if (currentSlide < 0) currentSlide = 0;
+    if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+
+    const offset = -currentSlide * track.clientWidth;
+    track.style.transform = `translateX(${offset}px)`;
   }
 
-  function nextProject() {
-    showSlide(currentSlide + 1);
-  }
-
-  function prevProject() {
-    showSlide(currentSlide - 1);
-  }
-
-  function toggleDetails(header) {
-    const detail = header.nextElementSibling;
-    detail.style.display = (detail.style.display === "block") ? "none" : "block";
-  }
-
-  showSlide(0); // Initialize carousel
+  window.addEventListener('resize', () => {
+    scrollCarousel(0); // Reset transform when window resizes
+  });
 </script>
 
   <!-- ===== CHEMISTRY SECTION ===== -->
