@@ -6,7 +6,6 @@
   <title>Projects | Love Patel</title>
   <link rel="stylesheet" href="theme.css" />
   <style>
-    /* ----- GLOBAL STYLES ----- */
     body {
       margin: 0;
       font-family: 'Playfair Display', serif;
@@ -15,7 +14,6 @@
       overflow-x: hidden;
     }
 
-    /* ----- TOP BAR ----- */
     .top-bar {
       position: fixed;
       top: 0;
@@ -68,7 +66,6 @@
       color: #c79c3b;
     }
 
-    /* ----- HERO SECTION ----- */
     .hero-section {
       height: 100vh;
       display: flex;
@@ -98,9 +95,8 @@
       color: #888;
     }
 
-    /* ----- SPOTLIGHT SECTION + CURTAINS ----- */
     .spotlight-section {
-      min-height: 150vh; /* extended scroll length */
+      min-height: 175vh; /* slightly longer scroll */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -109,7 +105,7 @@
       text-align: center;
       background-color: #0f0f0f;
       position: relative;
-      z-index: 10; /* ensures spotlight stays behind curtains */
+      z-index: 10;
     }
 
     .left-curtain, .right-curtain {
@@ -121,7 +117,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      z-index: 1000;
+      z-index: 1000; /* higher than spotlight text */
       transition: transform 0.6s ease-out;
       pointer-events: none;
     }
@@ -139,13 +135,13 @@
     .spotlight-section h2 {
       font-size: 3rem;
       color: #f0d375;
-      z-index: 1010;
+      z-index: 900; /* behind curtain */
     }
 
     .spotlight-container {
       max-width: 900px;
       margin-top: 1rem;
-      z-index: 1010;
+      z-index: 900; /* behind curtain */
     }
 
     .spotlight-container h3 {
@@ -161,7 +157,6 @@
 </head>
 
 <body>
-  <!-- ----- NAV BAR ----- -->
   <div class="top-bar">
     <div class="menu-button" onclick="toggleMenu()">☰</div>
     <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
@@ -175,7 +170,6 @@
     <a href="contact.html">📬 Contact</a>
   </div>
 
-  <!-- ----- HERO TITLE ----- -->
   <section class="hero-section">
     <div class="hero-title">Projects</div>
     <div class="hero-description">
@@ -186,7 +180,6 @@
     </div>
   </section>
 
-  <!-- ----- SPOTLIGHT SECTION ----- -->
   <section class="spotlight-section" id="spotlight">
     <div class="left-curtain" id="leftCurtain"></div>
     <div class="right-curtain" id="rightCurtain"></div>
@@ -196,8 +189,6 @@
       <p>A modular AI architecture integrating planning, memory, and flexible logic. This project is the core of a broader superhero technology suite and personal computing revolution.</p>
     </div>
   </section>
-
-  <!-- ----- this is where you add new sections ----- -->
 
   <script>
     function toggleMenu() {
@@ -210,7 +201,7 @@
       const distance = scrollY - spotlightTop + window.innerHeight / 2;
 
       if (distance > 0) {
-        const curtainShift = Math.min(distance / 2, window.innerWidth / 2); // slower open
+        const curtainShift = Math.min(distance / 2, window.innerWidth / 2);
         document.getElementById('leftCurtain').style.transform = `translateX(-${curtainShift}px)`;
         document.getElementById('rightCurtain').style.transform = `translateX(${curtainShift}px) scaleX(-1)`;
       }
