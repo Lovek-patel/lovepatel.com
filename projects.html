@@ -234,14 +234,112 @@
     </div>
   </section>
 
-  <!-- ===== ENGINEERING SECTION ===== -->
-  <section class="project-group" id="engineering">
-    <h2>⚙️ Engineering</h2>
-    <div class="project-item">
-      <h3>Stratum</h3>
-      <p>Optimizing micro-energy harvesting and long-distance rapid rail transit through urban and national redesign.</p>
+<!-- ===== ENGINEERING SECTION ===== -->
+<section class="project-group" id="engineering">
+  <h2>⚙️ Engineering</h2>
+  <div class="project-carousel">
+    
+    <!-- Project Card: Stratum -->
+    <div class="project-card" onclick="toggleCard(this)">
+      <div class="card-header">Stratum</div>
+      <div class="card-body">
+        <p>Optimizing micro-energy harvesting and long-distance rapid rail transit through urban and national redesign.</p>
+      </div>
     </div>
-  </section>
+
+    <!-- Project Card: Iron Man Suit -->
+    <div class="project-card" onclick="toggleCard(this)">
+      <div class="card-header">Iron Man Prototype</div>
+      <div class="card-body">
+        <p>A modular flight and combat suit starting with propulsion and armor, powered by compact energy systems.</p>
+      </div>
+    </div>
+
+    <!-- Project Card: Spider-Man Tech -->
+    <div class="project-card" onclick="toggleCard(this)">
+      <div class="card-header">Spider-Tech</div>
+      <div class="card-body">
+        <p>Web shooter mechanics and wall-crawling exploration based on biomimicry and magnetic adhesion systems.</p>
+      </div>
+    </div>
+
+    <!-- Project Card: RC Laser Cars -->
+    <div class="project-card" onclick="toggleCard(this)">
+      <div class="card-header">RC Laser Cars</div>
+      <div class="card-body">
+        <p>A Marvel-themed game using ESP32-controlled cars with laser hit detection and live Arduino scoreboard.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .project-group {
+    padding: 4rem 2rem;
+    background-color: #0f0f0f;
+    text-align: center;
+  }
+
+  .project-group h2 {
+    font-size: 2.8rem;
+    color: #d4af37;
+    margin-bottom: 3rem;
+  }
+
+  .project-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .project-card {
+    background-color: #1a1a1a;
+    border: 1px solid #444;
+    border-radius: 12px;
+    width: 300px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .project-card:hover {
+    border-color: #d4af37;
+    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+  }
+
+  .card-header {
+    padding: 1.2rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    background-color: #111;
+    color: #f5f5f5;
+    border-bottom: 1px solid #333;
+  }
+
+  .card-body {
+    padding: 1rem 1.2rem;
+    font-size: 1.05rem;
+    color: #ccc;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+
+  .project-card.expanded .card-body {
+    max-height: 200px;
+  }
+</style>
+
+<script>
+  function toggleCard(card) {
+    card.classList.toggle("expanded");
+  }
+</script>
 
   <!-- ===== CHEMISTRY SECTION ===== -->
   <section class="project-group" id="chemistry">
