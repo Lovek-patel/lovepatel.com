@@ -234,15 +234,13 @@
     </div>
   </section>
 
-<!-- ===== ENGINEERING SECTION (Apple-style Carousel) ===== -->
+<!-- ===== ENGINEERING SECTION (Looping Carousel with Peek Sides) ===== -->
 <section class="project-group" id="engineering">
   <h2>⚙️ Engineering</h2>
   <div class="carousel-container">
-    <button class="carousel-btn left" onclick="scrollCarousel(-1)">←</button>
-
     <div class="carousel-track" id="carouselTrack">
       <!-- ASCEND -->
-      <div class="carousel-card">
+      <div class="carousel-card active">
         <img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" />
         <h3>ASCEND</h3>
         <p class="timeline">2024 – Present</p>
@@ -271,97 +269,109 @@
         </p>
       </div>
     </div>
-
-    <button class="carousel-btn right" onclick="scrollCarousel(1)">→</button>
   </div>
 </section>
 
-<!-- ===== ENGINEERING CAROUSEL STYLES ===== -->
 <style>
   .carousel-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    overflow: hidden;
     position: relative;
-    margin: 0 auto;
-    max-width: 1100px;
+    max-width: 1200px;
+    margin: 2rem auto;
+    overflow: hidden;
   }
 
   .carousel-track {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 100%;
   }
 
   .carousel-card {
-    flex: 0 0 100%;
-    scroll-snap-align: center;
+    flex: 0 0 70%;
+    margin: 0 2.5%;
     background-color: #1a1a1a;
     border: 1px solid #333;
-    border-radius: 16px;
+    border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
     text-align: center;
-    margin: 0 1rem;
+    transform: scale(0.9);
+    opacity: 0.5;
+    transition: all 0.4s ease;
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .carousel-card.active {
+    transform: scale(1);
+    opacity: 1;
+    box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
   }
 
   .carousel-logo {
-    height: 120px;
+    height: 130px;
     margin-bottom: 1rem;
   }
 
   .carousel-card h3 {
     font-size: 2rem;
-    margin-bottom: 0.3rem;
     color: #f0d375;
+    margin-bottom: 0.4rem;
   }
 
-  .carousel-card .timeline {
+  .timeline {
     font-style: italic;
     color: #aaa;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
   }
 
-  .carousel-card .description {
+  .description {
     font-size: 1.1rem;
     color: #ddd;
     line-height: 1.6;
-  }
-
-  .carousel-btn {
-    font-size: 2rem;
-    color: #d4af37;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 2;
-  }
-
-  .carousel-btn:hover {
-    color: #f0d375;
+    padding: 0 1rem;
   }
 </style>
 
-<!-- ===== ENGINEERING CAROUSEL SCRIPT ===== -->
 <script>
-  let currentSlide = 0;
+  let slideIndex = 0;
 
-  function scrollCarousel(direction) {
-    const track = document.getElementById("carouselTrack");
-    const totalSlides = track.children.length;
-    currentSlide += direction;
+  function updateCarousel() {
+    const cards = document.querySelectorAll('.carousel-card');
+    const total = cards.length;
 
-    if (currentSlide < 0) currentSlide = 0;
-    if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+    cards.forEach((card, index) => {
+      card.classList.remove('active');
+      card.style.transform = 'scale(0.9)';
+      card.style.opacity = '0.5';
+    });
 
-    const offset = -currentSlide * track.clientWidth;
-    track.style.transform = `translateX(${offset}px)`;
+    const current = cards[slideIndex];
+    current.classList.add('active');
+    current.style.transform = 'scale(1)';
+    current.style.opacity = '1';
+
+    const offset = -(slideIndex - 0.5) * (cards[0].offsetWidth + 40);
+    document.getElementById('carouselTrack').style.transform = `translateX(${offset}px)`;
   }
 
-  window.addEventListener('resize', () => {
-    scrollCarousel(0); // Reset transform when window resizes
+  document.querySelectorAll('.carousel-card').forEach((card, index) => {
+    card.addEventListener('click', () => {
+      slideIndex = index;
+      updateCarousel();
+    });
+  });
+
+  // Initial render
+  window.addEventListener('load', () => {
+    updateCarousel();
+  });
+
+  // Loop around on click anywhere
+  document.getElementById('carouselTrack').addEventListener('click', () => {
+    slideIndex = (slideIndex + 1) % document.querySelectorAll('.carousel-card').length;
+    updateCarousel();
   });
 </script>
 
