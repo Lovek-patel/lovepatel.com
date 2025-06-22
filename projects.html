@@ -40,21 +40,21 @@
       border-bottom: 1px solid #222;
     }
 
+    .logo img {
+      height: 40px;
+    }
+
     .menu-button {
       font-size: 1.6rem;
       cursor: pointer;
       color: #f5f5f5;
     }
 
-    .logo img {
-      height: 40px;
-    }
-
     .menu-popup {
       display: none;
       position: fixed;
       top: 70px;
-      left: 2rem;
+      right: 2rem;
       background-color: #1a1a1a;
       border: 1px solid #333;
       border-radius: 12px;
@@ -102,9 +102,10 @@
 </head>
 <body>
   <div class="top-bar">
-    <div class="menu-button" onclick="toggleMenu()">☰</div>
     <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
   </div>
+
   <div class="menu-popup" id="popupMenu">
     <a href="index.html">🏠 Home</a>
     <a href="about.html">👤 About</a>
