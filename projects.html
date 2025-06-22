@@ -239,7 +239,7 @@
   <h2>⚙️ Engineering</h2>
   <div class="carousel-container">
     <div class="carousel-track" id="carouselTrack">
-      
+
       <!-- ASCEND -->
       <div class="carousel-card active">
         <img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" />
@@ -359,7 +359,7 @@
     activeCard.style.opacity = '1';
 
     const containerWidth = document.querySelector('.carousel-container').offsetWidth;
-    const cardWidth = activeCard.offsetWidth + 32; // add margin
+    const cardWidth = activeCard.offsetWidth + 32; // card width + margin
     const offset = (cardWidth * slideIndex) - ((containerWidth - cardWidth) / 2);
     track.style.transform = `translateX(-${offset}px)`;
   }
@@ -369,19 +369,33 @@
     updateCarousel();
   }
 
+  function prevSlide() {
+    slideIndex = (slideIndex - 1 + cards.length) % cards.length;
+    updateCarousel();
+  }
+
   cards.forEach((card, index) => {
     card.addEventListener('click', () => {
       if (index === slideIndex) {
-        nextSlide();
+        nextSlide(); // Advance if same card
       } else {
         slideIndex = index;
-        updateCarousel();
+        updateCarousel(); // Jump to clicked card
       }
     });
   });
 
-  window.addEventListener('load', updateCarousel);
+  window.addEventListener('load', () => {
+    setTimeout(updateCarousel, 50); // allow layout to load
+  });
+
   window.addEventListener('resize', updateCarousel);
+
+  // Optional: Arrow keys
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
 </script>
 
   <!-- ===== CHEMISTRY SECTION ===== -->
