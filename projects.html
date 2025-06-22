@@ -340,8 +340,8 @@
 </style>
 
 <script>
-  const cards = document.querySelectorAll('.carousel-card');
   const track = document.getElementById('carouselTrack');
+  const cards = Array.from(track.querySelectorAll('.carousel-card'));
   let slideIndex = 0;
 
   function updateCarousel() {
@@ -359,7 +359,7 @@
     activeCard.style.opacity = '1';
 
     const containerWidth = document.querySelector('.carousel-container').offsetWidth;
-    const cardWidth = activeCard.offsetWidth + 32; // card width + margin
+    const cardWidth = activeCard.offsetWidth + 32;
     const offset = (cardWidth * slideIndex) - ((containerWidth - cardWidth) / 2);
     track.style.transform = `translateX(-${offset}px)`;
   }
@@ -376,22 +376,21 @@
 
   cards.forEach((card, index) => {
     card.addEventListener('click', () => {
-      if (index === slideIndex) {
-        nextSlide(); // Advance if same card
-      } else {
-        slideIndex = index;
-        updateCarousel(); // Jump to clicked card
-      }
+      // Always move to the clicked card
+      slideIndex = index;
+      updateCarousel();
     });
   });
 
-  window.addEventListener('load', () => {
-    setTimeout(updateCarousel, 50); // allow layout to load
+  // Ensure the first card is centered on load
+  window.addEventListener('DOMContentLoaded', () => {
+    updateCarousel();
   });
 
+  // Responsive adjustment
   window.addEventListener('resize', updateCarousel);
 
-  // Optional: Arrow keys
+  // Optional keyboard nav
   document.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight') nextSlide();
     if (e.key === 'ArrowLeft') prevSlide();
