@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carousel Test</title>
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: gold;
+    }
+
+    .carousel-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 3rem auto;
+      overflow: hidden;
+    }
+
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      gap: 2rem;
+    }
+
+    .carousel-card {
+      flex: 0 0 60%;
+      background-color: #1a1a1a;
+      border-radius: 20px;
+      padding: 2rem;
+      text-align: center;
+      transform: scale(0.9);
+      opacity: 0.5;
+      transition: transform 0.4s ease, opacity 0.4s ease;
+      height: 500px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    }
+
+    .carousel-card.active {
+      transform: scale(1.05);
+      opacity: 1;
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.4);
+    }
+
+    .carousel-card img {
+      height: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .carousel-card h3 {
+      color: gold;
+      font-size: 2rem;
+      margin: 0.5rem 0;
+    }
+
+    .carousel-card p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .arrow-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 215, 0, 0.1);
+      color: gold;
+      border: none;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .arrow-left {
+      left: 0;
+    }
+
+    .arrow-right {
+      right: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Test Carousel</h1>
+
+  <div class="carousel-container">
+    <button class="arrow-button arrow-left" onclick="prevSlide()">‹</button>
+    <div class="carousel-track" id="carouselTrack">
+      <div class="carousel-card active">
+        <img src="https://via.placeholder.com/150" />
+        <h3>Project 1</h3>
+        <p>Timeline: 2024 – Present</p>
+        <p>Placeholder description for Project 1.</p>
+      </div>
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/150" />
+        <h3>Project 2</h3>
+        <p>Timeline: 2025 – Present</p>
+        <p>Placeholder description for Project 2.</p>
+      </div>
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/150" />
+        <h3>Project 3</h3>
+        <p>Timeline: 2023 – Present</p>
+        <p>Placeholder description for Project 3.</p>
+      </div>
+      <div class="carousel-card">
+        <img src="https://via.placeholder.com/150" />
+        <h3>Project 4</h3>
+        <p>Timeline: 2022 – Present</p>
+        <p>Placeholder description for Project 4.</p>
+      </div>
+    </div>
+    <button class="arrow-button arrow-right" onclick="nextSlide()">›</button>
+  </div>
+
+  <script>
+    const track = document.getElementById('carouselTrack');
+    const cards = Array.from(track.querySelectorAll('.carousel-card'));
+    let slideIndex = 0;
+
+    function updateCarousel() {
+      cards.forEach((card, index) => {
+        card.classList.remove('active');
+        card.style.transform = 'scale(0.9)';
+        card.style.opacity = '0.5';
+      });
+
+      const activeCard = cards[slideIndex];
+      activeCard.classList.add('active');
+      activeCard.style.transform = 'scale(1.05)';
+      activeCard.style.opacity = '1';
+
+      const containerWidth = document.querySelector('.carousel-container').offsetWidth;
+      const cardWidth = activeCard.offsetWidth + 32;
+      const offset = (cardWidth * slideIndex) - ((containerWidth - cardWidth) / 2);
+      track.style.transform = `translateX(-${offset}px)`;
+    }
+
+    function nextSlide() {
+      slideIndex = (slideIndex + 1) % cards.length;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      slideIndex = (slideIndex - 1 + cards.length) % cards.length;
+      updateCarousel();
+    }
+
+    cards.forEach((card, index) => {
+      card.addEventListener('click', () => {
+        slideIndex = index;
+        updateCarousel();
+      });
+    });
+
+    window.addEventListener('DOMContentLoaded', updateCarousel);
+    window.addEventListener('resize', updateCarousel);
+  </script>
+
+</body>
+</html>
