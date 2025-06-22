@@ -234,18 +234,19 @@
     </div>
   </section>
 
-<!-- ===== ENGINEERING SECTION (Looping Carousel with Peek Sides) ===== -->
+<!-- ===== ENGINEERING SECTION (Looping Carousel with Center Focus) ===== -->
 <section class="project-group" id="engineering">
   <h2>⚙️ Engineering</h2>
   <div class="carousel-container">
     <div class="carousel-track" id="carouselTrack">
+      
       <!-- ASCEND -->
       <div class="carousel-card active">
         <img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" />
         <h3>ASCEND</h3>
         <p class="timeline">2024 – Present</p>
         <p class="description">
-          A modular AI architecture integrating planning, memory, and logic. ASCEND is the centerpiece of a broader superhero technology suite and the foundation for intelligent autonomy in everyday systems.
+          A bold vision of technological ambition and innovation, developed to shape the future.
         </p>
       </div>
 
@@ -255,7 +256,7 @@
         <h3>Zenith</h3>
         <p class="timeline">2025 – Present</p>
         <p class="description">
-          A bold experiment to replicate Spider-Man tech in real life — complete with mechanical silk shooters, magnetic wall-crawling pads, and reactive movement technology inspired by arachnids and robotics.
+          A bold vision of technological ambition and innovation, developed to shape the future.
         </p>
       </div>
 
@@ -265,9 +266,10 @@
         <h3>Stratum</h3>
         <p class="timeline">2024 – Present</p>
         <p class="description">
-          Exploring micropocket energy harvesting in public infrastructure and designing a high-speed train system capable of cross-country travel in under four hours. Stratum combines urban design, sustainability, and radical transit reimagination.
+          A bold vision of technological ambition and innovation, developed to shape the future.
         </p>
       </div>
+
     </div>
   </div>
 </section>
@@ -282,21 +284,22 @@
 
   .carousel-track {
     display: flex;
+    gap: 2rem;
     transition: transform 0.5s ease-in-out;
+    align-items: center;
   }
 
   .carousel-card {
-    flex: 0 0 70%;
-    margin: 0 2.5%;
+    flex: 0 0 60%;
+    margin: 0 auto;
     background-color: #1a1a1a;
-    border: 1px solid #333;
     border-radius: 20px;
     padding: 2rem;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.1);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
     text-align: center;
     transform: scale(0.9);
     opacity: 0.5;
-    transition: all 0.4s ease;
+    transition: transform 0.4s ease, opacity 0.4s ease;
     height: 550px;
     display: flex;
     flex-direction: column;
@@ -304,14 +307,16 @@
   }
 
   .carousel-card.active {
-    transform: scale(1);
+    transform: scale(1.05);
     opacity: 1;
-    box-shadow: 0 0 50px rgba(255, 215, 0, 0.3);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+    z-index: 2;
   }
 
   .carousel-logo {
     height: 130px;
     margin-bottom: 1rem;
+    object-fit: contain;
   }
 
   .carousel-card h3 {
@@ -335,10 +340,11 @@
 </style>
 
 <script>
+  const cards = document.querySelectorAll('.carousel-card');
+  const track = document.getElementById('carouselTrack');
   let slideIndex = 0;
 
   function updateCarousel() {
-    const cards = document.querySelectorAll('.carousel-card');
     const total = cards.length;
 
     cards.forEach((card, index) => {
@@ -347,32 +353,35 @@
       card.style.opacity = '0.5';
     });
 
-    const current = cards[slideIndex];
-    current.classList.add('active');
-    current.style.transform = 'scale(1)';
-    current.style.opacity = '1';
+    const activeCard = cards[slideIndex];
+    activeCard.classList.add('active');
+    activeCard.style.transform = 'scale(1.05)';
+    activeCard.style.opacity = '1';
 
-    const offset = -(slideIndex - 0.5) * (cards[0].offsetWidth + 40);
-    document.getElementById('carouselTrack').style.transform = `translateX(${offset}px)`;
+    const containerWidth = document.querySelector('.carousel-container').offsetWidth;
+    const cardWidth = activeCard.offsetWidth + 32; // add margin
+    const offset = (cardWidth * slideIndex) - ((containerWidth - cardWidth) / 2);
+    track.style.transform = `translateX(-${offset}px)`;
   }
 
-  document.querySelectorAll('.carousel-card').forEach((card, index) => {
+  function nextSlide() {
+    slideIndex = (slideIndex + 1) % cards.length;
+    updateCarousel();
+  }
+
+  cards.forEach((card, index) => {
     card.addEventListener('click', () => {
-      slideIndex = index;
-      updateCarousel();
+      if (index === slideIndex) {
+        nextSlide();
+      } else {
+        slideIndex = index;
+        updateCarousel();
+      }
     });
   });
 
-  // Initial render
-  window.addEventListener('load', () => {
-    updateCarousel();
-  });
-
-  // Loop around on click anywhere
-  document.getElementById('carouselTrack').addEventListener('click', () => {
-    slideIndex = (slideIndex + 1) % document.querySelectorAll('.carousel-card').length;
-    updateCarousel();
-  });
+  window.addEventListener('load', updateCarousel);
+  window.addEventListener('resize', updateCarousel);
 </script>
 
   <!-- ===== CHEMISTRY SECTION ===== -->
