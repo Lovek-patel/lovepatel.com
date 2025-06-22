@@ -96,13 +96,11 @@
     }
 
     .spotlight-section {
-      min-height: 175vh; /* slightly longer scroll */
+      min-height: 175vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      padding: 2rem;
-      text-align: center;
+      justify-content: flex-start;
       background-color: #0f0f0f;
       position: relative;
       z-index: 10;
@@ -117,7 +115,7 @@
       background-size: cover;
       background-repeat: no-repeat;
       background-position: center;
-      z-index: 1000; /* higher than spotlight text */
+      z-index: 1000;
       transition: transform 0.6s ease-out;
       pointer-events: none;
     }
@@ -132,16 +130,23 @@
       transform: translateX(0%) scaleX(-1);
     }
 
-    .spotlight-section h2 {
+    .spotlight-inner {
+      position: sticky;
+      top: 25vh;
+      text-align: center;
+      z-index: 900; /* behind curtain */
+      transition: top 0.2s ease-out;
+    }
+
+    .spotlight-inner h2 {
       font-size: 3rem;
       color: #f0d375;
-      z-index: 900; /* behind curtain */
+      margin-bottom: 1rem;
     }
 
     .spotlight-container {
       max-width: 900px;
-      margin-top: 1rem;
-      z-index: 900; /* behind curtain */
+      margin: 0 auto;
     }
 
     .spotlight-container h3 {
@@ -183,10 +188,12 @@
   <section class="spotlight-section" id="spotlight">
     <div class="left-curtain" id="leftCurtain"></div>
     <div class="right-curtain" id="rightCurtain"></div>
-    <h2>🔦 Spotlight</h2>
-    <div class="spotlight-container">
-      <h3>ASCEND</h3>
-      <p>A modular AI architecture integrating planning, memory, and flexible logic. This project is the core of a broader superhero technology suite and personal computing revolution.</p>
+    <div class="spotlight-inner" id="spotlightInner">
+      <h2>🔦 Spotlight</h2>
+      <div class="spotlight-container">
+        <h3>ASCEND</h3>
+        <p>A modular AI architecture integrating planning, memory, and flexible logic. This project is the core of a broader superhero technology suite and personal computing revolution.</p>
+      </div>
     </div>
   </section>
 
@@ -196,15 +203,26 @@
     }
 
     window.addEventListener('scroll', () => {
-      const spotlightTop = document.getElementById('spotlight').offsetTop;
+      const spotlight = document.getElementById('spotlight');
+      const inner = document.getElementById('spotlightInner');
+      const left = document.getElementById('leftCurtain');
+      const right = document.getElementById('rightCurtain');
+
+      const spotlightTop = spotlight.offsetTop;
       const scrollY = window.scrollY;
       const distance = scrollY - spotlightTop + window.innerHeight / 2;
 
+      // Animate curtains
       if (distance > 0) {
         const curtainShift = Math.min(distance / 2, window.innerWidth / 2);
-        document.getElementById('leftCurtain').style.transform = `translateX(-${curtainShift}px)`;
-        document.getElementById('rightCurtain').style.transform = `translateX(${curtainShift}px) scaleX(-1)`;
+        left.style.transform = `translateX(-${curtainShift}px)`;
+        right.style.transform = `translateX(${curtainShift}px) scaleX(-1)`;
       }
+
+      // Move text down as scroll progresses
+      const maxShift = 25; // max top% movement
+      const newTop = Math.min(25 + distance / 40, 55); // Cap at 55vh
+      inner.style.top = `${newTop}vh`;
     });
   </script>
 </body>
