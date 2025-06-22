@@ -34,8 +34,8 @@
     }
 
     .carousel-card {
-      flex: 0 0 80%;
-      margin: 0 10%;
+      flex: 0 0 60%;
+      margin: 0 2.5%;
       background-color: #1a1a1a;
       border-radius: 20px;
       text-align: center;
@@ -46,7 +46,17 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      cursor: pointer;
+      opacity: 0.4;
+      transform: scale(0.85);
+    }
+
+    .carousel-card.active {
+      opacity: 1;
+      transform: scale(1);
+      box-shadow: 0 0 60px rgba(255, 215, 0, 0.3);
+      z-index: 2;
     }
 
     .carousel-card img {
@@ -73,31 +83,8 @@
       margin: 0 auto;
     }
 
-    .nav-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 215, 0, 0.1);
-      color: #f0d375;
-      border: none;
-      font-size: 2rem;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      z-index: 10;
-      transition: background 0.3s;
-    }
-
-    .nav-button:hover {
-      background: rgba(255, 215, 0, 0.3);
-    }
-
-    .nav-left {
-      left: 10px;
-    }
-
-    .nav-right {
-      right: 10px;
+    .spacer {
+      flex: 0 0 15%;
     }
   </style>
 </head>
@@ -105,13 +92,8 @@
   <h1>Test Carousel</h1>
   <div class="carousel-wrapper">
     <div class="carousel-track" id="carouselTrack">
-      <!-- Cloned Last Card -->
-      <div class="carousel-card">
-        <img src="https://via.placeholder.com/100" alt="4" />
-        <h3>Project 4</h3>
-        <p class="timeline">2023 – Present</p>
-        <p class="description">Description for Project 4.</p>
-      </div>
+      <!-- Spacer for left partial preview -->
+      <div class="spacer"></div>
 
       <!-- Real Cards -->
       <div class="carousel-card">
@@ -139,55 +121,47 @@
         <p class="description">Placeholder description for Project 4.</p>
       </div>
 
-      <!-- Cloned First Card -->
-      <div class="carousel-card">
-        <img src="https://via.placeholder.com/100" alt="1" />
-        <h3>Project 1</h3>
-        <p class="timeline">2024 – Present</p>
-        <p class="description">Placeholder description for Project 1.</p>
-      </div>
+      <!-- Spacer for right partial preview -->
+      <div class="spacer"></div>
     </div>
-
-    <button class="nav-button nav-left" onclick="moveSlide(-1)">❮</button>
-    <button class="nav-button nav-right" onclick="moveSlide(1)">❯</button>
   </div>
 
   <script>
     const track = document.getElementById('carouselTrack');
-    const cards = track.querySelectorAll('.carousel-card');
-    const cardWidth = cards[0].offsetWidth + (cards[0].offsetLeft * 2);
-    let index = 1;
+    const cards = Array.from(track.querySelectorAll('.carousel-card'));
+    let index = 0;
 
-    function moveToIndex(i, animate = true) {
-      if (!animate) track.style.transition = "none";
-      else track.style.transition = "transform 0.6s ease-in-out";
-      const offset = cardWidth * i;
-      track.style.transform = `translateX(-${offset}px)`;
+    function updateCarousel() {
+      cards.forEach((card, i) => {
+        card.classList.remove("active");
+        card.style.opacity = "0.4";
+        card.style.transform = "scale(0.85)";
+      });
+
+      cards[index].classList.add("active");
+      cards[index].style.opacity = "1";
+      cards[index].style.transform = "scale(1)";
+
+      const cardWidth = cards[0].offsetWidth + (2.5 / 100 * window.innerWidth);
+      const offset = cardWidth * index;
+      track.style.transform = `translateX(calc(-${offset}px + 15%))`;
     }
 
-    function moveSlide(step) {
-      index += step;
-      moveToIndex(index);
-
-      track.addEventListener("transitionend", () => {
-        if (index === 0) {
-          index = cards.length - 2;
-          moveToIndex(index, false);
-        }
-        if (index === cards.length - 1) {
-          index = 1;
-          moveToIndex(index, false);
-        }
-      }, { once: true });
+    function loopIndex(i) {
+      if (i < 0) return cards.length - 1;
+      if (i >= cards.length) return 0;
+      return i;
     }
 
-    window.addEventListener("load", () => {
-      moveToIndex(index, false);
+    cards.forEach((card, i) => {
+      card.addEventListener("click", () => {
+        index = i;
+        updateCarousel();
+      });
     });
 
-    window.addEventListener("resize", () => {
-      moveToIndex(index, false);
-    });
+    window.addEventListener("load", updateCarousel);
+    window.addEventListener("resize", updateCarousel);
   </script>
 </body>
 </html>
