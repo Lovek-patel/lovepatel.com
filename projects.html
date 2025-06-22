@@ -14,6 +14,7 @@
       color: white;
       overflow-x: hidden;
       scroll-snap-type: y mandatory;
+      padding-top: 80px;
     }
 
     .section {
@@ -27,27 +28,57 @@
       position: relative;
     }
 
-    nav {
+    /* 🔹 NAVIGATION STYLES */
+    .top-bar {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
+      background-color: #0a0a0a;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 999;
+      z-index: 1000;
+      border-bottom: 1px solid #222;
     }
 
-    nav img {
+    .menu-button {
+      font-size: 1.6rem;
+      cursor: pointer;
+      color: #f5f5f5;
+    }
+
+    .logo img {
       height: 40px;
     }
 
-    nav a {
-      color: white;
-      margin-left: 1.5rem;
+    .menu-popup {
+      display: none;
+      position: fixed;
+      top: 70px;
+      left: 2rem;
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 1rem 2rem;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+    }
+
+    .menu-popup.show {
+      display: flex;
+    }
+
+    .menu-popup a {
+      color: #f5f5f5;
+      font-size: 1.1rem;
       text-decoration: none;
-      font-weight: 500;
+    }
+
+    .menu-popup a:hover {
+      color: #c79c3b;
     }
 
     .intro h1 {
@@ -101,6 +132,7 @@
       flex-wrap: wrap;
       gap: 2rem;
       justify-content: center;
+      padding: 0 1rem;
     }
 
     .project-card {
@@ -132,6 +164,7 @@
       align-items: center;
       padding: 1.5rem;
       text-align: center;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
     }
 
     .card-front {
@@ -165,14 +198,19 @@
   </style>
 </head>
 <body>
-  <nav>
-    <img src="logo.png" alt="LP Logo">
-    <div>
-      <a href="index.html">Home</a>
-      <a href="contact.html">Contact</a>
-      <a href="projects.html">Projects</a>
-    </div>
-  </nav>
+  <!-- 🔹 NAVIGATION BAR -->
+  <div class="top-bar">
+    <div class="menu-button" onclick="toggleMenu()">☰</div>
+    <div class="logo"><img src="logo.png" alt="Love Patel Logo" /></div>
+  </div>
+  <div class="menu-popup" id="popupMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="about.html">👤 About</a>
+    <a href="projects.html">🧪 Projects</a>
+    <a href="blog.html">📝 Blog</a>
+    <a href="updates.html">📡 Updates</a>
+    <a href="contact.html">📬 Contact</a>
+  </div>
 
   <section class="section intro">
     <h1>Projects</h1>
@@ -233,5 +271,11 @@
       </div>
     </div>
   </section>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('popupMenu').classList.toggle('show');
+    }
+  </script>
 </body>
 </html>
