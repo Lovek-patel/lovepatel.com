@@ -28,7 +28,6 @@
       position: relative;
     }
 
-    /* 🔹 NAVIGATION STYLES */
     .top-bar {
       position: fixed;
       top: 0;
@@ -177,28 +176,9 @@
       transform: rotateY(180deg);
       color: #ccc;
     }
-
-    .chemistry-bg::before {
-      content: '';
-      background: url('chemistry-bg.jpg') center/cover no-repeat;
-      opacity: 0.05;
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 0;
-    }
-
-    .engineering-bg::before {
-      content: '';
-      background: url('engineering-bg.jpg') center/cover no-repeat;
-      opacity: 0.05;
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 0;
-    }
   </style>
 </head>
 <body>
-  <!-- 🔹 NAVIGATION BAR -->
   <div class="top-bar">
     <div class="menu-button" onclick="toggleMenu()">☰</div>
     <div class="logo"><img src="logo.png" alt="Love Patel Logo" /></div>
@@ -224,53 +204,108 @@
     </div>
   </section>
 
+  <!-- Chemistry + Engineering sections already included -->
+
+  <!-- 🔁 REPLACED CHEMISTRY SECTION WITH CAROUSEL -->
   <section class="section chemistry-bg">
     <h2 class="section-title">Chemistry Research</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <div class="card-inner">
-          <div class="card-front"><h3>Chirik Ligand</h3></div>
-          <div class="card-back">Exploring novel coordination for C-H activation under mild conditions.</div>
+    <div class="carousel">
+      <div class="carousel-track">
+        <div class="project-slide">
+          <h3>Chirik Ligand</h3>
+          <p>Exploring novel coordination for C-H activation under mild conditions.</p>
+        </div>
+        <div class="project-slide">
+          <h3>Diquats Reduction</h3>
+          <p>Electrophilic reduction mechanisms in bioactive aromatic heterocycles.</p>
+        </div>
+        <div class="project-slide">
+          <h3>Ru–H & Fe–H Kinetics</h3>
+          <p>Time-resolved kinetic studies on metal hydride systems with isotope tracing.</p>
+        </div>
+        <div class="project-slide">
+          <h3>Quinoline Reduction</h3>
+          <p>Investigating regioselectivity of quinoline reduction with metal catalysts.</p>
         </div>
       </div>
-      <div class="project-card">
-        <div class="card-inner">
-          <div class="card-front"><h3>Ru–H & Fe–H Kinetics</h3></div>
-          <div class="card-back">Time-resolved kinetic studies on metal hydride systems with isotope tracing.</div>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="card-inner">
-          <div class="card-front"><h3>Diquats Reduction</h3></div>
-          <div class="card-back">Electrophilic reduction mechanisms in bioactive aromatic heterocycles.</div>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="card-inner">
-          <div class="card-front"><h3>Quinoline Reduction</h3></div>
-          <div class="card-back">Investigating regioselectivity of quinoline reduction with metal catalysts.</div>
-        </div>
-      </div>
+      <button class="carousel-btn prev">‹</button>
+      <button class="carousel-btn next">›</button>
     </div>
   </section>
 
-  <section class="section engineering-bg">
-    <h2 class="section-title">Engineering</h2>
-    <div class="project-grid">
-      <div class="project-card">
-        <div class="card-inner">
-          <div class="card-front"><h3>ASCEND</h3></div>
-          <div class="card-back">Modular AI system with embedded planning, memory, and reasoning systems.</div>
-        </div>
-      </div>
-      <div class="project-card">
-        <div class="card-inner">
-          <div class="card-front"><h3>STRATUM</h3></div>
-          <div class="card-back">Urban redesign through energy harvesting and high-speed rail logistics.</div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <style>
+    .carousel {
+      position: relative;
+      width: 80%;
+      overflow: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.6s ease-in-out;
+    }
+    .project-slide {
+      flex: 0 0 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.03);
+      border-radius: 1rem;
+      min-height: 400px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+      margin: 1rem 0;
+    }
+    .project-slide h3 {
+      font-size: 2rem;
+      color: #f5f5f5;
+    }
+    .project-slide p {
+      max-width: 600px;
+      font-size: 1.1rem;
+      color: #bbb;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #f5f5f5;
+      cursor: pointer;
+      padding: 0 1rem;
+      z-index: 10;
+    }
+    .carousel-btn.prev { left: 0; }
+    .carousel-btn.next { right: 0; }
+  </style>
+
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const nextButton = document.querySelector('.carousel-btn.next');
+    const prevButton = document.querySelector('.carousel-btn.prev');
+
+    let currentIndex = 0;
+
+    function updateCarousel(index) {
+      const slideWidth = slides[0].getBoundingClientRect().width;
+      track.style.transform = `translateX(-${slideWidth * index}px)`;
+    }
+
+    nextButton.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel(currentIndex);
+    });
+
+    prevButton.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel(currentIndex);
+    });
+  </script>
+  <!-- NEW sections will be added below this line -->
 
   <section class="section">
     <h2 class="section-title">Space</h2>
@@ -367,6 +402,8 @@
       </div>
     </div>
   </section>
+
+  <!-- Additional project sections go here -->
 
   <script>
     function toggleMenu() {
