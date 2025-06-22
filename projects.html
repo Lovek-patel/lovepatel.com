@@ -237,108 +237,130 @@
 <!-- ===== ENGINEERING SECTION ===== -->
 <section class="project-group" id="engineering">
   <h2>⚙️ Engineering</h2>
-  <div class="project-carousel">
-    
-    <!-- Project Card: Stratum -->
-    <div class="project-card" onclick="toggleCard(this)">
-      <div class="card-header">Stratum</div>
-      <div class="card-body">
-        <p>Optimizing micro-energy harvesting and long-distance rapid rail transit through urban and national redesign.</p>
+
+  <div class="carousel-wrapper">
+    <button class="carousel-btn left" onclick="prevProject()">←</button>
+
+    <div class="project-carousel" id="engineeringCarousel">
+      <!-- Project 1: ASCEND -->
+      <div class="project-card">
+        <div class="project-header" onclick="toggleDetails(this)">
+          <h3>ASCEND</h3>
+        </div>
+        <div class="project-details">
+          <p>A modular AI architecture integrating planning, memory, and flexible logic. This system powers a broader superhero tech suite and autonomous personal computing network.</p>
+        </div>
+      </div>
+
+      <!-- Project 2: Zenith -->
+      <div class="project-card">
+        <div class="project-header" onclick="toggleDetails(this)">
+          <h3>Zenith</h3>
+        </div>
+        <div class="project-details">
+          <p>Zenith explores real-life Spider-Man tech: custom-built web shooters, silk propulsion, and wall-crawling systems that blend bio-inspired design and advanced microengineering.</p>
+        </div>
+      </div>
+
+      <!-- Project 3: Stratum -->
+      <div class="project-card">
+        <div class="project-header" onclick="toggleDetails(this)">
+          <h3>Stratum</h3>
+        </div>
+        <div class="project-details">
+          <p>Focused on harvesting micropockets of energy in urban infrastructure and proposing a high-speed national train system that connects coasts in under 4 hours.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Project Card: Iron Man Suit -->
-    <div class="project-card" onclick="toggleCard(this)">
-      <div class="card-header">Iron Man Prototype</div>
-      <div class="card-body">
-        <p>A modular flight and combat suit starting with propulsion and armor, powered by compact energy systems.</p>
-      </div>
-    </div>
-
-    <!-- Project Card: Spider-Man Tech -->
-    <div class="project-card" onclick="toggleCard(this)">
-      <div class="card-header">Spider-Tech</div>
-      <div class="card-body">
-        <p>Web shooter mechanics and wall-crawling exploration based on biomimicry and magnetic adhesion systems.</p>
-      </div>
-    </div>
-
-    <!-- Project Card: RC Laser Cars -->
-    <div class="project-card" onclick="toggleCard(this)">
-      <div class="card-header">RC Laser Cars</div>
-      <div class="card-body">
-        <p>A Marvel-themed game using ESP32-controlled cars with laser hit detection and live Arduino scoreboard.</p>
-      </div>
-    </div>
-
+    <button class="carousel-btn right" onclick="nextProject()">→</button>
   </div>
 </section>
 
+<!-- ===== ENGINEERING CAROUSEL STYLES ===== -->
 <style>
-  .project-group {
-    padding: 4rem 2rem;
-    background-color: #0f0f0f;
-    text-align: center;
-  }
-
-  .project-group h2 {
-    font-size: 2.8rem;
-    color: #d4af37;
-    margin-bottom: 3rem;
+  .carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    overflow: hidden;
+    position: relative;
   }
 
   .project-carousel {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    transition: transform 0.5s ease;
+    width: 300px; /* Only one card visible */
+    overflow: hidden;
   }
 
   .project-card {
-    background-color: #1a1a1a;
-    border: 1px solid #444;
-    border-radius: 12px;
-    width: 300px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-  }
-
-  .project-card:hover {
-    border-color: #d4af37;
-    box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
-  }
-
-  .card-header {
-    padding: 1.2rem;
-    font-size: 1.6rem;
-    font-weight: bold;
+    min-width: 300px;
     background-color: #111;
-    color: #f5f5f5;
-    border-bottom: 1px solid #333;
+    padding: 1rem 1.5rem;
+    margin: 0 1rem;
+    border-left: 4px solid #c79c3b;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #000;
+    cursor: pointer;
   }
 
-  .card-body {
-    padding: 1rem 1.2rem;
-    font-size: 1.05rem;
+  .project-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #f0d375;
+  }
+
+  .project-details {
+    margin-top: 0.5rem;
+    display: none;
+    font-size: 0.95rem;
     color: #ccc;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
   }
 
-  .project-card.expanded .card-body {
-    max-height: 200px;
+  .carousel-btn {
+    background-color: transparent;
+    color: #f0d375;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+  }
+
+  .carousel-btn:hover {
+    color: #fff;
   }
 </style>
 
+<!-- ===== ENGINEERING CAROUSEL SCRIPT ===== -->
 <script>
-  function toggleCard(card) {
-    card.classList.toggle("expanded");
+  let currentSlide = 0;
+  const carousel = document.getElementById("engineeringCarousel");
+  const cards = carousel.querySelectorAll(".project-card");
+
+  function showSlide(index) {
+    const totalSlides = cards.length;
+    if (index < 0) index = totalSlides - 1;
+    if (index >= totalSlides) index = 0;
+    currentSlide = index;
+    const offset = -index * 300; // card width
+    carousel.style.transform = `translateX(${offset}px)`;
   }
+
+  function nextProject() {
+    showSlide(currentSlide + 1);
+  }
+
+  function prevProject() {
+    showSlide(currentSlide - 1);
+  }
+
+  function toggleDetails(header) {
+    const detail = header.nextElementSibling;
+    detail.style.display = (detail.style.display === "block") ? "none" : "block";
+  }
+
+  showSlide(0); // Initialize carousel
 </script>
 
   <!-- ===== CHEMISTRY SECTION ===== -->
