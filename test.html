@@ -2,108 +2,98 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Clean One-Card Carousel</title>
+  <title>Flickity Carousel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Flickity CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
-      padding: 0;
       background: #0d0d0d;
       font-family: Georgia, serif;
+      color: #f0d375;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      overflow: hidden;
     }
 
-    .carousel-container {
-      position: relative;
-      width: 700px;
-      height: 500px;
+    .gallery {
+      width: 80%;
+      max-width: 800px;
     }
 
-    .carousel-track {
-      display: flex;
-      width: 100%;
-      height: 100%;
-      transform: translateX(0);
-    }
-
-    .card {
-      flex: 0 0 100%;
-      background-color: #1a1a1a;
+    .gallery-cell {
+      background: #1a1a1a;
       border-radius: 20px;
+      height: 400px;
+      margin-right: 10px;
       padding: 2rem;
-      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: #f0d375;
-      font-size: 1.5rem;
-      text-align: center;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
     }
 
-    .nav-button {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 215, 0, 0.15);
-      color: #f0d375;
-      border: none;
+    .gallery-cell h2 {
+      margin: 0;
       font-size: 2rem;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      z-index: 10;
     }
 
-    .nav-button:hover {
-      background: rgba(255, 215, 0, 0.3);
+    .gallery-cell .timeline {
+      font-style: italic;
+      color: #bbb;
+      margin: 0.5rem 0 1rem;
     }
 
-    .prev {
-      left: -50px;
+    .gallery-cell .description {
+      color: #ddd;
+      text-align: center;
+      max-width: 90%;
+      font-size: 1.1rem;
     }
 
-    .next {
-      right: -50px;
+    /* Highlight center card */
+    .flickity-slider .is-selected {
+      transform: scale(1.03);
+      transition: transform 0.3s;
     }
   </style>
 </head>
 <body>
 
-  <div class="carousel-container">
-    <button class="nav-button prev" onclick="prevCard()">❮</button>
-    <div class="carousel-track" id="carouselTrack">
-      <div class="card">Project 1<br><small>2024–Present</small></div>
-      <div class="card">Project 2<br><small>2024–Present</small></div>
-      <div class="card">Project 3<br><small>2025–Present</small></div>
-      <div class="card">Project 4<br><small>2023–Present</small></div>
+  <div class="gallery js-flickity"
+    data-flickity-options='{ "wrapAround": true, "pageDots": false }'>
+    <div class="gallery-cell">
+      <h2>Project 1</h2>
+      <p class="timeline">2024 – Present</p>
+      <p class="description">This is a placeholder description for Project 1.</p>
     </div>
-    <button class="nav-button next" onclick="nextCard()">❯</button>
+    <div class="gallery-cell">
+      <h2>Project 2</h2>
+      <p class="timeline">2024 – Present</p>
+      <p class="description">This is a placeholder description for Project 2.</p>
+    </div>
+    <div class="gallery-cell">
+      <h2>Project 3</h2>
+      <p class="timeline">2025 – Present</p>
+      <p class="description">This is a placeholder description for Project 3.</p>
+    </div>
+    <div class="gallery-cell">
+      <h2>Project 4</h2>
+      <p class="timeline">2023 – Present</p>
+      <p class="description">This is a placeholder description for Project 4.</p>
+    </div>
   </div>
 
-  <script>
-    const track = document.getElementById('carouselTrack');
-    const cards = track.children;
-    let index = 0;
-
-    function updateCarousel() {
-      track.style.transform = `translateX(-${index * 100}%)`;
-    }
-
-    function nextCard() {
-      index = (index + 1) % cards.length;
-      updateCarousel();
-    }
-
-    function prevCard() {
-      index = (index - 1 + cards.length) % cards.length;
-      updateCarousel();
-    }
-  </script>
-
+  <!-- Flickity JS -->
+  <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </body>
 </html>
