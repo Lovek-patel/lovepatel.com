@@ -3,76 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Centered Carousel</title>
+  <title>Simplest Looping Carousel</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
       background-color: #0d0d0d;
-      font-family: 'Georgia', serif;
-      color: #f0d375;
-      overflow-x: hidden;
-    }
-
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      margin: 3rem auto;
-    }
-
-    .carousel-track-container {
+      font-family: Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       overflow: hidden;
+    }
+
+    .carousel {
       position: relative;
-      width: 100%;
+      width: 600px;
+      overflow: hidden;
     }
 
     .carousel-track {
       display: flex;
-      transition: transform 0.6s ease-in-out;
+      transition: transform 0.5s ease-in-out;
     }
 
-    .carousel-card {
+    .card {
       flex: 0 0 100%;
-      max-width: 100%;
-      box-sizing: border-box;
-      background-color: #1a1a1a;
-      border-radius: 20px;
-      margin: 0 2rem;
+      background: #1a1a1a;
+      color: #f0d375;
       text-align: center;
       padding: 2rem;
-      height: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.15);
+      border-radius: 15px;
     }
 
-    .carousel-card img {
-      width: 100px;
-      height: 100px;
-      margin-bottom: 1rem;
-    }
-
-    .carousel-card h3 {
-      font-size: 2rem;
-      margin: 0.5rem 0;
-    }
-
-    .timeline {
-      font-style: italic;
-      color: #aaa;
-      margin-bottom: 1rem;
-    }
-
-    .description {
-      color: #ddd;
-      font-size: 1.1rem;
-      max-width: 80%;
-      margin: 0 auto;
-    }
-
-    .nav-button {
+    .nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -80,113 +45,73 @@
       color: #f0d375;
       border: none;
       font-size: 2rem;
-      width: 40px;
-      height: 40px;
       cursor: pointer;
+      padding: 0.5rem 1rem;
       z-index: 10;
-      transition: background 0.3s;
     }
 
-    .nav-button:hover {
-      background: rgba(255, 215, 0, 0.3);
+    .prev {
+      left: 10px;
     }
 
-    .nav-left {
-      left: -20px;
-    }
-
-    .nav-right {
-      right: -20px;
+    .next {
+      right: 10px;
     }
   </style>
 </head>
 <body>
 
-  <div class="carousel-container">
-    <button class="nav-button nav-left" onclick="moveSlide(-1)">❮</button>
-    <div class="carousel-track-container">
-      <div class="carousel-track" id="carouselTrack">
-        <!-- Cloned Last Card -->
-        <div class="carousel-card">
-          <img src="https://via.placeholder.com/100" alt="4">
-          <h3>Project 4</h3>
-          <p class="timeline">2023 – Present</p>
-          <p class="description">Description for Project 4.</p>
-        </div>
+<div class="carousel">
+  <button class="nav prev">❮</button>
+  <div class="carousel-track" id="track">
+    <!-- Clones for looping -->
+    <div class="card">Card 4</div>
 
-        <!-- Actual Cards -->
-        <div class="carousel-card">
-          <img src="https://via.placeholder.com/100" alt="1">
-          <h3>Project 1</h3>
-          <p class="timeline">2024 – Present</p>
-          <p class="description">Description for Project 1.</p>
-        </div>
-        <div class="carousel-card">
-          <img src="https://via.placeholder.com/100" alt="2">
-          <h3>Project 2</h3>
-          <p class="timeline">2024 – Present</p>
-          <p class="description">Description for Project 2.</p>
-        </div>
-        <div class="carousel-card">
-          <img src="https://via.placeholder.com/100" alt="3">
-          <h3>Project 3</h3>
-          <p class="timeline">2025 – Present</p>
-          <p class="description">Description for Project 3.</p>
-        </div>
-        <div class="carousel-card">
-          <img src="https://via.placeholder.com/100" alt="4">
-          <h3>Project 4</h3>
-          <p class="timeline">2023 – Present</p>
-          <p class="description">Description for Project 4.</p>
-        </div>
+    <!-- Real cards -->
+    <div class="card">Card 1</div>
+    <div class="card">Card 2</div>
+    <div class="card">Card 3</div>
+    <div class="card">Card 4</div>
 
-        <!-- Cloned First Card -->
-        <div class="carousel-card">
-          <img src="https://via.placeholder.com/100" alt="1">
-          <h3>Project 1</h3>
-          <p class="timeline">2024 – Present</p>
-          <p class="description">Description for Project 1.</p>
-        </div>
-      </div>
-    </div>
-    <button class="nav-button nav-right" onclick="moveSlide(1)">❯</button>
+    <!-- Clone -->
+    <div class="card">Card 1</div>
   </div>
+  <button class="nav next">❯</button>
+</div>
 
-  <script>
-    const track = document.getElementById('carouselTrack');
-    const cards = track.querySelectorAll('.carousel-card');
-    let index = 1;
+<script>
+  const track = document.getElementById('track');
+  const cards = track.children;
+  let index = 1;
 
-    function updateSlidePosition(instant = false) {
-      const cardWidth = cards[0].offsetWidth + 40; // include margin
-      track.style.transition = instant ? "none" : "transform 0.6s ease-in-out";
-      track.style.transform = `translateX(-${cardWidth * index}px)`;
+  const updatePosition = (instant = false) => {
+    track.style.transition = instant ? "none" : "transform 0.5s ease-in-out";
+    track.style.transform = `translateX(-${index * 600}px)`;
+  };
+
+  document.querySelector('.next').addEventListener('click', () => {
+    index++;
+    updatePosition();
+  });
+
+  document.querySelector('.prev').addEventListener('click', () => {
+    index--;
+    updatePosition();
+  });
+
+  track.addEventListener('transitionend', () => {
+    if (index === 0) {
+      index = 4;
+      updatePosition(true);
     }
-
-    function moveSlide(step) {
-      index += step;
-      updateSlidePosition();
-
-      track.addEventListener("transitionend", () => {
-        if (index === 0) {
-          index = cards.length - 2;
-          updateSlidePosition(true);
-        }
-        if (index === cards.length - 1) {
-          index = 1;
-          updateSlidePosition(true);
-        }
-      }, { once: true });
+    if (index === 5) {
+      index = 1;
+      updatePosition(true);
     }
+  });
 
-    window.addEventListener("load", () => {
-      updateSlidePosition(true);
-    });
-
-    window.addEventListener("resize", () => {
-      updateSlidePosition(true);
-    });
-  </script>
+  window.onload = () => updatePosition(true);
+</script>
 
 </body>
 </html>
