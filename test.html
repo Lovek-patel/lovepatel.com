@@ -25,15 +25,15 @@
     }
 
     .gallery {
-      width: 100%;
+      width: 100vw;
     }
 
     .gallery-cell {
-      width: calc(100vw - 6rem); /* Almost full width with margin */
+      width: calc(100vw - 4rem); /* spans full width minus ~2rem on each side */
       background: #1a1a1a;
       border-radius: 20px;
       height: 500px;
-      margin: 0 1.5rem; /* space before and after */
+      margin: 0 2rem;
       padding: 2rem;
       display: flex;
       flex-direction: column;
@@ -61,7 +61,7 @@
     }
 
     .flickity-slider .is-selected {
-      transform: scale(1.02);
+      transform: scale(1.03);
       transition: transform 0.3s;
     }
   </style>
@@ -69,12 +69,7 @@
 <body>
 
   <div class="gallery js-flickity"
-    data-flickity-options='{ 
-      "wrapAround": true, 
-      "pageDots": false, 
-      "selectedAttraction": 1,
-      "friction": 1
-    }'>
+    data-flickity-options='{ "wrapAround": true, "pageDots": false }'>
     <div class="gallery-cell">
       <h2>Project 1</h2>
       <p class="timeline">2024 – Present</p>
@@ -101,3 +96,4 @@
   <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
 </body>
 </html>
+
