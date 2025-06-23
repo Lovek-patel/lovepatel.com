@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simplest Looping Carousel</title>
+  <title>Clean One-Card Carousel</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      background-color: #0d0d0d;
+      background: #0d0d0d;
       font-family: Georgia, serif;
       display: flex;
       justify-content: center;
@@ -17,101 +17,93 @@
       overflow: hidden;
     }
 
-    .carousel {
+    .carousel-container {
       position: relative;
-      width: 600px;
-      overflow: hidden;
+      width: 700px;
+      height: 500px;
     }
 
     .carousel-track {
       display: flex;
-      transition: transform 0.5s ease-in-out;
+      width: 100%;
+      height: 100%;
+      transform: translateX(0);
     }
 
     .card {
       flex: 0 0 100%;
-      background: #1a1a1a;
-      color: #f0d375;
-      text-align: center;
+      background-color: #1a1a1a;
+      border-radius: 20px;
       padding: 2rem;
-      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(255, 215, 0, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #f0d375;
+      font-size: 1.5rem;
+      text-align: center;
     }
 
-    .nav {
+    .nav-button {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(255, 215, 0, 0.1);
+      background: rgba(255, 215, 0, 0.15);
       color: #f0d375;
       border: none;
       font-size: 2rem;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
-      padding: 0.5rem 1rem;
       z-index: 10;
     }
 
+    .nav-button:hover {
+      background: rgba(255, 215, 0, 0.3);
+    }
+
     .prev {
-      left: 10px;
+      left: -50px;
     }
 
     .next {
-      right: 10px;
+      right: -50px;
     }
   </style>
 </head>
 <body>
 
-<div class="carousel">
-  <button class="nav prev">❮</button>
-  <div class="carousel-track" id="track">
-    <!-- Clones for looping -->
-    <div class="card">Card 4</div>
-
-    <!-- Real cards -->
-    <div class="card">Card 1</div>
-    <div class="card">Card 2</div>
-    <div class="card">Card 3</div>
-    <div class="card">Card 4</div>
-
-    <!-- Clone -->
-    <div class="card">Card 1</div>
+  <div class="carousel-container">
+    <button class="nav-button prev" onclick="prevCard()">❮</button>
+    <div class="carousel-track" id="carouselTrack">
+      <div class="card">Project 1<br><small>2024–Present</small></div>
+      <div class="card">Project 2<br><small>2024–Present</small></div>
+      <div class="card">Project 3<br><small>2025–Present</small></div>
+      <div class="card">Project 4<br><small>2023–Present</small></div>
+    </div>
+    <button class="nav-button next" onclick="nextCard()">❯</button>
   </div>
-  <button class="nav next">❯</button>
-</div>
 
-<script>
-  const track = document.getElementById('track');
-  const cards = track.children;
-  let index = 1;
+  <script>
+    const track = document.getElementById('carouselTrack');
+    const cards = track.children;
+    let index = 0;
 
-  const updatePosition = (instant = false) => {
-    track.style.transition = instant ? "none" : "transform 0.5s ease-in-out";
-    track.style.transform = `translateX(-${index * 600}px)`;
-  };
-
-  document.querySelector('.next').addEventListener('click', () => {
-    index++;
-    updatePosition();
-  });
-
-  document.querySelector('.prev').addEventListener('click', () => {
-    index--;
-    updatePosition();
-  });
-
-  track.addEventListener('transitionend', () => {
-    if (index === 0) {
-      index = 4;
-      updatePosition(true);
+    function updateCarousel() {
+      track.style.transform = `translateX(-${index * 100}%)`;
     }
-    if (index === 5) {
-      index = 1;
-      updatePosition(true);
-    }
-  });
 
-  window.onload = () => updatePosition(true);
-</script>
+    function nextCard() {
+      index = (index + 1) % cards.length;
+      updateCarousel();
+    }
+
+    function prevCard() {
+      index = (index - 1 + cards.length) % cards.length;
+      updateCarousel();
+    }
+  </script>
 
 </body>
 </html>
