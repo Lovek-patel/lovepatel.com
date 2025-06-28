@@ -113,6 +113,7 @@
     }
   </style>
 </head>
+<!-- only include <body> section for brevity -->
 <body>
 
   <div class="carousel-container" id="carousel">
@@ -147,50 +148,20 @@
     const dotContainer = document.getElementById("dotContainer");
     const dots = Array.from(dotContainer.querySelectorAll(".dot"));
     const setSize = 4;
-    const totalCards = 12;
-    const baseIndex = setSize; // Set B starts at index 4
+    const baseIndex = setSize;
 
-    const cardWidth = () => {
+    let cardWidth;
+    function calcCardWidth() {
       const gap = parseInt(getComputedStyle(carousel).gap) || 0;
-      return carousel.querySelector(".carousel-card").offsetWidth + gap;
-    };
+      cardWidth = carousel.querySelector(".carousel-card").offsetWidth + gap;
+    }
 
     function scrollToIndex(index, smooth = true) {
       carousel.scrollTo({
-        left: (baseIndex + index) * cardWidth(),
+        left: (baseIndex + index) * cardWidth,
         behavior: smooth ? 'smooth' : 'auto'
       });
     }
-
-    // Start centered
-    window.addEventListener("load", () => {
-      scrollToIndex(0, false);
-      updateDots(0);
-    });
-
-    // Infinite loop handler
-    carousel.addEventListener("scroll", () => {
-      const cWidth = cardWidth();
-      const scrollLeft = carousel.scrollLeft;
-      const index = Math.round(scrollLeft / cWidth);
-
-      if (index < setSize) {
-        carousel.scrollLeft = scrollLeft + setSize * cWidth;
-      } else if (index >= setSize * 2) {
-        carousel.scrollLeft = scrollLeft - setSize * cWidth;
-      }
-
-      const relativeIndex = ((index - baseIndex) + setSize) % setSize;
-      updateDots(relativeIndex);
-    });
-
-    // Dot click behavior
-    dots.forEach(dot => {
-      dot.addEventListener("click", () => {
-        const i = parseInt(dot.dataset.index);
-        scrollToIndex(i);
-      });
-    });
 
     function updateDots(activeIndex) {
       dots.forEach((dot, i) => {
@@ -198,17 +169,44 @@
       });
     }
 
-    // Click navigation
+    function getCurrentIndex() {
+      const scrollLeft = carousel.scrollLeft;
+      const rawIndex = Math.round(scrollLeft / cardWidth);
+      const relativeIndex = ((rawIndex - baseIndex + setSize) % setSize);
+      return { rawIndex, relativeIndex };
+    }
+
+    function handleInfiniteLoop() {
+      const { rawIndex } = getCurrentIndex();
+      if (rawIndex < setSize) {
+        carousel.scrollLeft += setSize * cardWidth;
+      } else if (rawIndex >= setSize * 2) {
+        carousel.scrollLeft -= setSize * cardWidth;
+      }
+    }
+
+    // INIT
+    window.addEventListener("load", () => {
+      calcCardWidth();
+      scrollToIndex(0, false); // Go to Project 1 in Set B
+      updateDots(0);
+    });
+
+    // Resize safety
+    window.addEventListener("resize", () => {
+      calcCardWidth();
+    });
+
+    // Click on card
     carousel.addEventListener("click", (e) => {
       const cards = Array.from(carousel.querySelectorAll(".carousel-card"));
-      const cWidth = cardWidth();
       const center = carousel.scrollLeft + carousel.offsetWidth / 2;
 
       let closest = { i: -1, distance: Infinity };
       cards.forEach((card, i) => {
         const cardCenter = card.offsetLeft + card.offsetWidth / 2;
         const dist = Math.abs(center - cardCenter);
-        if (dist < closest.distance) closest = { i, distance: dist };
+        if (dist < closest.distance) closest = { i };
       });
 
       const clickedCard = e.target.closest(".carousel-card");
@@ -218,22 +216,39 @@
       const currentIndex = closest.i;
 
       if (clickedIndex < currentIndex) {
-        carousel.scrollTo({ left: (currentIndex - 1) * cWidth, behavior: "smooth" });
+        carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
       } else if (clickedIndex > currentIndex) {
-        carousel.scrollTo({ left: (currentIndex + 1) * cWidth, behavior: "smooth" });
+        carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
       }
     });
 
-    // Keyboard navigation
+    // Keyboard nav
     document.addEventListener("keydown", (e) => {
-      const cWidth = cardWidth();
       if (e.key === "ArrowRight") {
-        carousel.scrollBy({ left: cWidth, behavior: "smooth" });
+        carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
       } else if (e.key === "ArrowLeft") {
-        carousel.scrollBy({ left: -cWidth, behavior: "smooth" });
+        carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
       }
+    });
+
+    // Dot clicks
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const i = parseInt(dot.dataset.index);
+        scrollToIndex(i);
+      });
+    });
+
+    // Sync on scroll end
+    let scrollTimeout;
+    carousel.addEventListener("scroll", () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        handleInfiniteLoop();
+        const { relativeIndex } = getCurrentIndex();
+        updateDots(relativeIndex);
+      }, 100); // Wait briefly to allow smooth scroll to finish
     });
   </script>
-
 </body>
 </html>
