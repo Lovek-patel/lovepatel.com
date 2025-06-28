@@ -352,7 +352,7 @@
     const style = getComputedStyle(carousel);
     const paddingLeft = parseInt(style.paddingLeft || 0);
     const paddingRight = parseInt(style.paddingRight || 0);
-    const centerOffset = carousel.offsetWidth / 2 - cardWidth() / 2;
+    const centerOffset = (carousel.offsetWidth - cardWidth()) / 2;
     carousel.scrollTo({ left: cardWidth() * index - centerOffset, behavior: instant ? "auto" : "smooth" });
     current = index;
     updateDots();
