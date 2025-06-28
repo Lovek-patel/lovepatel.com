@@ -234,66 +234,83 @@
     </div>
   </section>
 
-<!-- ===== ENGINEERING SECTION (Infinite Carousel) ===== -->
+<!-- ===== ENGINEERING SECTION (Looping Carousel with Center Focus) ===== -->
 <section class="project-group" id="engineering">
   <h2>⚙️ Engineering</h2>
-  <div class="carousel-container" id="carousel">
-    <!-- Duplicate sets A, B, C -->
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" /><h3>ASCEND</h3><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="Zenith Logo" class="carousel-logo" /><h3>Zenith</h3><p class="timeline">2025 – Present</p><p class="description">Set A</p></div>
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="Stratum Logo" class="carousel-logo" /><h3>Stratum</h3><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
+  <div class="carousel-container">
+    <div class="carousel-track" id="carouselTrack">
 
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" /><h3>ASCEND</h3><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="Zenith Logo" class="carousel-logo" /><h3>Zenith</h3><p class="timeline">2025 – Present</p><p class="description">Set B</p></div>
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="Stratum Logo" class="carousel-logo" /><h3>Stratum</h3><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
+      <!-- ASCEND -->
+      <div class="carousel-card active">
+        <img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" />
+        <h3>ASCEND</h3>
+        <p class="timeline">2024 – Present</p>
+        <p class="description">
+          A bold vision of technological ambition and innovation, developed to shape the future.
+        </p>
+      </div>
 
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" /><h3>ASCEND</h3><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="Zenith Logo" class="carousel-logo" /><h3>Zenith</h3><p class="timeline">2025 – Present</p><p class="description">Set C</p></div>
-    <div class="carousel-card"><img src="placeholder_logo.png" alt="Stratum Logo" class="carousel-logo" /><h3>Stratum</h3><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
+      <!-- Zenith -->
+      <div class="carousel-card">
+        <img src="placeholder_logo.png" alt="Zenith Logo" class="carousel-logo" />
+        <h3>Zenith</h3>
+        <p class="timeline">2025 – Present</p>
+        <p class="description">
+          A bold vision of technological ambition and innovation, developed to shape the future.
+        </p>
+      </div>
+
+      <!-- Stratum -->
+      <div class="carousel-card">
+        <img src="placeholder_logo.png" alt="Stratum Logo" class="carousel-logo" />
+        <h3>Stratum</h3>
+        <p class="timeline">2024 – Present</p>
+        <p class="description">
+          A bold vision of technological ambition and innovation, developed to shape the future.
+        </p>
+      </div>
+
+    </div>
   </div>
-  <div class="carousel-dots" id="carouselDots"></div>
 </section>
 
 <style>
   .carousel-container {
-    width: 100vw;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
+    position: relative;
+    max-width: 1200px;
+    margin: 2rem auto;
+    overflow: hidden;
+  }
+
+  .carousel-track {
     display: flex;
-    gap: 4vw;
-    padding: 0 5vw;
-    scroll-behavior: smooth;
+    gap: 2rem;
+    transition: transform 0.5s ease-in-out;
+    align-items: center;
   }
 
   .carousel-card {
-    flex: 0 0 80vw;
-    scroll-snap-align: center;
+    flex: 0 0 60%;
+    margin: 0 auto;
+    background-color: #1a1a1a;
     border-radius: 20px;
-    height: 600px;
     padding: 2rem;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
+    text-align: center;
+    transform: scale(0.9);
+    opacity: 0.5;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    height: 550px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 0 30px rgba(0, 120, 255, 0.2);
-    background: linear-gradient(135deg, #202e78, #8c52ff);
   }
 
-  .carousel-card:nth-child(3n+1) { background: linear-gradient(135deg, #1a4d2e, #4cb944); }
-  .carousel-card:nth-child(3n+2) { background: linear-gradient(135deg, #532e1c, #c07f00); }
-  .carousel-card:nth-child(3n+3) { background: linear-gradient(135deg, #35013f, #b3005e); }
-
-  .carousel-card:hover {
-    box-shadow: 0 0 40px rgba(0, 120, 255, 0.6);
-    transform: scale(1.02);
-  }
-
-  .carousel-card h3 {
-    font-size: 2.5rem;
-    margin: 0;
-    color: #fff;
+  .carousel-card.active {
+    transform: scale(1.05);
+    opacity: 1;
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+    z-index: 2;
   }
 
   .carousel-logo {
@@ -302,163 +319,128 @@
     object-fit: contain;
   }
 
+  .carousel-card h3 {
+    font-size: 2rem;
+    color: #f0d375;
+    margin-bottom: 0.4rem;
+  }
+
   .timeline {
     font-style: italic;
-    color: #eee;
-    margin: 0.5rem 0 1rem;
+    color: #aaa;
+    margin-bottom: 1.2rem;
   }
 
   .description {
-    color: #fdfdfd;
-    text-align: center;
-    max-width: 90%;
-    font-size: 1.2rem;
-  }
-
-  .carousel-container::-webkit-scrollbar { display: none; }
-  .carousel-container { -ms-overflow-style: none; scrollbar-width: none; }
-
-  .carousel-dots {
-    text-align: center;
-    margin-top: 1rem;
-  }
-
-  .carousel-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 0 5px;
-    background-color: #888;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .carousel-dot.active {
-    background-color: #f0d375;
+    font-size: 1.1rem;
+    color: #ddd;
+    line-height: 1.6;
+    padding: 0 1rem;
   }
 </style>
 
 <script>
-  const carousel = document.getElementById("carousel");
-  const dotsContainer = document.getElementById("carouselDots");
-  const cards = carousel.querySelectorAll(".carousel-card");
-  const totalVisible = cards.length / 3; // real projects
-  const cardWidth = () => cards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 0);
+  const track = document.getElementById('carouselTrack');
+  const cards = Array.from(track.querySelectorAll('.carousel-card'));
+  let slideIndex = 0;
 
-  let current = totalVisible;
+  function updateCarousel() {
+    const total = cards.length;
 
-  function goToIndex(index, instant = false) {
-    const cardW = cardWidth();
-    const containerW = carousel.offsetWidth;
-    const scrollTo = index * cardW - (containerW - cardW) / 2;
-  
-    carousel.scrollTo({
-      left: scrollTo,
-      behavior: instant ? "auto" : "smooth"
-    });
-  
-    current = index;
-    updateDots();
-  }
-
-
-
-  function updateDots() {
-    document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
-      dot.classList.toggle('active', i === ((current - totalVisible + totalVisible) % totalVisible));
-    });
-  }
-
-  window.addEventListener("load", () => goToIndex(totalVisible, true));
-
-  carousel.addEventListener("scroll", () => {
-    const scrollLeft = carousel.scrollLeft;
-    const i = Math.round((scrollLeft + (carousel.offsetWidth - cardWidth()) / 2) / cardWidth());
-  
-    if (i < totalVisible) goToIndex(i + totalVisible, true);
-    else if (i >= totalVisible * 2) goToIndex(i - totalVisible, true);
-    else current = i;
-  
-    updateDots();
-  });
-
-
-  carousel.addEventListener("click", (e) => {
-    const cWidth = cardWidth();
-    const center = carousel.scrollLeft + carousel.offsetWidth / 2;
-    let closest = { i: -1, d: Infinity };
-
-    cards.forEach((card, i) => {
-      const mid = card.offsetLeft + card.offsetWidth / 2;
-      const dist = Math.abs(center - mid);
-      if (dist < closest.d) closest = { i, d: dist };
+    cards.forEach((card, index) => {
+      card.classList.remove('active');
+      card.style.transform = 'scale(0.9)';
+      card.style.opacity = '0.5';
     });
 
-    const target = e.target.closest(".carousel-card");
-    if (!target) return;
-    const clickedIndex = Array.from(cards).indexOf(target);
-    if (clickedIndex < closest.i) goToIndex(current - 1);
-    else if (clickedIndex > closest.i) goToIndex(current + 1);
-  });
+    const activeCard = cards[slideIndex];
+    activeCard.classList.add('active');
+    activeCard.style.transform = 'scale(1.05)';
+    activeCard.style.opacity = '1';
 
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight") goToIndex(current + 1);
-    else if (e.key === "ArrowLeft") goToIndex(current - 1);
-  });
-
-  for (let i = 0; i < totalVisible; i++) {
-    const dot = document.createElement('div');
-    dot.classList.add('carousel-dot');
-    dot.addEventListener('click', () => goToIndex(i + totalVisible));
-    dotsContainer.appendChild(dot);
+    const containerWidth = document.querySelector('.carousel-container').offsetWidth;
+    const cardWidth = activeCard.offsetWidth + 32;
+    const offset = (cardWidth * slideIndex) - ((containerWidth - cardWidth) / 2);
+    track.style.transform = translateX(-${offset}px);
   }
-  updateDots();
+
+  function nextSlide() {
+    slideIndex = (slideIndex + 1) % cards.length;
+    updateCarousel();
+  }
+
+  function prevSlide() {
+    slideIndex = (slideIndex - 1 + cards.length) % cards.length;
+    updateCarousel();
+  }
+
+  cards.forEach((card, index) => {
+    card.addEventListener('click', () => {
+      // Always move to the clicked card
+      slideIndex = index;
+      updateCarousel();
+    });
+  });
+
+  // Ensure the first card is centered on load
+  window.addEventListener('DOMContentLoaded', () => {
+    updateCarousel();
+  });
+
+  // Responsive adjustment
+  window.addEventListener('resize', updateCarousel);
+
+  // Optional keyboard nav
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
 </script>
 
-<!-- ===== CHEMISTRY SECTION ===== -->
-<section class="project-group" id="chemistry">
-  <h2>🧪 Chemistry</h2>
-  <div class="project-item">
-    <h3>Hydride Transfer Study</h3>
-    <p>Mechanistic investigations on metal-catalyzed reduction of N-heterocycles using kinetic isotope effects and redox ligand tuning.</p>
-  </div>
-</section>
+  <!-- ===== CHEMISTRY SECTION ===== -->
+  <section class="project-group" id="chemistry">
+    <h2>🧪 Chemistry</h2>
+    <div class="project-item">
+      <h3>Hydride Transfer Study</h3>
+      <p>Mechanistic investigations on metal-catalyzed reduction of N-heterocycles using kinetic isotope effects and redox ligand tuning.</p>
+    </div>
+  </section>
 
-<!-- ===== PHILOSOPHY SECTION ===== -->
-<section class="project-group" id="philosophy">
-  <h2>🧠 Philosophy</h2>
-  <div class="project-item">
-    <h3>The Nature of Sin</h3>
-    <p>A multi-religious inquiry into morality, punishment, and the fluid boundaries of human nature across civilizations.</p>
-  </div>
-</section>
+  <!-- ===== PHILOSOPHY SECTION ===== -->
+  <section class="project-group" id="philosophy">
+    <h2>🧠 Philosophy</h2>
+    <div class="project-item">
+      <h3>The Nature of Sin</h3>
+      <p>A multi-religious inquiry into morality, punishment, and the fluid boundaries of human nature across civilizations.</p>
+    </div>
+  </section>
 
-<!-- ===== WRITING SECTION ===== -->
-<section class="project-group" id="writing">
-  <h2>✍️ Writing</h2>
-  <div class="project-item">
-    <h3>Book of Love</h3>
-    <p>A modern philosophical treatise on romantic and human love, inspired by Plato, Dostoevsky, and the scriptures.</p>
-  </div>
-</section>
+  <!-- ===== WRITING SECTION ===== -->
+  <section class="project-group" id="writing">
+    <h2>✍️ Writing</h2>
+    <div class="project-item">
+      <h3>Book of Love</h3>
+      <p>A modern philosophical treatise on romantic and human love, inspired by Plato, Dostoevsky, and the scriptures.</p>
+    </div>
+  </section>
 
-<!-- ===== PERSONAL PROJECTS SECTION ===== -->
-<section class="project-group" id="personal-projects">
-  <h2>🌱 Personal Projects</h2>
-  <div class="project-item">
-    <h3>GenSim</h3>
-    <p>Simulating life from a single gene to human-like development, exploring how far DNA alone can govern complexity.</p>
-  </div>
-</section>
+  <!-- ===== PERSONAL PROJECTS SECTION ===== -->
+  <section class="project-group" id="personal-projects">
+    <h2>🌱 Personal Projects</h2>
+    <div class="project-item">
+      <h3>GenSim</h3>
+      <p>Simulating life from a single gene to human-like development, exploring how far DNA alone can govern complexity.</p>
+    </div>
+  </section>
 
-<!-- ===== LEGACY / FUTURE SECTION ===== -->
-<section class="project-group" id="legacy">
-  <h2>🪐 Legacy & Vision</h2>
-  <div class="project-item">
-    <h3>Primis</h3>
-    <p>Designing the world’s most intellectually and ethically advanced global school system, rooted in tiered opportunity and holistic education.</p>
-  </div>
-</section>
+  <!-- ===== LEGACY / FUTURE SECTION ===== -->
+  <section class="project-group" id="legacy">
+    <h2>🪐 Legacy & Vision</h2>
+    <div class="project-item">
+      <h3>Primis</h3>
+      <p>Designing the world’s most intellectually and ethically advanced global school system, rooted in tiered opportunity and holistic education.</p>
+    </div>
+  </section>
 
   <!-- ===== JavaScript for Menu & Curtain Scroll ===== -->
   <script>
@@ -479,13 +461,13 @@
       // Animate curtains
       if (distance > 0) {
         const curtainShift = Math.min(distance / 2, window.innerWidth / 2);
-        left.style.transform = `translateX(-${curtainShift}px)`;
-        right.style.transform = `translateX(${curtainShift}px) scaleX(-1)`;
+        left.style.transform = translateX(-${curtainShift}px);
+        right.style.transform = translateX(${curtainShift}px) scaleX(-1);
       }
 
       // Move text down as scroll progresses
       const newTop = Math.min(25 + distance / 32, 35); // capped at 40vh now
-      inner.style.top = `${newTop}vh`;
+      inner.style.top = ${newTop}vh;
     });
   </script>
 </body>
