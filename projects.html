@@ -348,19 +348,19 @@
   let current = totalVisible;
 
   function goToIndex(index, instant = false) {
-    const containerRect = carousel.getBoundingClientRect();
-    const card = cards[index];
-    const cardRect = card.getBoundingClientRect();
-    const scrollLeft = carousel.scrollLeft;
+    const cardW = cardWidth();
+    const containerW = carousel.offsetWidth;
+    const scrollTo = index * cardW - (containerW - cardW) / 2;
   
-    // Calculate the delta between card center and container center
-    const delta = (cardRect.left + cardRect.width / 2) - (containerRect.left + containerRect.width / 2);
-    const newScroll = scrollLeft + delta;
+    carousel.scrollTo({
+      left: scrollTo,
+      behavior: instant ? "auto" : "smooth"
+    });
   
-    carousel.scrollTo({ left: newScroll, behavior: instant ? "auto" : "smooth" });
     current = index;
     updateDots();
   }
+
 
 
   function updateDots() {
@@ -373,14 +373,15 @@
 
   carousel.addEventListener("scroll", () => {
     const scrollLeft = carousel.scrollLeft;
-    const i = Math.round((scrollLeft + (cardWidth() - carousel.offsetWidth) / 2) / cardWidth());
-
+    const i = Math.round((scrollLeft + (carousel.offsetWidth - cardWidth()) / 2) / cardWidth());
+  
     if (i < totalVisible) goToIndex(i + totalVisible, true);
     else if (i >= totalVisible * 2) goToIndex(i - totalVisible, true);
     else current = i;
-
+  
     updateDots();
   });
+
 
   carousel.addEventListener("click", (e) => {
     const cWidth = cardWidth();
