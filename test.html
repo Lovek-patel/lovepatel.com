@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apple-Style Infinite Carousel</title>
+  <title>Interactive Infinite Carousel</title>
 
   <style>
     * {
@@ -45,7 +45,13 @@
       justify-content: center;
       align-items: center;
       box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .carousel-card:hover {
+      box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
+      transform: scale(1.02);
     }
 
     .carousel-card h2 {
@@ -118,27 +124,75 @@
 
   <script>
     const carousel = document.getElementById("carousel");
-    const cards = carousel.querySelectorAll(".carousel-card");
-    const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 0);
+    const getCards = () => Array.from(carousel.querySelectorAll(".carousel-card"));
+    const getCardWidth = () => getCards()[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 0);
 
-    // Scroll to actual first card (index 1 because index 0 is clone of last)
+    function scrollToCard(index) {
+      carousel.scrollTo({
+        left: getCardWidth() * index,
+        behavior: "smooth"
+      });
+    }
+
+    // Initial offset (skip cloned card at start)
     window.addEventListener("load", () => {
-      carousel.scrollLeft = cardWidth;
+      carousel.scrollLeft = getCardWidth();
     });
 
-    // Handle looping
+    // Loop logic
     carousel.addEventListener("scroll", () => {
+      const cardWidth = getCardWidth();
+      const cards = getCards();
       const scrollLeft = carousel.scrollLeft;
 
       if (scrollLeft <= 0) {
-        // Moved to clone of last → jump to real last
         carousel.scrollLeft = cardWidth * (cards.length - 2);
       } else if (scrollLeft >= cardWidth * (cards.length - 1)) {
-        // Moved to clone of first → jump to real first
         carousel.scrollLeft = cardWidth;
+      }
+    });
+
+    // Click-based navigation
+    carousel.addEventListener("click", (e) => {
+      const cards = getCards();
+      const cardWidth = getCardWidth();
+      const center = carousel.scrollLeft + carousel.offsetWidth / 2;
+
+      let closestCard = null;
+      let closestDistance = Infinity;
+      cards.forEach((card, i) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const distance = Math.abs(center - cardCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestCard = { card, i, center: cardCenter };
+        }
+      });
+
+      const clickedCard = e.target.closest(".carousel-card");
+      if (!clickedCard || clickedCard.dataset.clone) return;
+
+      const clickedIndex = cards.indexOf(clickedCard);
+      const currentIndex = closestCard.i;
+
+      if (clickedIndex < currentIndex) {
+        scrollToCard(currentIndex - 1);
+      } else if (clickedIndex > currentIndex) {
+        scrollToCard(currentIndex + 1);
+      }
+    });
+
+    // Keyboard left/right support
+    document.addEventListener("keydown", (e) => {
+      const cardWidth = getCardWidth();
+      if (e.key === "ArrowRight") {
+        carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
+      } else if (e.key === "ArrowLeft") {
+        carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
       }
     });
   </script>
 
 </body>
 </html>
+
