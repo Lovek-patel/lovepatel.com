@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Apple-Style Carousel</title>
+  <title>Apple-Style Infinite Carousel</title>
 
   <style>
     * {
@@ -78,7 +78,15 @@
 </head>
 <body>
 
-  <div class="carousel-container">
+  <div class="carousel-container" id="carousel">
+    <!-- CLONE: Last -->
+    <div class="carousel-card" data-clone="last">
+      <h2>Project 4</h2>
+      <p class="timeline">2023 – Present</p>
+      <p class="description">This is a placeholder description for Project 4.</p>
+    </div>
+
+    <!-- Actual Cards -->
     <div class="carousel-card">
       <h2>Project 1</h2>
       <p class="timeline">2024 – Present</p>
@@ -99,7 +107,38 @@
       <p class="timeline">2023 – Present</p>
       <p class="description">This is a placeholder description for Project 4.</p>
     </div>
+
+    <!-- CLONE: First -->
+    <div class="carousel-card" data-clone="first">
+      <h2>Project 1</h2>
+      <p class="timeline">2024 – Present</p>
+      <p class="description">This is a placeholder description for Project 1.</p>
+    </div>
   </div>
+
+  <script>
+    const carousel = document.getElementById("carousel");
+    const cards = carousel.querySelectorAll(".carousel-card");
+    const cardWidth = cards[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 0);
+
+    // Scroll to actual first card (index 1 because index 0 is clone of last)
+    window.addEventListener("load", () => {
+      carousel.scrollLeft = cardWidth;
+    });
+
+    // Handle looping
+    carousel.addEventListener("scroll", () => {
+      const scrollLeft = carousel.scrollLeft;
+
+      if (scrollLeft <= 0) {
+        // Moved to clone of last → jump to real last
+        carousel.scrollLeft = cardWidth * (cards.length - 2);
+      } else if (scrollLeft >= cardWidth * (cards.length - 1)) {
+        // Moved to clone of first → jump to real first
+        carousel.scrollLeft = cardWidth;
+      }
+    });
+  </script>
 
 </body>
 </html>
