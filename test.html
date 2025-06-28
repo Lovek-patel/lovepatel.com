@@ -3,9 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Seamless Infinite Carousel</title>
+  <title>Infinity Carousel</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -18,20 +22,20 @@
       height: 100vh;
       overflow: hidden;
     }
+
     .carousel-container {
       width: 100vw;
-      overflow: hidden;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
       display: flex;
       gap: 4vw;
       padding: 0 5vw;
       scroll-behavior: smooth;
     }
-    .carousel-wrapper {
-      display: flex;
-      transition: transform 0.5s ease;
-    }
+
     .carousel-card {
       flex: 0 0 80vw;
+      scroll-snap-align: center;
       border-radius: 20px;
       height: 600px;
       padding: 2rem;
@@ -42,101 +46,148 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
       box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+      background: linear-gradient(135deg, #202e78, #8c52ff);
     }
+
+    .carousel-card:nth-child(3n+1) {
+      background: linear-gradient(135deg, #1a4d2e, #4cb944);
+    }
+
+    .carousel-card:nth-child(3n+2) {
+      background: linear-gradient(135deg, #532e1c, #c07f00);
+    }
+
+    .carousel-card:nth-child(3n+3) {
+      background: linear-gradient(135deg, #35013f, #b3005e);
+    }
+
     .carousel-card:hover {
       box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
       transform: scale(1.02);
     }
-    .carousel-card:nth-child(3n+1) {
-      background: linear-gradient(135deg, #1a4d2e, #4cb944);
-    }
-    .carousel-card:nth-child(3n+2) {
-      background: linear-gradient(135deg, #532e1c, #c07f00);
-    }
-    .carousel-card:nth-child(3n+3) {
-      background: linear-gradient(135deg, #35013f, #b3005e);
-    }
+
     .carousel-card h2 {
       font-size: 2.5rem;
       margin: 0;
       color: #fff;
     }
+
     .carousel-card .timeline {
       font-style: italic;
       color: #eee;
       margin: 0.5rem 0 1rem;
     }
+
     .carousel-card .description {
       color: #fdfdfd;
       text-align: center;
       max-width: 90%;
       font-size: 1.2rem;
     }
+
+    .carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-container {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 <body>
 
   <div class="carousel-container" id="carousel">
-    <div class="carousel-wrapper" id="carouselWrapper">
-      <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Desc</p></div>
-      <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Desc</p></div>
-      <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Desc</p></div>
-      <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Desc</p></div>
-    </div>
+    <!-- Set A -->
+    <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
+    <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
+    <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set A</p></div>
+    <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set A</p></div>
+
+    <!-- Set B -->
+    <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
+    <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
+    <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set B</p></div>
+    <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set B</p></div>
+
+    <!-- Set C -->
+    <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
+    <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
+    <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set C</p></div>
+    <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set C</p></div>
   </div>
 
   <script>
-    const wrapper = document.getElementById("carouselWrapper");
-    const container = document.getElementById("carousel");
+    const carousel = document.getElementById("carousel");
+    const cards = carousel.querySelectorAll(".carousel-card");
+    const setSize = 4; // number of cards per set
+    const fullSetCount = 3; // A + B + C
+    const baseIndex = setSize; // index where Set B starts
 
-    let isAnimating = false;
-    const gap = parseInt(getComputedStyle(container).gap || "0");
-    const cardWidth = () => wrapper.querySelector('.carousel-card').offsetWidth + gap;
+    const cardWidth = () => {
+      const gap = parseInt(getComputedStyle(carousel).gap) || 0;
+      return cards[0].offsetWidth + gap;
+    };
 
-    function moveLeft() {
-      if (isAnimating) return;
-      isAnimating = true;
-
-      const last = wrapper.lastElementChild;
-      wrapper.insertBefore(last, wrapper.firstElementChild);
-      wrapper.style.transition = 'none';
-      wrapper.style.transform = `translateX(-${cardWidth()}px)`;
-
-      requestAnimationFrame(() => {
-        wrapper.style.transition = 'transform 0.5s ease';
-        wrapper.style.transform = `translateX(0)`;
-        setTimeout(() => isAnimating = false, 500);
+    function scrollToIndex(index, smooth = true) {
+      carousel.scrollTo({
+        left: index * cardWidth(),
+        behavior: smooth ? 'smooth' : 'auto'
       });
     }
 
-    function moveRight() {
-      if (isAnimating) return;
-      isAnimating = true;
-
-      wrapper.style.transition = 'transform 0.5s ease';
-      wrapper.style.transform = `translateX(-${cardWidth()}px)`;
-
-      setTimeout(() => {
-        wrapper.style.transition = 'none';
-        wrapper.style.transform = 'translateX(0)';
-        const first = wrapper.firstElementChild;
-        wrapper.appendChild(first);
-        isAnimating = false;
-      }, 500);
-    }
-
-    // Click on left/right half of card area
-    container.addEventListener("click", e => {
-      const x = e.clientX;
-      const center = window.innerWidth / 2;
-      if (x < center) moveLeft();
-      else moveRight();
+    // Start in the middle (Set B)
+    window.addEventListener("load", () => {
+      scrollToIndex(baseIndex, false);
     });
 
-    // Keyboard support
-    document.addEventListener("keydown", e => {
-      if (e.key === "ArrowLeft") moveLeft();
-      else if (e.key === "ArrowRight") moveRight();
+    // Scroll-wrapping logic
+    carousel.addEventListener("scroll", () => {
+      const cWidth = cardWidth();
+      const scrollLeft = carousel.scrollLeft;
+      const index = Math.round(scrollLeft / cWidth);
+
+      if (index < setSize) {
+        scrollToIndex(index + setSize, false);
+      } else if (index >= setSize * 2) {
+        scrollToIndex(index - setSize, false);
+      }
+    });
+
+    // Click navigation
+    carousel.addEventListener("click", (e) => {
+      const allCards = Array.from(carousel.querySelectorAll(".carousel-card"));
+      const cWidth = cardWidth();
+      const center = carousel.scrollLeft + carousel.offsetWidth / 2;
+
+      let closest = { i: -1, distance: Infinity };
+      allCards.forEach((card, i) => {
+        const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+        const dist = Math.abs(center - cardCenter);
+        if (dist < closest.distance) closest = { i, center: cardCenter, distance: dist };
+      });
+
+      const clickedCard = e.target.closest(".carousel-card");
+      if (!clickedCard) return;
+
+      const clickedIndex = allCards.indexOf(clickedCard);
+      const currentIndex = closest.i;
+
+      if (clickedIndex < currentIndex) {
+        scrollToIndex(currentIndex - 1);
+      } else if (clickedIndex > currentIndex) {
+        scrollToIndex(currentIndex + 1);
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener("keydown", (e) => {
+      const cWidth = cardWidth();
+      if (e.key === "ArrowRight") {
+        carousel.scrollBy({ left: cWidth, behavior: "smooth" });
+      } else if (e.key === "ArrowLeft") {
+        carousel.scrollBy({ left: -cWidth, behavior: "smooth" });
+      }
     });
   </script>
 
