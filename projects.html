@@ -348,7 +348,8 @@
   let current = totalVisible;
 
   function goToIndex(index, instant = false) {
-    carousel.scrollTo({ left: cardWidth() * index, behavior: instant ? "auto" : "smooth" });
+    const centerOffset = (carousel.offsetWidth - cardWidth()) / 2;
+    carousel.scrollTo({ left: cardWidth() * index - centerOffset, behavior: instant ? "auto" : "smooth" });
     current = index;
     updateDots();
   }
@@ -363,7 +364,7 @@
 
   carousel.addEventListener("scroll", () => {
     const scrollLeft = carousel.scrollLeft;
-    const i = Math.round(scrollLeft / cardWidth());
+    const i = Math.round((scrollLeft + (cardWidth() - carousel.offsetWidth) / 2) / cardWidth());
 
     if (i < totalVisible) goToIndex(i + totalVisible, true);
     else if (i >= totalVisible * 2) goToIndex(i - totalVisible, true);
