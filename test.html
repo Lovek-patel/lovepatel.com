@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infinity Carousel</title>
+  <title>Infinity Carousel Enhanced</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -17,6 +15,7 @@
       background: #0d0d0d;
       color: #f0d375;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       height: 100vh;
@@ -45,8 +44,12 @@
       align-items: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-      background: linear-gradient(135deg, #202e78, #8c52ff);
+      box-shadow: 0 0 30px rgba(50, 150, 255, 0.2); /* blue glow base */
+    }
+
+    .carousel-card:hover {
+      box-shadow: 0 0 40px rgba(50, 150, 255, 0.6); /* blue hover glow */
+      transform: scale(1.02);
     }
 
     .carousel-card:nth-child(3n+1) {
@@ -59,11 +62,6 @@
 
     .carousel-card:nth-child(3n+3) {
       background: linear-gradient(135deg, #35013f, #b3005e);
-    }
-
-    .carousel-card:hover {
-      box-shadow: 0 0 40px rgba(255, 215, 0, 0.6);
-      transform: scale(1.02);
     }
 
     .carousel-card h2 {
@@ -93,6 +91,26 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    /* DOT INDICATORS */
+    .dots {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      background-color: #777;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active {
+      background-color: #3296ff;
+    }
   </style>
 </head>
 <body>
@@ -117,66 +135,92 @@
     <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set C</p></div>
   </div>
 
+  <div class="dots" id="dotContainer">
+    <div class="dot" data-index="0"></div>
+    <div class="dot" data-index="1"></div>
+    <div class="dot" data-index="2"></div>
+    <div class="dot" data-index="3"></div>
+  </div>
+
   <script>
     const carousel = document.getElementById("carousel");
-    const cards = carousel.querySelectorAll(".carousel-card");
-    const setSize = 4; // number of cards per set
-    const fullSetCount = 3; // A + B + C
-    const baseIndex = setSize; // index where Set B starts
+    const dotContainer = document.getElementById("dotContainer");
+    const dots = Array.from(dotContainer.querySelectorAll(".dot"));
+    const setSize = 4;
+    const totalCards = 12;
+    const baseIndex = setSize; // Set B starts at index 4
 
     const cardWidth = () => {
       const gap = parseInt(getComputedStyle(carousel).gap) || 0;
-      return cards[0].offsetWidth + gap;
+      return carousel.querySelector(".carousel-card").offsetWidth + gap;
     };
 
     function scrollToIndex(index, smooth = true) {
       carousel.scrollTo({
-        left: index * cardWidth(),
+        left: (baseIndex + index) * cardWidth(),
         behavior: smooth ? 'smooth' : 'auto'
       });
     }
 
-    // Start in the middle (Set B)
+    // Start centered
     window.addEventListener("load", () => {
-      scrollToIndex(baseIndex, false);
+      scrollToIndex(0, false);
+      updateDots(0);
     });
 
-    // Scroll-wrapping logic
+    // Infinite loop handler
     carousel.addEventListener("scroll", () => {
       const cWidth = cardWidth();
       const scrollLeft = carousel.scrollLeft;
       const index = Math.round(scrollLeft / cWidth);
 
       if (index < setSize) {
-        scrollToIndex(index + setSize, false);
+        carousel.scrollLeft = scrollLeft + setSize * cWidth;
       } else if (index >= setSize * 2) {
-        scrollToIndex(index - setSize, false);
+        carousel.scrollLeft = scrollLeft - setSize * cWidth;
       }
+
+      const relativeIndex = ((index - baseIndex) + setSize) % setSize;
+      updateDots(relativeIndex);
     });
+
+    // Dot click behavior
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const i = parseInt(dot.dataset.index);
+        scrollToIndex(i);
+      });
+    });
+
+    function updateDots(activeIndex) {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("active", i === activeIndex);
+      });
+    }
 
     // Click navigation
     carousel.addEventListener("click", (e) => {
-      const allCards = Array.from(carousel.querySelectorAll(".carousel-card"));
+      const cards = Array.from(carousel.querySelectorAll(".carousel-card"));
       const cWidth = cardWidth();
       const center = carousel.scrollLeft + carousel.offsetWidth / 2;
 
       let closest = { i: -1, distance: Infinity };
-      allCards.forEach((card, i) => {
+      cards.forEach((card, i) => {
         const cardCenter = card.offsetLeft + card.offsetWidth / 2;
         const dist = Math.abs(center - cardCenter);
-        if (dist < closest.distance) closest = { i, center: cardCenter, distance: dist };
+        if (dist < closest.distance) closest = { i, distance: dist };
       });
 
       const clickedCard = e.target.closest(".carousel-card");
       if (!clickedCard) return;
 
-      const clickedIndex = allCards.indexOf(clickedCard);
+      const clickedIndex = cards.indexOf(clickedCard);
       const currentIndex = closest.i;
 
       if (clickedIndex < currentIndex) {
-        scrollToIndex(currentIndex - 1);
+        carousel.scrollTo({ left: (currentIndex - 1) * cWidth, behavior: "smooth" });
       } else if (clickedIndex > currentIndex) {
-        scrollToIndex(currentIndex + 1);
+        carousel.scrollTo({ left: (currentIndex + 1) * cWidth, behavior: "smooth" });
       }
     });
 
