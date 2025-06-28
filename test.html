@@ -244,11 +244,15 @@
     carousel.addEventListener("scroll", () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        handleInfiniteLoop();
-        const { relativeIndex } = getCurrentIndex();
-        updateDots(relativeIndex);
-      }, 100); // Wait briefly to allow smooth scroll to finish
+        // Wait one animation frame = cleanest scroll correction timing
+        requestAnimationFrame(() => {
+          handleInfiniteLoop();
+          const { relativeIndex } = getCurrentIndex();
+          updateDots(relativeIndex);
+        });
+      }, 10); // Faster reaction, feels instant
     });
+
   </script>
 </body>
 </html>
