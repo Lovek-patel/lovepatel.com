@@ -256,12 +256,13 @@
 
 <style>
   .carousel-container {
-    width: 95%;
+    width: 100vw;
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     display: flex;
+    justify-content: center;
     gap: 4vw;
-    padding: 0 5vw;
+    padding: 0;
     scroll-behavior: smooth;
   }
 
@@ -351,7 +352,7 @@
     const style = getComputedStyle(carousel);
     const paddingLeft = parseInt(style.paddingLeft || 0);
     const paddingRight = parseInt(style.paddingRight || 0);
-    const centerOffset = (carousel.clientWidth - cardWidth() + paddingLeft - paddingRight) / 2;
+    const centerOffset = carousel.offsetWidth / 2 - cardWidth() / 2;
     carousel.scrollTo({ left: cardWidth() * index - centerOffset, behavior: instant ? "auto" : "smooth" });
     current = index;
     updateDots();
