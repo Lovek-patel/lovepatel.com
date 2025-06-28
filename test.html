@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interactive Infinite Carousel</title>
+  <title>Carousel – Polished Edition</title>
 
   <style>
     * {
@@ -28,13 +28,13 @@
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
       display: flex;
-      gap: 2vw;
+      gap: 4vw; /* more space between cards */
       padding: 0 5vw;
       scroll-behavior: smooth;
     }
 
     .carousel-card {
-      flex: 0 0 85vw;
+      flex: 0 0 80vw; /* smaller card = more gap space */
       scroll-snap-align: center;
       background: #1a1a1a;
       border-radius: 20px;
@@ -85,7 +85,7 @@
 <body>
 
   <div class="carousel-container" id="carousel">
-    <!-- CLONE: Last -->
+    <!-- Clone of last (Project 4) -->
     <div class="carousel-card" data-clone="last">
       <h2>Project 4</h2>
       <p class="timeline">2023 – Present</p>
@@ -114,7 +114,7 @@
       <p class="description">This is a placeholder description for Project 4.</p>
     </div>
 
-    <!-- CLONE: First -->
+    <!-- Clone of first (Project 1) -->
     <div class="carousel-card" data-clone="first">
       <h2>Project 1</h2>
       <p class="timeline">2024 – Present</p>
@@ -127,32 +127,36 @@
     const getCards = () => Array.from(carousel.querySelectorAll(".carousel-card"));
     const getCardWidth = () => getCards()[0].offsetWidth + parseInt(getComputedStyle(carousel).gap || 0);
 
-    function scrollToCard(index) {
+    function scrollToCard(index, smooth = true) {
       carousel.scrollTo({
         left: getCardWidth() * index,
-        behavior: "smooth"
+        behavior: smooth ? "smooth" : "auto"
       });
     }
 
-    // Initial offset (skip cloned card at start)
+    // Go to real first card on load
     window.addEventListener("load", () => {
-      carousel.scrollLeft = getCardWidth();
+      scrollToCard(1, false);
     });
 
-    // Loop logic
+    // Wrap-around logic
     carousel.addEventListener("scroll", () => {
       const cardWidth = getCardWidth();
       const cards = getCards();
       const scrollLeft = carousel.scrollLeft;
 
+      // clone of last → real last
       if (scrollLeft <= 0) {
-        carousel.scrollLeft = cardWidth * (cards.length - 2);
-      } else if (scrollLeft >= cardWidth * (cards.length - 1)) {
-        carousel.scrollLeft = cardWidth;
+        scrollToCard(cards.length - 2, false);
+      }
+
+      // clone of first → real first
+      if (scrollLeft >= cardWidth * (cards.length - 1)) {
+        scrollToCard(1, false);
       }
     });
 
-    // Click-based navigation
+    // Click to scroll
     carousel.addEventListener("click", (e) => {
       const cards = getCards();
       const cardWidth = getCardWidth();
@@ -182,7 +186,7 @@
       }
     });
 
-    // Keyboard left/right support
+    // Keyboard navigation
     document.addEventListener("keydown", (e) => {
       const cardWidth = getCardWidth();
       if (e.key === "ArrowRight") {
@@ -195,4 +199,3 @@
 
 </body>
 </html>
-
