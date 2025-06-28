@@ -8,69 +8,72 @@
   <!-- Flickity CSS -->
   <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
 
-<style>
-  * {
-    box-sizing: border-box;
-  }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 0;
-    background: #0d0d0d;
-    font-family: Georgia, serif;
-    color: #f0d375;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+    body {
+      margin: 0;
+      background: #0d0d0d;
+      font-family: Georgia, serif;
+      color: #f0d375;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow-x: hidden;
+    }
 
-  .gallery {
-    width: 98vw; /* Changed from 90% max-width 1000px */
-  }
+    .gallery {
+      width: 100vw;
+    }
 
-  .gallery-cell {
-    width: 98vw; /* Matches full screen width */
-    background: #1a1a1a;
-    border-radius: 20px;
-    height: 600px; /* Increased height from 500px */
-    margin: 0 10px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
-  }
+    .gallery-cell {
+      width: 100vw;
+      background: #1a1a1a;
+      border-radius: 20px;
+      height: 600px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+    }
 
-  .gallery-cell h2 {
-    margin: 0;
-    font-size: 2.5rem;
-  }
+    .gallery-cell h2 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
 
-  .gallery-cell .timeline {
-    font-style: italic;
-    color: #bbb;
-    margin: 0.5rem 0 1rem;
-  }
+    .gallery-cell .timeline {
+      font-style: italic;
+      color: #bbb;
+      margin: 0.5rem 0 1rem;
+    }
 
-  .gallery-cell .description {
-    color: #ddd;
-    text-align: center;
-    max-width: 90%;
-    font-size: 1.2rem;
-  }
+    .gallery-cell .description {
+      color: #ddd;
+      text-align: center;
+      max-width: 90%;
+      font-size: 1.2rem;
+    }
 
-  .flickity-slider .is-selected {
-    transform: scale(1.03);
-    transition: transform 0.3s;
-  }
-</style>
-
+    .flickity-slider .is-selected {
+      transform: scale(1.03);
+      transition: transform 0.3s;
+    }
+  </style>
 </head>
 <body>
 
   <div class="gallery js-flickity"
-    data-flickity-options='{ "wrapAround": true, "pageDots": false }'>
+    data-flickity-options='{
+      "wrapAround": true,
+      "pageDots": false,
+      "contain": true
+    }'>
     <div class="gallery-cell">
       <h2>Project 1</h2>
       <p class="timeline">2024 – Present</p>
