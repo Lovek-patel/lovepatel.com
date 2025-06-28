@@ -234,168 +234,231 @@
     </div>
   </section>
 
-<!-- ===== ENGINEERING SECTION (Looping Carousel with Center Focus) ===== -->
+<!-- ===== ENGINEERING SECTION (Modular Infinite Carousel) ===== -->
 <section class="project-group" id="engineering">
   <h2>⚙️ Engineering</h2>
-  <div class="carousel-container">
-    <div class="carousel-track" id="carouselTrack">
 
-      <!-- ASCEND -->
-      <div class="carousel-card active">
-        <img src="placeholder_logo.png" alt="ASCEND Logo" class="carousel-logo" />
-        <h3>ASCEND</h3>
-        <p class="timeline">2024 – Present</p>
-        <p class="description">
-          A bold vision of technological ambition and innovation, developed to shape the future.
-        </p>
-      </div>
+  <div class="engineering-carousel-container" id="engineeringCarousel">
+    <!-- Set A -->
+    <div class="engineering-card"><h3>ASCEND</h3><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
+    <div class="engineering-card"><h3>Zenith</h3><p class="timeline">2025 – Present</p><p class="description">Set A</p></div>
+    <div class="engineering-card"><h3>Stratum</h3><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
 
-      <!-- Zenith -->
-      <div class="carousel-card">
-        <img src="placeholder_logo.png" alt="Zenith Logo" class="carousel-logo" />
-        <h3>Zenith</h3>
-        <p class="timeline">2025 – Present</p>
-        <p class="description">
-          A bold vision of technological ambition and innovation, developed to shape the future.
-        </p>
-      </div>
+    <!-- Set B -->
+    <div class="engineering-card"><h3>ASCEND</h3><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
+    <div class="engineering-card"><h3>Zenith</h3><p class="timeline">2025 – Present</p><p class="description">Set B</p></div>
+    <div class="engineering-card"><h3>Stratum</h3><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
 
-      <!-- Stratum -->
-      <div class="carousel-card">
-        <img src="placeholder_logo.png" alt="Stratum Logo" class="carousel-logo" />
-        <h3>Stratum</h3>
-        <p class="timeline">2024 – Present</p>
-        <p class="description">
-          A bold vision of technological ambition and innovation, developed to shape the future.
-        </p>
-      </div>
-
-    </div>
+    <!-- Set C -->
+    <div class="engineering-card"><h3>ASCEND</h3><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
+    <div class="engineering-card"><h3>Zenith</h3><p class="timeline">2025 – Present</p><p class="description">Set C</p></div>
+    <div class="engineering-card"><h3>Stratum</h3><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
   </div>
+
+  <div class="engineering-dots" id="engineeringDots">
+    <div class="engineering-dot" data-index="0"></div>
+    <div class="engineering-dot" data-index="1"></div>
+    <div class="engineering-dot" data-index="2"></div>
+  </div>
+
+  <style>
+    #engineering .engineering-carousel-container {
+      width: 100vw;
+      overflow-x: scroll;
+      scroll-snap-type: x mandatory;
+      display: flex;
+      gap: 4vw;
+      padding: 0 5vw;
+      scroll-behavior: smooth;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    #engineering .engineering-carousel-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    #engineering .engineering-card {
+      flex: 0 0 80vw;
+      scroll-snap-align: center;
+      border-radius: 20px;
+      height: 600px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba(50, 150, 255, 0.2);
+    }
+
+    #engineering .engineering-card:hover {
+      box-shadow: 0 0 40px rgba(50, 150, 255, 0.6);
+      transform: scale(1.02);
+    }
+
+    #engineering .engineering-card:nth-child(3n+1) {
+      background: linear-gradient(135deg, #1a4d2e, #4cb944);
+    }
+
+    #engineering .engineering-card:nth-child(3n+2) {
+      background: linear-gradient(135deg, #532e1c, #c07f00);
+    }
+
+    #engineering .engineering-card:nth-child(3n+3) {
+      background: linear-gradient(135deg, #35013f, #b3005e);
+    }
+
+    #engineering .engineering-card h3 {
+      font-size: 2rem;
+      margin: 0;
+      color: #fff;
+    }
+
+    #engineering .timeline {
+      font-style: italic;
+      color: #eee;
+      margin: 0.5rem 0 1rem;
+    }
+
+    #engineering .description {
+      color: #fdfdfd;
+      text-align: center;
+      max-width: 90%;
+      font-size: 1.2rem;
+    }
+
+    #engineering .engineering-dots {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    #engineering .engineering-dot {
+      width: 12px;
+      height: 12px;
+      background-color: #777;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #engineering .engineering-dot.active {
+      background-color: #3296ff;
+    }
+  </style>
+
+  <script>
+    (function() {
+      const carousel = document.getElementById("engineeringCarousel");
+      const dotContainer = document.getElementById("engineeringDots");
+      const dots = Array.from(dotContainer.querySelectorAll(".engineering-dot"));
+      const setSize = 3;
+      const baseIndex = setSize;
+
+      let cardWidth;
+      function calcCardWidth() {
+        const gap = parseInt(getComputedStyle(carousel).gap) || 0;
+        cardWidth = carousel.querySelector(".engineering-card").offsetWidth + gap;
+      }
+
+      function scrollToIndex(index, smooth = true) {
+        carousel.scrollTo({
+          left: (baseIndex + index) * cardWidth,
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+
+      function updateDots(activeIndex) {
+        dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === activeIndex);
+        });
+      }
+
+      function getCurrentIndex() {
+        const scrollLeft = carousel.scrollLeft;
+        const rawIndex = Math.round(scrollLeft / cardWidth);
+        const relativeIndex = ((rawIndex - baseIndex + setSize) % setSize);
+        return { rawIndex, relativeIndex };
+      }
+
+      function handleInfiniteLoop() {
+        const { rawIndex } = getCurrentIndex();
+        if (rawIndex < setSize) {
+          carousel.scrollLeft += setSize * cardWidth;
+        } else if (rawIndex >= setSize * 2) {
+          carousel.scrollLeft -= setSize * cardWidth;
+        }
+      }
+
+      // INIT
+      window.addEventListener("load", () => {
+        calcCardWidth();
+        scrollToIndex(0, false);
+        updateDots(0);
+      });
+
+      window.addEventListener("resize", calcCardWidth);
+
+      // Click nav
+      carousel.addEventListener("click", (e) => {
+        const cards = Array.from(carousel.querySelectorAll(".engineering-card"));
+        const center = carousel.scrollLeft + carousel.offsetWidth / 2;
+
+        let closest = { i: -1, distance: Infinity };
+        cards.forEach((card, i) => {
+          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+          const dist = Math.abs(center - cardCenter);
+          if (dist < closest.distance) closest = { i };
+        });
+
+        const clickedCard = e.target.closest(".engineering-card");
+        if (!clickedCard) return;
+        const clickedIndex = cards.indexOf(clickedCard);
+        const currentIndex = closest.i;
+
+        if (clickedIndex < currentIndex) {
+          carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
+        } else if (clickedIndex > currentIndex) {
+          carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
+        }
+      });
+
+      // Keyboard nav
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowRight") {
+          carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
+        } else if (e.key === "ArrowLeft") {
+          carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
+        }
+      });
+
+      // Dot clicks
+      dots.forEach(dot => {
+        dot.addEventListener("click", () => {
+          const i = parseInt(dot.dataset.index);
+          scrollToIndex(i);
+        });
+      });
+
+      // Sync on scroll
+      let scrollTimeout;
+      carousel.addEventListener("scroll", () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          requestAnimationFrame(() => {
+            handleInfiniteLoop();
+            const { relativeIndex } = getCurrentIndex();
+            updateDots(relativeIndex);
+          });
+        }, 10);
+      });
+    })();
+  </script>
 </section>
 
-<style>
-  .carousel-container {
-    position: relative;
-    max-width: 1200px;
-    margin: 2rem auto;
-    overflow: hidden;
-  }
-
-  .carousel-track {
-    display: flex;
-    gap: 2rem;
-    transition: transform 0.5s ease-in-out;
-    align-items: center;
-  }
-
-  .carousel-card {
-    flex: 0 0 60%;
-    margin: 0 auto;
-    background-color: #1a1a1a;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.1);
-    text-align: center;
-    transform: scale(0.9);
-    opacity: 0.5;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    height: 550px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  .carousel-card.active {
-    transform: scale(1.05);
-    opacity: 1;
-    box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
-    z-index: 2;
-  }
-
-  .carousel-logo {
-    height: 130px;
-    margin-bottom: 1rem;
-    object-fit: contain;
-  }
-
-  .carousel-card h3 {
-    font-size: 2rem;
-    color: #f0d375;
-    margin-bottom: 0.4rem;
-  }
-
-  .timeline {
-    font-style: italic;
-    color: #aaa;
-    margin-bottom: 1.2rem;
-  }
-
-  .description {
-    font-size: 1.1rem;
-    color: #ddd;
-    line-height: 1.6;
-    padding: 0 1rem;
-  }
-</style>
-
-<script>
-  const track = document.getElementById('carouselTrack');
-  const cards = Array.from(track.querySelectorAll('.carousel-card'));
-  let slideIndex = 0;
-
-  function updateCarousel() {
-    const total = cards.length;
-
-    cards.forEach((card, index) => {
-      card.classList.remove('active');
-      card.style.transform = 'scale(0.9)';
-      card.style.opacity = '0.5';
-    });
-
-    const activeCard = cards[slideIndex];
-    activeCard.classList.add('active');
-    activeCard.style.transform = 'scale(1.05)';
-    activeCard.style.opacity = '1';
-
-    const containerWidth = document.querySelector('.carousel-container').offsetWidth;
-    const cardWidth = activeCard.offsetWidth + 32;
-    const offset = (cardWidth * slideIndex) - ((containerWidth - cardWidth) / 2);
-    track.style.transform = translateX(-${offset}px);
-  }
-
-  function nextSlide() {
-    slideIndex = (slideIndex + 1) % cards.length;
-    updateCarousel();
-  }
-
-  function prevSlide() {
-    slideIndex = (slideIndex - 1 + cards.length) % cards.length;
-    updateCarousel();
-  }
-
-  cards.forEach((card, index) => {
-    card.addEventListener('click', () => {
-      // Always move to the clicked card
-      slideIndex = index;
-      updateCarousel();
-    });
-  });
-
-  // Ensure the first card is centered on load
-  window.addEventListener('DOMContentLoaded', () => {
-    updateCarousel();
-  });
-
-  // Responsive adjustment
-  window.addEventListener('resize', updateCarousel);
-
-  // Optional keyboard nav
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowRight') nextSlide();
-    if (e.key === 'ArrowLeft') prevSlide();
-  });
-</script>
 
   <!-- ===== CHEMISTRY SECTION ===== -->
   <section class="project-group" id="chemistry">
