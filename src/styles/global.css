@@ -25,9 +25,15 @@
     --moon-accent: radial-gradient(circle at 70% 30%, rgba(244, 240, 255, 0.18) 0%, rgba(244, 240, 255, 0.08) 35%, transparent 60%),
       radial-gradient(circle at 68% 28%, rgba(180, 205, 255, 0.08) 0%, transparent 55%);
 
-main
-    --vignette: radial-gradient(120% 120% at 50% 30%, transparent 0%, rgba(3, 6, 16, 0.45) 55%, rgba(3, 6, 16, 0.8) 100%);
-  }
+main {
+  --vignette: radial-gradient(
+    120% 120% at 50% 30%,
+    transparent 0%,
+    rgba(3, 6, 16, 0.45) 55%,
+    rgba(3, 6, 16, 0.8) 100%
+  );
+}
+
 
   [data-theme='light'] {
     color-scheme: light;
