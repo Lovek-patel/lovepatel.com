@@ -5,31 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Love Patel</title>
+  <meta name="description" content="Love Patel's personal website featuring projects, life updates, and professional highlights." />
+  <meta property="og:title" content="Love Patel" />
+  <meta property="og:description" content="Explore projects, life updates, and professional highlights." />
+  <meta property="og:type" content="website" />
+  <link rel="stylesheet" href="site.css" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
-
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #0b0b0b;
-      color: #f5f5f5;
       overflow-x: hidden;
       padding-top: 70px;
     }
 
     /* ---------- NAVIGATION BAR ---------- */
     .top-bar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #0b0b0b;
-      color: white;
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     }
 
     .logo img {
@@ -37,51 +27,25 @@
     }
 
     .menu-button {
-      font-size: 1.4rem;
-      padding: 0.5rem 1rem;
-      background-color: #1c1c1c;
-      border: 1px solid #333;
-      border-radius: 8px;
-      cursor: pointer;
-      color: #f5f5f5;
       margin-right: 2.5rem; /* Same as 'about.html' */
     }
 
     .menu-button:hover {
-      background-color: #333;
+      background-color: var(--color-surface-muted);
     }
 
     .menu-popup {
-      position: fixed;
       top: 60px;
-      right: 1.5rem;
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1rem 2rem;
-      display: none;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-      text-align: center;
-      animation: fadeIn 0.3s ease-in-out;
     }
 
     .menu-popup a {
-      color: #f5f5f5;
       font-size: 1.1rem;
       text-decoration: none;
       transition: color 0.2s ease;
     }
 
     .menu-popup a:hover {
-      color: #c79c3b;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      color: var(--color-accent);
     }
 
     section {
@@ -106,14 +70,14 @@
     .tagline {
       font-size: 1.75rem;
       font-style: italic;
-      color: #c79c3b;
+      color: var(--color-accent);
       max-width: 600px;
       margin-bottom: 2rem;
     }
 
     .section-heading {
       font-family: 'Playfair Display', serif;
-      color: #c79c3b;
+      color: var(--color-accent);
       font-size: 2rem;
       margin-bottom: 1.5rem;
       text-decoration: none;
@@ -128,19 +92,19 @@
     }
 
     .card {
-      background: linear-gradient(145deg, #1c1c1c, #131313);
+      background: linear-gradient(145deg, var(--color-surface-strong), var(--color-surface));
       border-radius: 16px;
       padding: 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 20px var(--color-shadow);
       transition: all 0.3s ease;
     }
 
     .card:hover {
       transform: scale(1.04);
-      box-shadow: 0 6px 30px rgba(199, 156, 59, 0.3);
+      box-shadow: 0 6px 30px var(--color-shadow-accent);
     }
 
     .emoji {
@@ -151,23 +115,23 @@
     .title {
       font-size: 1.2rem;
       font-weight: 600;
-      color: #f5f5f5;
+      color: var(--color-text);
       text-decoration: none;
     }
 
     .fake-box {
-      border: 1px dashed #444;
+      border: 1px dashed var(--color-border);
       padding: 2rem;
       border-radius: 12px;
-      color: #999;
+      color: var(--color-muted);
       font-style: italic;
-      background-color: #141414;
+      background-color: var(--color-surface);
     }
 
     footer {
       text-align: center;
       font-size: 0.9rem;
-      color: #777;
+      color: var(--color-muted);
       padding: 2rem;
     }
   </style>
@@ -175,66 +139,73 @@
 
 <!-- ---------- BODY ---------- -->
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <!-- 🔹 NAVIGATION BAR -->
   <div class="top-bar">
     <div class="logo">
       <img src="Logo.png" alt="Love Patel Logo">
     </div>
-    <div class="menu-button" onclick="toggleMenu()">≡</div>
+    <div class="top-bar-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme" aria-pressed="false">🌙</button>
+      <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="menuPopup">≡</button>
+    </div>
   </div>
 
   <!-- 🔹 POPUP MENU -->
-  <div class="menu-popup" id="menuPopup">
+  <nav class="menu-popup" id="menuPopup" data-menu>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="projects.html">Projects</a>
     <a href="blog.html">Blog</a>
     <a href="updates.html">Updates</a>
+    <a href="resume.html">Resume</a>
     <a href="contact.html">Contact</a>
-  </div>
+  </nav>
 
   <!-- 🔸 HERO SECTION -->
-  <section class="hero">
+  <main id="main-content">
+    <section class="hero">
     <div class="hero-icon">🌠</div>
     <div class="tagline">I hope to make the impossible feel inevitable.</div>
-  </section>
+    </section>
 
   <!-- 🔸 SECTION: PHILOSOPHY -->
-  <section>
+    <section>
     <a href="about.html" class="section-heading">What I Stand For</a>
     <p style="max-width: 800px; margin: 0 auto;">A place for your mission, purpose, and why this site exists. Later you’ll describe your values and what you’re building toward.</p>
-  </section>
+    </section>
 
   <!-- 🔸 SECTION: EXPERIENCE OVERVIEW -->
-  <section>
+    <section>
     <a href="about.html" class="section-heading">What I'm Doing</a>
     <p style="max-width: 800px; margin: 0 auto;">Current roles, education, and professional direction. This can outline your position, research, or active projects.</p>
-  </section>
+    </section>
 
   <!-- 🔸 SECTION: PROJECTS PREVIEW -->
-  <section>
+    <section>
     <a href="projects.html" class="section-heading">Projects</a>
     <div class="preview-grid">
       <div class="card"><div class="emoji">🌿</div><div class="title">Project 1</div></div>
       <div class="card"><div class="emoji">🔮</div><div class="title">Project 2</div></div>
       <div class="card"><div class="emoji">🧬</div><div class="title">Project 3</div></div>
     </div>
-  </section>
+    </section>
 
   <!-- 🔸 SECTION: BLOG PREVIEW -->
-  <section>
+    <section>
     <a href="blog.html" class="section-heading">Blog</a>
     <div class="preview-grid">
       <div class="card"><div class="emoji">📝</div><div class="title">Article 1</div></div>
       <div class="card"><div class="emoji">🗣️</div><div class="title">Article 2</div></div>
     </div>
-  </section>
+    </section>
 
   <!-- 🔸 SECTION: UPDATES LOCK PREVIEW -->
-  <section>
+    <section>
     <a href="updates.html" class="section-heading">Updates</a>
     <div class="fake-box">Sign up or log in to see private updates. (Feature coming soon)</div>
-  </section>
+    </section>
+  </main>
 
   <!-- 🔹 FOOTER -->
   <footer>
@@ -242,11 +213,6 @@
   </footer>
 
   <!-- 🔹 SCRIPT: Menu Toggle -->
-  <script>
-    function toggleMenu() {
-      const popup = document.getElementById('menuPopup');
-      popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
-    }
-  </script>
+  <script src="site.js"></script>
 </body>
 </html>

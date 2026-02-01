@@ -4,29 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Updates | Love Patel</title>
+  <meta name="description" content="Private updates and announcements from Love Patel." />
+  <link rel="stylesheet" href="site.css" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap');
-
     body {
       margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #0b0b0b;
-      color: #f5f5f5;
       padding-top: 70px;
     }
 
     .top-bar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #0b0b0b;
-      color: white;
-      display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 999;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
     }
 
     .logo img {
@@ -34,51 +21,25 @@
     }
 
     .menu-button {
-      font-size: 1.4rem;
-      padding: 0.5rem 1rem;
-      background-color: #1c1c1c;
-      border: 1px solid #333;
-      border-radius: 8px;
-      cursor: pointer;
-      color: #f5f5f5;
       margin-right: 2.5rem;
     }
 
     .menu-button:hover {
-      background-color: #333;
+      background-color: var(--color-surface-muted);
     }
 
     .menu-popup {
-      position: fixed;
       top: 60px;
-      right: 1.5rem;
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1rem 2rem;
-      display: none;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 1000;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
-      text-align: center;
-      animation: fadeIn 0.3s ease-in-out;
     }
 
     .menu-popup a {
-      color: #f5f5f5;
       font-size: 1.1rem;
       text-decoration: none;
       transition: color 0.2s ease;
     }
 
     .menu-popup a:hover {
-      color: #c79c3b;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-10px); }
-      to { opacity: 1; transform: translateY(0); }
+      color: var(--color-accent);
     }
 
     .container {
@@ -96,7 +57,7 @@
     }
 
     .login-box {
-      background-color: #222;
+      background-color: var(--color-surface-strong);
       padding: 2rem;
       border-radius: 8px;
       text-align: center;
@@ -108,31 +69,33 @@
       margin: 0.5rem 0;
       border: none;
       border-radius: 4px;
+      background: var(--color-input-bg);
+      color: var(--color-text);
     }
 
     button {
       padding: 0.6rem 1.2rem;
-      background-color: #444;
-      color: white;
+      background-color: var(--color-surface-muted);
+      color: var(--color-text);
       border: none;
       border-radius: 4px;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #666;
+      background-color: var(--color-border);
     }
 
     .announcement {
-      background: #292929;
-      border-left: 5px solid orange;
+      background: var(--color-surface-strong);
+      border-left: 5px solid var(--color-accent);
       padding: 1.5rem;
       margin: 2rem 0;
       border-radius: 8px;
     }
 
     .update-preview {
-      background: #1a1a1a;
+      background: var(--color-surface-muted);
       padding: 1rem;
       margin: 1rem 0;
       border-radius: 12px;
@@ -149,7 +112,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background: rgba(0, 0, 0, 0.95);
+      background: rgba(0, 0, 0, 0.9);
       z-index: 1000;
       overflow-y: scroll;
       padding: 3rem 1rem;
@@ -158,10 +121,10 @@
     .modal-content {
       max-width: 800px;
       margin: 0 auto;
-      background: #111;
+      background: var(--color-surface);
       padding: 2rem;
       border-radius: 10px;
-      color: #fff;
+      color: var(--color-text);
     }
 
     .close {
@@ -169,32 +132,37 @@
       font-size: 1.2rem;
       display: inline-block;
       margin-bottom: 1rem;
-      color: #ccc;
+      color: var(--color-muted);
     }
 
     .close:hover {
-      color: #fff;
+      color: var(--color-text);
     }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="top-bar">
     <div class="logo">
       <img src="Logo.png" alt="Love Patel Logo">
     </div>
-    <div class="menu-button" onclick="toggleMenu()">≡</div>
+    <div class="top-bar-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme" aria-pressed="false">🌙</button>
+      <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="menuPopup">≡</button>
+    </div>
   </div>
 
-  <div class="menu-popup" id="menuPopup">
+  <nav class="menu-popup" id="menuPopup" data-menu>
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="projects.html">Projects</a>
     <a href="blog.html">Blog</a>
     <a href="updates.html">Updates</a>
+    <a href="resume.html">Resume</a>
     <a href="contact.html">Contact</a>
-  </div>
+  </nav>
 
-  <div class="container">
+  <main class="container" id="main-content">
     <div class="login-section active" id="login-section">
       <div class="login-box">
         <h2>🔒 Updates Access</h2>
@@ -235,7 +203,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 
   <script>
     const validPasswords = ["patel2025", "ascend", "primis"];
@@ -273,18 +241,7 @@
       document.getElementById(id).style.display = 'none';
     }
 
-    function toggleMenu() {
-      const popup = document.getElementById('menuPopup');
-      popup.style.display = popup.style.display === 'flex' ? 'none' : 'flex';
-    }
-
-    document.addEventListener('click', (e) => {
-      const popup = document.getElementById('menuPopup');
-      const button = document.querySelector('.menu-button');
-      if (!popup.contains(e.target) && !button.contains(e.target)) {
-        popup.style.display = 'none';
-      }
-    });
   </script>
+  <script src="site.js"></script>
 </body>
 </html>

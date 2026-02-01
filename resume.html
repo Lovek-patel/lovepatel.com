@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume | Love Patel</title>
+  <meta name="description" content="Download Love Patel's resume and review highlights." />
+  <link rel="stylesheet" href="site.css" />
+  <style>
+    body {
+      padding-top: 70px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .resume-card {
+      background: var(--color-surface-muted);
+      border-radius: 16px;
+      padding: 2.5rem;
+      box-shadow: 0 10px 30px var(--color-shadow);
+    }
+
+    .resume-card h1 {
+      margin-top: 0;
+      font-family: 'Playfair Display', serif;
+      color: var(--color-accent-strong);
+    }
+
+    .resume-card p {
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    .resume-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .resume-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.5rem;
+      border-radius: 10px;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface-strong);
+      color: var(--color-text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .resume-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px var(--color-shadow-accent);
+    }
+
+    .resume-highlights {
+      margin-top: 2rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .highlight {
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="top-bar">
+    <div class="logo">
+      <img src="Logo.png" alt="Love Patel Logo">
+    </div>
+    <div class="top-bar-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme" aria-pressed="false">🌙</button>
+      <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="menuPopup">≡</button>
+    </div>
+  </div>
+
+  <nav class="menu-popup" id="menuPopup" data-menu>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog.html">Blog</a>
+    <a href="updates.html">Updates</a>
+    <a href="resume.html">Resume</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="container" id="main-content">
+    <div class="resume-card">
+      <h1>Resume</h1>
+      <p>
+        Download the latest version of my resume for an overview of my education, experience, and current focus.
+      </p>
+      <div class="resume-actions">
+        <a class="resume-button" href="resume.pdf" download>
+          ⬇️ Download Resume PDF
+        </a>
+        <a class="resume-button" href="contact.html">
+          📬 Contact Me
+        </a>
+      </div>
+
+      <div class="resume-highlights">
+        <div class="highlight">
+          <strong>Focus Areas:</strong> Biomedical engineering, human-centered systems, and interdisciplinary research.
+        </div>
+        <div class="highlight">
+          <strong>Recent Work:</strong> Research in chemistry, AI systems, and educational design initiatives.
+        </div>
+        <div class="highlight">
+          <strong>Collaboration:</strong> Open to research, writing, and product collaboration opportunities.
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="site.js"></script>
+</body>
+</html>
