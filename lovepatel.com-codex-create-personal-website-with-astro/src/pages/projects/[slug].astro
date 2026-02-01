@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import Tag from '../../components/Tag.astro';
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+type Props = {
+  project: CollectionEntry<'projects'>;
+};
+
+const { project } = Astro.props;
+---
+<BaseLayout title={project.data.title} description={project.data.summary}>
+  <Header slot="header" />
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <a class="text-sm text-starlight/60" href="/projects">← Back to projects</a>
+    <h1 class="mt-6 font-serif text-4xl font-semibold">{project.data.title}</h1>
+    <p class="mt-4 text-lg text-starlight/70">{project.data.summary}</p>
+    <div class="mt-6 flex flex-wrap gap-2">
+      {project.data.tags.map((tag) => (
+        <Tag label={tag} />
+      ))}
+    </div>
+    <div class="mt-10 card">
+      <h2 class="text-xl font-semibold">Project Focus</h2>
+      <p class="mt-3 text-sm text-starlight/70">
+        Placeholder details for {project.data.title}. Share milestones, collaborators, and the next steps here.
+      </p>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</BaseLayout>
