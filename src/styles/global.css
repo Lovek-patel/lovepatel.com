@@ -22,6 +22,11 @@
     --starfield-3: radial-gradient(2px 2px at 15% 75%, rgba(255, 255, 255, 0.08), transparent 65%),
       radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.06), transparent 60%),
       radial-gradient(1px 1px at 85% 20%, rgba(255, 255, 255, 0.05), transparent 60%);
+codex/add-global-space-background-theme
+    --moon-accent: radial-gradient(circle at 70% 30%, rgba(244, 240, 255, 0.18) 0%, rgba(244, 240, 255, 0.08) 35%, transparent 60%),
+      radial-gradient(circle at 68% 28%, rgba(180, 205, 255, 0.08) 0%, transparent 55%);
+
+main
     --vignette: radial-gradient(120% 120% at 50% 30%, transparent 0%, rgba(3, 6, 16, 0.45) 55%, rgba(3, 6, 16, 0.8) 100%);
   }
 
@@ -48,9 +53,14 @@
   }
 
   body::before {
+codex/add-global-space-background-theme
+    background-image: var(--moon-accent), var(--starfield-1), var(--starfield-2), var(--starfield-3);
+    background-size: 420px 420px, 320px 320px, 500px 500px, 720px 720px;
+    background-position: 78% 12%, 0 0, 120px 80px, -200px -120px;
     background-image: var(--starfield-1), var(--starfield-2), var(--starfield-3);
     background-size: 320px 320px, 500px 500px, 720px 720px;
     background-position: 0 0, 120px 80px, -200px -120px;
+main
     opacity: 0.5;
     transform: translateZ(0);
     animation: star-drift 120s linear infinite;
@@ -63,10 +73,24 @@
 
   @keyframes star-drift {
     from {
+codex/add-global-space-background-theme
+      background-position: 78% 12%, 0 0, 120px 80px, -200px -120px;
+    }
+    to {
+      background-position: 78% 12%, 400px -300px, -200px 240px, 280px 320px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    body::before {
+      background-image: var(--starfield-1), var(--starfield-2), var(--starfield-3);
+      background-size: 320px 320px, 500px 500px, 720px 720px;
+      background-position: 0 0, 120px 80px, -200px -120px;
       background-position: 0 0, 120px 80px, -200px -120px;
     }
     to {
       background-position: 400px -300px, -200px 240px, 280px 320px;
+main
     }
   }
 
