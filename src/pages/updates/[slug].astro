@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const updates = await getCollection('updates');
+  return updates.map((update) => ({ params: { slug: update.slug }, props: { update } }));
+}
+
+const { update } = Astro.props;
+const { Content } = await update.render();
+---
+<BaseLayout title={update.data.title} description={update.data.description}>
+  <Header slot="header" />
+  <article class="mx-auto max-w-3xl px-6 py-16">
+    <a class="text-sm text-starlight/60" href="/updates">← Back to updates</a>
+    <h1 class="mt-6 font-serif text-4xl font-semibold">{update.data.title}</h1>
+    <p class="mt-3 text-sm uppercase tracking-[0.3em] text-starlight/60">{update.data.date.toLocaleDateString()}</p>
+    <div class="mt-8 space-y-4 text-starlight/80">
+      <Content />
+    </div>
+  </article>
+  <Footer slot="footer" />
+</BaseLayout>
