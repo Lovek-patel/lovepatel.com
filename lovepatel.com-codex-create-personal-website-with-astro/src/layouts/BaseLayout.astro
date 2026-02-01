@@ -1,0 +1,22 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+
+const { title = 'Love Patel', description = 'Personal website of Love Patel.' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="stylesheet" href="/theme.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <Header />
+    <slot />
+    <script src="/scripts/header.js"></script>
+  </body>
+</html>
