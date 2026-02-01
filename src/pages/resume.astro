@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+<BaseLayout title="Resume" description="Resume highlights and downloadable PDF.">
+  <Header slot="header" />
+  <section class="mx-auto max-w-4xl px-6 py-16">
+    <p class="pill">Resume</p>
+    <h1 class="mt-6 font-serif text-4xl font-semibold">Resume Highlights</h1>
+    <p class="mt-4 text-lg text-starlight/70">
+      A snapshot of my academic and professional focus. Download the PDF for the full version.
+    </p>
+
+    <div class="mt-10 card">
+      <h2 class="text-xl font-semibold">Highlights</h2>
+      <ul class="mt-4 space-y-2 text-sm text-starlight/70">
+        <li>• Biomedical engineering and systems research.</li>
+        <li>• AI architecture and interdisciplinary experimentation.</li>
+        <li>• Writing at the intersection of science and philosophy.</li>
+      </ul>
+      <a class="mt-6 inline-flex rounded-full border border-white/10 bg-aurora px-6 py-3 text-sm font-semibold text-cosmic-900" href="/resume.pdf" download>
+        Download Resume PDF
+      </a>
+    </div>
+  </section>
+  <Footer slot="footer" />
+</BaseLayout>
