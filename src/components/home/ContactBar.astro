@@ -1,0 +1,10 @@
+---
+const { actions } = Astro.props;
+---
+<div class="mt-8 flex flex-wrap gap-4">
+  {actions.map((action) => (
+    <a class={action.className} href={action.href}>
+      {action.label}
+    </a>
+  ))}
+</div>

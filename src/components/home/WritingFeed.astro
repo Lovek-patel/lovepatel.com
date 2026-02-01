@@ -1,0 +1,12 @@
+---
+import Carousel from '../Carousel.astro';
+
+const { heading, description, items } = Astro.props;
+---
+<div class="grid gap-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-xl font-semibold text-starlight">{heading}</h2>
+    <p class="text-sm text-starlight/60">{description}</p>
+  </div>
+  <Carousel items={items} />
+</div>

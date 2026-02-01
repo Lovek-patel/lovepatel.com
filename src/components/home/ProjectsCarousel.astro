@@ -1,0 +1,18 @@
+---
+import ProjectCard from '../ProjectCard.astro';
+
+const { heading, linkHref, linkLabel, projects } = Astro.props;
+---
+<div class="grid gap-6">
+  <div class="flex items-center justify-between">
+    <h2 class="text-xl font-semibold text-starlight">{heading}</h2>
+    <a class="text-sm font-semibold text-aurora" href={linkHref}>
+      {linkLabel}
+    </a>
+  </div>
+  <div class="grid gap-6 md:grid-cols-2">
+    {projects.map((project) => (
+      <ProjectCard project={project} />
+    ))}
+  </div>
+</div>
