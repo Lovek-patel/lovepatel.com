@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Style Reference | Love Patel</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap" rel="stylesheet">
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Style Reference | Love Patel"
+  description="Typography and color palette reference for the Love Patel site."
+>
   <style>
     body {
       margin: 0;
@@ -14,8 +12,6 @@
       background-color: #0b0b0b;
       color: #f5f5f5;
       padding: 3rem;
-
-      /* Starry background – layered radial gradients to simulate stars */
       background-image:
         radial-gradient(1px 1px at 10% 20%, #ffffff20 100%, transparent 0%),
         radial-gradient(1px 1px at 30% 80%, #ffffff1f 100%, transparent 0%),
@@ -30,33 +26,27 @@
       margin: 0 0 1rem;
     }
 
-    .logo {
-      position: fixed;
-      top: 1rem;
-      right: 1.5rem;
-      z-index: 1000;
-    }
-    .logo img {
-      height: 50px;
-    }
-
     .heading {
       font-size: 2.6rem;
       font-weight: 700;
       color: #c79c3b;
     }
+
     .subheading {
       font-size: 2rem;
       color: #3d5afe;
     }
+
     .section-title {
       font-size: 1.6rem;
       color: #999;
     }
+
     .body-text {
       font-size: 1.2rem;
       color: #f5f5f5;
     }
+
     .small-text {
       font-size: 0.95rem;
       color: #aaa;
@@ -72,6 +62,7 @@
       gap: 1rem;
       margin-bottom: 2rem;
     }
+
     .swatch {
       padding: 2rem;
       border-radius: 10px;
@@ -94,34 +85,30 @@
     .color-aqua { background-color: #00bcd4; }
     .color-ice { background-color: #d6e4f0; color: #111; }
   </style>
-</head>
-<body>
-  <div class="logo">
-    <img src="Logo.png" alt="Love Patel Logo">
-  </div>
 
-  <div class="demo-box">
-    <div class="heading">Heading – EB Garamond Bold 2.6rem – Gold</div>
-    <div class="subheading">Subheading – EB Garamond 2rem – Blue 2</div>
-    <div class="section-title">Section Title – EB Garamond 1.6rem – Silver Mid</div>
-    <div class="body-text">Body Text – EB Garamond 1.2rem – Default</div>
-    <div class="small-text">Small Text – EB Garamond 0.95rem – Light Silver</div>
-  </div>
+  <main id="main-content">
+    <div class="demo-box">
+      <div class="heading">Heading – EB Garamond Bold 2.6rem – Gold</div>
+      <div class="subheading">Subheading – EB Garamond 2rem – Blue 2</div>
+      <div class="section-title">Section Title – EB Garamond 1.6rem – Silver Mid</div>
+      <div class="body-text">Body Text – EB Garamond 1.2rem – Default</div>
+      <div class="small-text">Small Text – EB Garamond 0.95rem – Light Silver</div>
+    </div>
 
-  <h2>Color Palette</h2>
-  <div class="swatch-grid">
-    <div class="swatch color-black">Black</div>
-    <div class="swatch color-grey">Grey</div>
-    <div class="swatch color-white">White</div>
-    <div class="swatch color-gold">Gold</div>
-    <div class="swatch color-silver">Silver</div>
-    <div class="swatch color-silver-light">Silver Light</div>
-    <div class="swatch color-silver-mid">Silver Mid</div>
-    <div class="swatch color-blue1">Blue 1</div>
-    <div class="swatch color-blue2">Blue 2</div>
-    <div class="swatch color-sky">Sky</div>
-    <div class="swatch color-aqua">Aqua</div>
-    <div class="swatch color-ice">Ice</div>
-  </div>
-</body>
-</html>
+    <h2>Color Palette</h2>
+    <div class="swatch-grid">
+      <div class="swatch color-black">Black</div>
+      <div class="swatch color-grey">Grey</div>
+      <div class="swatch color-white">White</div>
+      <div class="swatch color-gold">Gold</div>
+      <div class="swatch color-silver">Silver</div>
+      <div class="swatch color-silver-light">Silver Light</div>
+      <div class="swatch color-silver-mid">Silver Mid</div>
+      <div class="swatch color-blue1">Blue 1</div>
+      <div class="swatch color-blue2">Blue 2</div>
+      <div class="swatch color-sky">Sky</div>
+      <div class="swatch color-aqua">Aqua</div>
+      <div class="swatch color-ice">Ice</div>
+    </div>
+  </main>
+</BaseLayout>

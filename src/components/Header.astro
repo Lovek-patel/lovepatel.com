@@ -1,0 +1,60 @@
+---
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/updates', label: 'Life Updates' },
+  { href: '/resume', label: 'Resume' },
+  { href: '/contact', label: 'Contact' }
+];
+---
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo-link" href="/" aria-label="Love Patel home">
+      <img src="/Logo.png" alt="Love Patel logo" loading="eager" />
+      <span>Love Patel</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="Primary">
+      {navLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+
+    <div class="control-cluster" aria-label="Utility controls">
+      <button class="control-button" type="button" data-theme-toggle aria-pressed="false" aria-label="Toggle theme">
+        <span aria-hidden="true">◐</span>
+        Theme
+      </button>
+      <button class="control-button" type="button" data-search-toggle aria-haspopup="dialog" aria-controls="searchDialog">
+        <span aria-hidden="true">⌘</span>
+        Search
+      </button>
+      <button class="mobile-toggle" type="button" data-mobile-toggle aria-expanded="false" aria-controls="mobilePanel">
+        Menu
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-panel" id="mobilePanel" data-mobile-panel>
+  <nav aria-label="Mobile">
+    {navLinks.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
+  </nav>
+</div>
+
+<dialog class="search-dialog" id="searchDialog" data-search-dialog>
+  <div class="search-content">
+    <div>
+      <strong>Quick Search</strong>
+      <p>Search is coming soon. For now, jump directly to a page.</p>
+    </div>
+    <input type="text" placeholder="Search the site" aria-label="Search the site" />
+    <div class="search-actions">
+      <span>Tip: Use the navigation links to explore.</span>
+      <button class="control-button" type="button" data-search-close>Close</button>
+    </div>
+  </div>
+</dialog>
