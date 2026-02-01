@@ -1,0 +1,22 @@
+---
+const { heading, links } = Astro.props;
+---
+<section class="w-full rounded-3xl border border-white/10 bg-cosmic-900/70 px-6 py-8">
+  <div class="mx-auto flex max-w-6xl flex-col gap-6 md:flex-row md:items-center md:justify-between">
+    <div>
+      <h2 class="text-xl font-semibold text-starlight">{heading}</h2>
+      <p class="mt-2 text-sm text-starlight/60">Reach out anytime with your preferred channel.</p>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      {links.map((link) => (
+        <a
+          class="group flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-cosmic-800 text-starlight/80 transition hover:border-aurora/60 hover:text-aurora focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-aurora/80"
+          href={link.href}
+          aria-label={link.label}
+        >
+          <img src={link.icon} alt="" aria-hidden="true" class="h-5 w-5 opacity-90 group-hover:opacity-100" />
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

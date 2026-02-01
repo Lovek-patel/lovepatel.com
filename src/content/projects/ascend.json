@@ -3,5 +3,6 @@
   "summary": "A modular AI architecture for decision-making, memory, and long-horizon planning.",
   "category": "AI Systems",
   "tags": ["Strategy", "Architecture", "Research"],
-  "status": "Active"
+  "status": "Active",
+  "featured": true
 }

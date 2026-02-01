@@ -10,9 +10,11 @@ const { heading, linkHref, linkLabel, projects } = Astro.props;
       {linkLabel}
     </a>
   </div>
-  <div class="grid gap-6 md:grid-cols-2">
+  <div class="flex gap-6 overflow-x-auto scroll-smooth pb-2 snap-x snap-mandatory">
     {projects.map((project) => (
-      <ProjectCard project={project} />
+      <div class="min-w-[260px] flex-1 snap-start md:min-w-[320px] lg:min-w-[360px]">
+        <ProjectCard project={project} />
+      </div>
     ))}
   </div>
 </div>

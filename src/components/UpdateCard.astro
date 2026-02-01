@@ -1,0 +1,13 @@
+---
+const { update } = Astro.props;
+---
+<article class="card flex flex-col gap-4">
+  <div>
+    <p class="text-xs uppercase tracking-[0.3em] text-starlight/60">Life Update</p>
+    <h3 class="mt-2 text-xl font-semibold text-starlight">{update.title}</h3>
+    <p class="mt-2 text-sm text-starlight/70">{update.description}</p>
+  </div>
+  <a href={`/updates/${update.slug}`} class="mt-auto text-sm font-semibold text-aurora">
+    Read update →
+  </a>
+</article>

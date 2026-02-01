@@ -17,7 +17,8 @@ const projects = defineCollection({
     summary: z.string(),
     category: z.string(),
     tags: z.array(z.string()),
-    status: z.string().optional()
+    status: z.string().optional(),
+    featured: z.boolean().optional()
   })
 });
 
