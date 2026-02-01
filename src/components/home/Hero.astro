@@ -1,0 +1,14 @@
+---
+import AboutSummary from './AboutSummary.astro';
+import ContactBar from './ContactBar.astro';
+
+const { pill, title, summary, actions } = Astro.props;
+---
+<div>
+  <p class="pill">{pill}</p>
+  <h1 class="mt-6 font-serif text-4xl font-semibold text-starlight md:text-5xl">
+    {title}
+  </h1>
+  <AboutSummary text={summary} />
+  <ContactBar actions={actions} />
+</div>

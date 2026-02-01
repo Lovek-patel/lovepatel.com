@@ -1,0 +1,11 @@
+---
+const { label, title, description, href, linkText } = Astro.props;
+---
+<div class="card">
+  <p class="text-xs uppercase tracking-[0.3em] text-starlight/60">{label}</p>
+  <h2 class="mt-4 text-2xl font-semibold text-starlight">{title}</h2>
+  <p class="mt-3 text-sm text-starlight/70">{description}</p>
+  <a class="mt-6 text-sm font-semibold text-aurora" href={href}>
+    {linkText}
+  </a>
+</div>
