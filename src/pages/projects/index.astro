@@ -6,9 +6,10 @@ import ProjectCard from '../../components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
+const resolveProjectSlug = (entry) => entry.slug ?? entry.id.replace(/\.json$/, '');
 const mapped = projects.map((entry) => ({
   ...entry.data,
-  slug: entry.slug
+  slug: resolveProjectSlug(entry)
 }));
 ---
 <BaseLayout title="Projects" description="Explore Love Patel's project portfolio.">

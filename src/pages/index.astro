@@ -4,19 +4,39 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FeaturedSplit from '../components/home/FeaturedSplit.astro';
 import Hero from '../components/home/Hero.astro';
+import ContactIconBar from '../components/home/ContactIconBar.astro';
 import ProjectsCarousel from '../components/home/ProjectsCarousel.astro';
 import WritingFeed from '../components/home/WritingFeed.astro';
 import { getCollection } from 'astro:content';
 
 const projects = await getCollection('projects');
-const featuredProjects = projects.slice(0, 4).map((entry) => ({
+const resolveProjectSlug = (entry) => entry.slug ?? entry.id.replace(/\.json$/, '');
+const sortedProjects = [...projects].sort((a, b) =>
+  resolveProjectSlug(a).localeCompare(resolveProjectSlug(b))
+);
+const featuredProjectEntry =
+  projects.find((entry) => entry.data.featured) ?? sortedProjects[sortedProjects.length - 1];
+const featuredProject = {
+  ...featuredProjectEntry.data,
+  slug: resolveProjectSlug(featuredProjectEntry)
+};
+const featuredProjects = sortedProjects.map((entry) => ({
   ...entry.data,
-  slug: entry.slug
+  slug: resolveProjectSlug(entry)
 }));
+const updates = await getCollection('updates');
+const sortedUpdates = [...updates].sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+const latestUpdateEntry = sortedUpdates[0];
+const latestUpdate = {
+  ...latestUpdateEntry.data,
+  slug: latestUpdateEntry.slug
+};
 
 const heroContent = {
   pill: 'Ad Astra',
-  title: 'Designing systems that make the impossible feel inevitable.',
+  headline: 'Designing systems that make the impossible feel inevitable.',
   summary:
     'Welcome to my personal constellation — a curated space for experiments, life updates, and the projects shaping my future.',
   actions: [
@@ -32,15 +52,11 @@ const heroContent = {
       className:
         'rounded-full border border-white/10 px-6 py-3 text-sm font-semibold text-starlight/80'
     }
-  ]
-};
-
-const latestUpdate = {
-  label: 'Latest Update',
-  title: 'Quiet Progress, Real Momentum',
-  description: "Shipping isn't always loud. Here's what quietly moved forward this month.",
-  href: '/updates/2025-03-30-quiet-progress',
-  linkText: 'Read more →'
+  ],
+  image: {
+    src: '/portrait-placeholder.svg',
+    alt: 'Portrait placeholder'
+  }
 };
 
 const featuredProjectsSection = {
@@ -49,40 +65,59 @@ const featuredProjectsSection = {
   linkLabel: 'View all →'
 };
 
-const carouselItems = [
+const latestUpdatesCarousel = sortedUpdates.slice(0, 4).map((entry) => ({
+  label: 'Life Update',
+  title: entry.data.title,
+  description: entry.data.description,
+  href: `/updates/${entry.slug}`,
+  linkLabel: 'Read update →'
+}));
+
+const writingFeedSection = {
+  heading: 'Latest Updates',
+  description: 'Use arrows or swipe to navigate.'
+};
+
+const contactLinks = [
   {
-    label: 'Featured Update',
-    title: 'Ad Astra: A North Star for 2025',
-    description: 'Setting an intentional direction for the year with focus on craft, research, and impact.'
+    href: 'mailto:lkp2133@columbia.edu',
+    label: 'Email',
+    icon: '/email.png'
   },
   {
-    label: 'Featured Project',
-    title: 'ASCEND',
-    description: 'A modular AI architecture for decision-making, memory, and long-horizon planning.'
+    href: 'https://www.linkedin.com',
+    label: 'LinkedIn',
+    icon: '/linkedin.png'
   },
   {
-    label: 'Featured Project',
-    title: 'Primis',
-    description: 'A vision for a global education system rooted in ethics and curiosity.'
+    href: 'https://www.instagram.com',
+    label: 'Instagram',
+    icon: '/instagram.png'
+  },
+  {
+    href: 'https://www.snapchat.com',
+    label: 'Snapchat',
+    icon: '/snapchat.png'
   }
 ];
 
-const writingFeedSection = {
-  heading: 'Featured Feed',
-  description: 'Use arrows or swipe to navigate.'
+const contactSection = {
+  heading: 'Contact'
 };
 ---
 <BaseLayout title="Home" description="Love Patel — space-inspired personal website, projects, and life updates.">
   <Header slot="header" />
   <section class="mx-auto flex max-w-6xl flex-col gap-12 px-6 py-16">
-    <div class="grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
-      <Hero {...heroContent} />
-      <FeaturedSplit {...latestUpdate} />
-    </div>
+    <Hero {...heroContent} />
+
+    <FeaturedSplit project={featuredProject} update={latestUpdate} />
 
     <ProjectsCarousel {...featuredProjectsSection} projects={featuredProjects} />
 
-    <WritingFeed {...writingFeedSection} items={carouselItems} />
+    <WritingFeed {...writingFeedSection} items={latestUpdatesCarousel} />
+  </section>
+  <section class="px-6 pb-16">
+    <ContactIconBar {...contactSection} links={contactLinks} />
   </section>
   <Footer slot="footer" />
 </BaseLayout>

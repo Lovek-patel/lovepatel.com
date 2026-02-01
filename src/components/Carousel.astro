@@ -8,6 +8,11 @@ const { items } = Astro.props;
         <p class="text-xs uppercase tracking-[0.3em] text-starlight/60">{item.label}</p>
         <h3 class="mt-3 text-lg font-semibold text-starlight">{item.title}</h3>
         <p class="mt-2 text-sm text-starlight/70">{item.description}</p>
+        {item.href ? (
+          <a class="mt-4 inline-flex text-sm font-semibold text-aurora" href={item.href}>
+            {item.linkLabel ?? 'Read more →'}
+          </a>
+        ) : null}
       </article>
     ))}
   </div>
