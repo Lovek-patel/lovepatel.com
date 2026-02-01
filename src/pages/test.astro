@@ -1,14 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infinity Carousel Enhanced</title>
-
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Infinity Carousel Enhanced"
+  description="Test page for carousel interactions."
+>
   <style>
     * { box-sizing: border-box; }
 
-    body {
+    :global(body) {
       margin: 0;
       padding: 0;
       font-family: Georgia, serif;
@@ -44,11 +44,11 @@
       align-items: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      box-shadow: 0 0 30px rgba(50, 150, 255, 0.2); /* blue glow base */
+      box-shadow: 0 0 30px rgba(50, 150, 255, 0.2);
     }
 
     .carousel-card:hover {
-      box-shadow: 0 0 40px rgba(50, 150, 255, 0.6); /* blue hover glow */
+      box-shadow: 0 0 40px rgba(50, 150, 255, 0.6);
       transform: scale(1.02);
     }
 
@@ -92,7 +92,6 @@
       scrollbar-width: none;
     }
 
-    /* DOT INDICATORS */
     .dots {
       margin-top: 20px;
       display: flex;
@@ -112,36 +111,32 @@
       background-color: #3296ff;
     }
   </style>
-</head>
-<!-- only include <body> section for brevity -->
-<body>
 
-  <div class="carousel-container" id="carousel">
-    <!-- Set A -->
-    <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
-    <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
-    <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set A</p></div>
-    <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set A</p></div>
+  <main id="main-content">
+    <div class="carousel-container" id="carousel">
+      <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
+      <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set A</p></div>
+      <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set A</p></div>
+      <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set A</p></div>
 
-    <!-- Set B -->
-    <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
-    <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
-    <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set B</p></div>
-    <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set B</p></div>
+      <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
+      <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set B</p></div>
+      <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set B</p></div>
+      <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set B</p></div>
 
-    <!-- Set C -->
-    <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
-    <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
-    <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set C</p></div>
-    <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set C</p></div>
-  </div>
+      <div class="carousel-card"><h2>Project 1</h2><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
+      <div class="carousel-card"><h2>Project 2</h2><p class="timeline">2024 – Present</p><p class="description">Set C</p></div>
+      <div class="carousel-card"><h2>Project 3</h2><p class="timeline">2025 – Present</p><p class="description">Set C</p></div>
+      <div class="carousel-card"><h2>Project 4</h2><p class="timeline">2023 – Present</p><p class="description">Set C</p></div>
+    </div>
 
-  <div class="dots" id="dotContainer">
-    <div class="dot" data-index="0"></div>
-    <div class="dot" data-index="1"></div>
-    <div class="dot" data-index="2"></div>
-    <div class="dot" data-index="3"></div>
-  </div>
+    <div class="dots" id="dotContainer">
+      <div class="dot" data-index="0"></div>
+      <div class="dot" data-index="1"></div>
+      <div class="dot" data-index="2"></div>
+      <div class="dot" data-index="3"></div>
+    </div>
+  </main>
 
   <script>
     const carousel = document.getElementById("carousel");
@@ -185,19 +180,16 @@
       }
     }
 
-    // INIT
     window.addEventListener("load", () => {
       calcCardWidth();
-      scrollToIndex(0, false); // Go to Project 1 in Set B
+      scrollToIndex(0, false);
       updateDots(0);
     });
 
-    // Resize safety
     window.addEventListener("resize", () => {
       calcCardWidth();
     });
 
-    // Click on card
     carousel.addEventListener("click", (e) => {
       const cards = Array.from(carousel.querySelectorAll(".carousel-card"));
       const center = carousel.scrollLeft + carousel.offsetWidth / 2;
@@ -222,7 +214,6 @@
       }
     });
 
-    // Keyboard nav
     document.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
         carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
@@ -231,7 +222,6 @@
       }
     });
 
-    // Dot clicks
     dots.forEach(dot => {
       dot.addEventListener("click", () => {
         const i = parseInt(dot.dataset.index);
@@ -239,20 +229,16 @@
       });
     });
 
-    // Sync on scroll end
     let scrollTimeout;
     carousel.addEventListener("scroll", () => {
       clearTimeout(scrollTimeout);
       scrollTimeout = setTimeout(() => {
-        // Wait one animation frame = cleanest scroll correction timing
         requestAnimationFrame(() => {
           handleInfiniteLoop();
           const { relativeIndex } = getCurrentIndex();
           updateDots(relativeIndex);
         });
-      }, 10); // Faster reaction, feels instant
+      }, 10);
     });
-
   </script>
-</body>
-</html>
+</BaseLayout>

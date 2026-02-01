@@ -1,75 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | Love Patel</title>
-  <link rel="stylesheet" href="theme.css" />
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout
+  title="Contact | Love Patel"
+  description="Connect with Love Patel for collaborations and conversations."
+>
   <style>
-    body {
-      padding-top: 80px;
-    }
-
     .container {
       max-width: 900px;
       margin: 0 auto;
       padding: 2rem;
     }
 
-    /* 🔹 NAVBAR STYLES */
-    .top-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #0a0a0a;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 1000;
-      border-bottom: 1px solid #222;
-    }
-
-    .menu-button {
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: #f5f5f5;
-    }
-
-    .logo img {
-      height: 40px;
-    }
-
-    .menu-popup {
-      display: none;
-      position: fixed;
-      top: 70px;
-      left: 2rem;
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1rem 2rem;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 999;
-    }
-
-    .menu-popup.show {
-      display: flex;
-    }
-
-    .menu-popup a {
-      color: #f5f5f5;
-      font-size: 1.1rem;
-      text-decoration: none;
-    }
-
-    .menu-popup a:hover {
-      color: #c79c3b;
-    }
-
-    /* 🔹 CONTACT STYLES */
     .heading {
       font-size: 2.8rem;
       color: #d4af37;
@@ -177,45 +119,28 @@
       color: #666;
     }
   </style>
-</head>
 
-<body>
-  <!-- 🔹 NAVIGATION BAR -->
-  <div class="top-bar">
-    <div class="menu-button" onclick="toggleMenu()">☰</div>
-    <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
-  </div>
-  <div class="menu-popup" id="popupMenu">
-    <a href="index.html">🏠 Home</a>
-    <a href="about.html">👤 About</a>
-    <a href="projects.html">🧪 Projects</a>
-    <a href="blog.html">📝 Blog</a>
-    <a href="updates.html">📡 Updates</a>
-    <a href="contact.html">📬 Contact</a>
-  </div>
-
-  <!-- 🔸 CONTACT CONTENT -->
-  <div class="container">
+  <main class="container" id="main-content">
     <div class="heading">Get in Touch</div>
     <div class="intro">Whether it’s for collaboration, conversation, or just to say hello — I’d love to hear from you.</div>
 
     <div class="contact-grid row-1">
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front"><img src="email.png" alt="Email Logo" /></div>
+          <div class="flip-front"><img src="/email.png" alt="Email Logo" /></div>
           <div class="flip-back"><a href="mailto:lkp2133@columbia.edu">lkp2133@columbia.edu</a></div>
         </div>
       </div>
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front"><img src="website.png" alt="Website Logo" /></div>
-          <div class="flip-back"><a href="https://lovepatel.com" target="_blank">lovepatel.com</a></div>
+          <div class="flip-front"><img src="/website.png" alt="Website Logo" /></div>
+          <div class="flip-back"><a href="https://lovepatel.com" target="_blank" rel="noreferrer">lovepatel.com</a></div>
         </div>
       </div>
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front"><img src="linkedin.png" alt="LinkedIn Logo" /></div>
-          <div class="flip-back"><a href="https://www.linkedin.com/in/lovekpatel" target="_blank">@lovekpatel</a></div>
+          <div class="flip-front"><img src="/linkedin.png" alt="LinkedIn Logo" /></div>
+          <div class="flip-back"><a href="https://www.linkedin.com/in/lovekpatel" target="_blank" rel="noreferrer">@lovekpatel</a></div>
         </div>
       </div>
     </div>
@@ -223,14 +148,14 @@
     <div class="contact-grid row-2">
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front"><img src="instagram.png" alt="Instagram Logo" /></div>
-          <div class="flip-back"><a href="https://www.instagram.com/lovek.patel" target="_blank">@lovek.patel</a></div>
+          <div class="flip-front"><img src="/instagram.png" alt="Instagram Logo" /></div>
+          <div class="flip-back"><a href="https://www.instagram.com/lovek.patel" target="_blank" rel="noreferrer">@lovek.patel</a></div>
         </div>
       </div>
       <div class="flip-card">
         <div class="flip-inner">
-          <div class="flip-front"><img src="snapchat.png" alt="Snapchat Logo" /></div>
-          <div class="flip-back"><a href="https://www.snapchat.com/add/lovek.patel" target="_blank">@lovek.patel</a></div>
+          <div class="flip-front"><img src="/snapchat.png" alt="Snapchat Logo" /></div>
+          <div class="flip-back"><a href="https://www.snapchat.com/add/lovek.patel" target="_blank" rel="noreferrer">@lovek.patel</a></div>
         </div>
       </div>
     </div>
@@ -239,12 +164,5 @@
       “Reaching out takes nothing more than a smile.”
       <span>– Ron Kaufman</span>
     </div>
-  </div>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('popupMenu').classList.toggle('show');
-    }
-  </script>
-</body>
-</html>
+  </main>
+</BaseLayout>
