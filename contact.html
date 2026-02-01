@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact | Love Patel</title>
+  <meta name="description" content="Connect with Love Patel for collaborations and conversations." />
+  <link rel="stylesheet" href="site.css" />
   <link rel="stylesheet" href="theme.css" />
   <style>
     body {
@@ -18,23 +20,12 @@
 
     /* 🔹 NAVBAR STYLES */
     .top-bar {
-      position: fixed;
-      top: 0;
       left: 0;
-      width: 100%;
-      background-color: #0a0a0a;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      z-index: 1000;
-      border-bottom: 1px solid #222;
+      border-bottom: 1px solid var(--color-border);
     }
 
     .menu-button {
-      font-size: 1.6rem;
-      cursor: pointer;
-      color: #f5f5f5;
+      font-size: 1.2rem;
     }
 
     .logo img {
@@ -42,17 +33,7 @@
     }
 
     .menu-popup {
-      display: none;
-      position: fixed;
-      top: 70px;
       left: 2rem;
-      background-color: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 1rem 2rem;
-      flex-direction: column;
-      gap: 1rem;
-      z-index: 999;
     }
 
     .menu-popup.show {
@@ -60,29 +41,28 @@
     }
 
     .menu-popup a {
-      color: #f5f5f5;
       font-size: 1.1rem;
       text-decoration: none;
     }
 
     .menu-popup a:hover {
-      color: #c79c3b;
+      color: var(--color-accent);
     }
 
     /* 🔹 CONTACT STYLES */
     .heading {
       font-size: 2.8rem;
-      color: #d4af37;
+      color: var(--color-accent-strong);
       text-align: center;
       margin-bottom: 0.5rem;
       font-weight: 600;
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid var(--color-border);
       padding-bottom: 0.7rem;
     }
 
     .intro {
       font-size: 1.15rem;
-      color: #ccc;
+      color: var(--color-muted);
       text-align: center;
       margin-bottom: 2rem;
     }
@@ -133,7 +113,7 @@
     }
 
     .flip-front {
-      background-color: #1c1c1c;
+      background-color: var(--color-surface-strong);
       padding: 10px;
     }
 
@@ -143,7 +123,7 @@
     }
 
     .flip-back {
-      background-color: #3d5afe;
+      background-color: var(--color-focus);
       color: #fff;
       transform: rotateY(180deg);
       padding: 0 10px;
@@ -163,10 +143,10 @@
       max-width: 600px;
       margin: 3rem auto 0 auto;
       font-size: 1.2rem;
-      color: #888;
+      color: var(--color-muted);
       font-style: italic;
       text-align: center;
-      border-top: 1px solid #ccc;
+      border-top: 1px solid var(--color-border);
       padding-top: 1.5rem;
     }
 
@@ -174,28 +154,33 @@
       display: block;
       font-size: 0.95rem;
       margin-top: 0.5rem;
-      color: #666;
+      color: var(--color-muted);
     }
   </style>
 </head>
 
 <body>
   <!-- 🔹 NAVIGATION BAR -->
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <div class="top-bar">
-    <div class="menu-button" onclick="toggleMenu()">☰</div>
     <div class="logo"><img src="Logo.png" alt="Love Patel Logo" /></div>
+    <div class="top-bar-actions">
+      <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle color theme" aria-pressed="false">🌙</button>
+      <button class="menu-button" type="button" data-menu-toggle aria-expanded="false" aria-controls="popupMenu">☰</button>
+    </div>
   </div>
-  <div class="menu-popup" id="popupMenu">
+  <nav class="menu-popup" id="popupMenu" data-menu>
     <a href="index.html">🏠 Home</a>
     <a href="about.html">👤 About</a>
     <a href="projects.html">🧪 Projects</a>
     <a href="blog.html">📝 Blog</a>
     <a href="updates.html">📡 Updates</a>
+    <a href="resume.html">📄 Resume</a>
     <a href="contact.html">📬 Contact</a>
-  </div>
+  </nav>
 
   <!-- 🔸 CONTACT CONTENT -->
-  <div class="container">
+  <main class="container" id="main-content">
     <div class="heading">Get in Touch</div>
     <div class="intro">Whether it’s for collaboration, conversation, or just to say hello — I’d love to hear from you.</div>
 
@@ -239,12 +224,8 @@
       “Reaching out takes nothing more than a smile.”
       <span>– Ron Kaufman</span>
     </div>
-  </div>
+  </main>
 
-  <script>
-    function toggleMenu() {
-      document.getElementById('popupMenu').classList.toggle('show');
-    }
-  </script>
+  <script src="site.js"></script>
 </body>
 </html>
