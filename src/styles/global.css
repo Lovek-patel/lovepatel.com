@@ -7,10 +7,27 @@
 @layer base {
   :root {
     color-scheme: dark;
-    --starfield: radial-gradient(1px 1px at 20% 20%, rgba(255, 255, 255, 0.12), transparent 60%),
-      radial-gradient(1px 1px at 80% 30%, rgba(255, 255, 255, 0.08), transparent 60%),
-      radial-gradient(1px 1px at 40% 80%, rgba(255, 255, 255, 0.1), transparent 60%),
-      radial-gradient(1px 1px at 70% 70%, rgba(255, 255, 255, 0.06), transparent 60%);
+    --space-gradient: radial-gradient(120% 120% at 10% 10%, rgba(90, 130, 255, 0.15), transparent 55%),
+      radial-gradient(120% 120% at 90% 20%, rgba(152, 89, 255, 0.12), transparent 50%),
+      radial-gradient(140% 140% at 50% 100%, rgba(38, 68, 144, 0.35), transparent 65%),
+      linear-gradient(180deg, #060716 0%, #0b0f24 50%, #05060f 100%);
+    --starfield-1: radial-gradient(1px 1px at 20% 20%, rgba(255, 255, 255, 0.14), transparent 60%),
+      radial-gradient(1px 1px at 80% 30%, rgba(255, 255, 255, 0.1), transparent 60%),
+      radial-gradient(1px 1px at 40% 80%, rgba(255, 255, 255, 0.12), transparent 60%),
+      radial-gradient(1px 1px at 70% 70%, rgba(255, 255, 255, 0.08), transparent 60%);
+    --starfield-2: radial-gradient(1px 1px at 10% 30%, rgba(255, 255, 255, 0.08), transparent 60%),
+      radial-gradient(1px 1px at 60% 10%, rgba(255, 255, 255, 0.06), transparent 60%),
+      radial-gradient(1px 1px at 30% 60%, rgba(255, 255, 255, 0.07), transparent 60%),
+      radial-gradient(1px 1px at 90% 80%, rgba(255, 255, 255, 0.05), transparent 60%);
+    --starfield-3: radial-gradient(2px 2px at 15% 75%, rgba(255, 255, 255, 0.08), transparent 65%),
+      radial-gradient(1px 1px at 50% 50%, rgba(255, 255, 255, 0.06), transparent 60%),
+      radial-gradient(1px 1px at 85% 20%, rgba(255, 255, 255, 0.05), transparent 60%);
+    --starfield-twinkle: radial-gradient(1px 1px at 25% 35%, rgba(255, 255, 255, 0.35), transparent 55%),
+      radial-gradient(1px 1px at 70% 25%, rgba(255, 255, 255, 0.3), transparent 55%),
+      radial-gradient(1px 1px at 55% 65%, rgba(255, 255, 255, 0.25), transparent 55%);
+    --moon-accent: radial-gradient(circle at 70% 30%, rgba(244, 240, 255, 0.18) 0%, rgba(244, 240, 255, 0.08) 35%, transparent 60%),
+      radial-gradient(circle at 68% 28%, rgba(180, 205, 255, 0.08) 0%, transparent 55%);
+    --vignette: radial-gradient(120% 120% at 50% 30%, transparent 0%, rgba(3, 6, 16, 0.45) 55%, rgba(3, 6, 16, 0.8) 100%);
   }
 
   [data-theme='light'] {
@@ -19,8 +36,92 @@
 
   body {
     @apply bg-cosmic-900 text-starlight font-sans min-h-screen;
-    background-image: var(--starfield);
+    background-color: #05060f;
+    background-image: var(--vignette), var(--space-gradient);
     background-attachment: fixed;
+    position: relative;
+    isolation: isolate;
+  }
+
+  body::before,
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  body::before {
+    background-image: var(--moon-accent), var(--starfield-1), var(--starfield-2), var(--starfield-3);
+    background-size: 420px 420px, 320px 320px, 500px 500px, 720px 720px;
+    background-position: 78% 12%, 0 0, 120px 80px, -200px -120px;
+    opacity: 0.5;
+    transform: translateZ(0);
+    animation: star-drift 120s linear infinite;
+  }
+
+  @keyframes star-drift {
+    from {
+      background-position: 78% 12%, 0 0, 120px 80px, -200px -120px;
+    }
+    to {
+      background-position: 78% 12%, 400px -300px, -200px 240px, 280px 320px;
+    }
+  }
+
+  body::after {
+    background-image: var(--starfield-twinkle);
+    background-size: 360px 360px;
+    opacity: 0.25;
+    animation: star-twinkle 12s ease-in-out infinite;
+    will-change: opacity;
+  }
+
+  @keyframes star-twinkle {
+    0%,
+    100% {
+      opacity: 0.18;
+    }
+    45% {
+      opacity: 0.35;
+    }
+    70% {
+      opacity: 0.22;
+    }
+  }
+
+  @keyframes supernovaBurst {
+    0% {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    50% {
+      opacity: 0.6;
+      transform: scale(1.1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.4);
+    }
+  }
+
+  @media (max-width: 640px) {
+    body::before {
+      background-image: var(--starfield-1), var(--starfield-2), var(--starfield-3);
+      background-size: 320px 320px, 500px 500px, 720px 720px;
+      background-position: 0 0, 120px 80px, -200px -120px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body::before {
+      animation: none;
+    }
+
+    body::after {
+      animation: none;
+    }
   }
 
   :focus-visible {
